@@ -49,28 +49,45 @@ const HomeSection = () => {
     }
   };
 
+  const glowAnimation = {
+    initial: { boxShadow: "0 0 10px rgba(255,255,255,0.1)" },
+    animate: {
+      boxShadow: [
+        "0 0 10px rgba(255,255,255,0.1)", 
+        "0 0 20px rgba(255,255,255,0.2)", 
+        "0 0 10px rgba(255,255,255,0.1)"
+      ],
+      transition: {
+        duration: 3,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }
+    }
+  };
+
   return (
     <section ref={ref} id="home" className="h-screen flex items-center justify-center bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#151515]">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="text-center text-white"
+        className="text-center text-white max-w-6xl mx-auto"
       >
         <motion.div 
           variants={logoVariants}
           className="mb-8"
         >
-          <img
+          <motion.img
             src={logo}
             alt="Profile"
             className="w-32 h-32 rounded-full mx-auto"
+            {...glowAnimation}
           />
         </motion.div>
         
         <motion.h1 
           variants={itemVariants}
-          className="text-9xl font-bold mb-4 shimmer"
+          className="text-9xl font-bold mb-16 shimmer"
         >
           Maxime Gallotta
         </motion.h1>

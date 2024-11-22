@@ -7,7 +7,7 @@ const ProjectsSection = () => (
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="max-w-7xl mx-auto"
+      className="max-w-6xl mx-auto"
     >
       <h2 className="text-4xl font-bold mb-12 text-white">Mes Projets</h2>
       
