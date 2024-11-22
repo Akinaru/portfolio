@@ -66,7 +66,7 @@ const HomeSection = () => {
   };
 
   return (
-    <section ref={ref} id="home" className="h-screen flex items-center justify-center bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#151515]">
+    <section ref={ref} id="home" className="h-screen flex items-center justify-center bg-gradient-to-b from-[#0f0f0f] via-[#161616] to-[#202020]">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -94,7 +94,8 @@ const HomeSection = () => {
 
         <motion.p 
           variants={itemVariants}
-          className="text-2xl text-neutral-400 tracking-wider"
+          className="text-2xl text-neutral-400 tracking-wider subtitle-shine"
+          data-text="Étudiant en Informatique"
         >
           Étudiant en Informatique
         </motion.p>
@@ -121,6 +122,39 @@ const HomeSection = () => {
               background-position: 200% center;
             }
           }
+
+          .subtitle-shine {
+            position: relative;
+            color: #808080;
+          }
+
+          .subtitle-shine::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              90deg,
+              transparent 0%,
+              rgba(255, 215, 0, 0.8) 5%,
+              transparent 10%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shine 5s linear infinite;
+          }
+
+                    @keyframes shine {
+            from {
+              background-position: 150% center;
+            }
+            to {
+              background-position: -50% center;
+            }
         `}
       </style>
     </section>
