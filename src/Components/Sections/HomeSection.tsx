@@ -70,7 +70,7 @@ const HomeSection = () => {
         
         <motion.h1 
           variants={itemVariants}
-          className="text-8xl font-bold mb-4 shimmer"
+          className="text-9xl font-bold mb-4 shimmer"
         >
           Maxime Gallotta
         </motion.h1>

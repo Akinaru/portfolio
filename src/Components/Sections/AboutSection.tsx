@@ -10,90 +10,130 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ title, description, children, className = "" }: FeatureCardProps) => (
-    <motion.div 
-      className={`bg-white/5 rounded-lg backdrop-blur-sm flex flex-col gap-4 ${className}`}
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.2 }}
-    >
-      <div className="bg-black/10 w-full h-48 rounded-t-lg flex items-center justify-center">
-        {children}
-      </div>
-      <div className='p-12'>
-        <h3 className="text-2xl font-semibold text-white">{title}</h3>
-        <p className="text-gray-200 leading-relaxed text-base">{description}</p>
-      </div>
-    </motion.div>
-  );
-
-const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => (
-  <FeatureCard 
-    title={title} 
-    description={description} 
-    className="md:col-span-2 flex-row gap-8"
+  <motion.div 
+    className={`rounded-lg bg-white backdrop-blur-sm flex flex-col gap-4 ${className} rounded-t-xl shadow-xl shadow-black/20 h-[500px]`}
+    whileHover={{ scale: 1.02 }}
+    transition={{ duration: 0.2 }}
   >
-    {children}
-  </FeatureCard>
-);
+    <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-full h-48 rounded-t-xl flex items-center justify-center">
+      {children}
+    </div>
+    <div className='p-12'>
+      <h3 className="text-2xl font-semibold text-black">{title}</h3>
+      <p className="text-neutral-500 leading-relaxed text-base">{description}</p>
+    </div>
+  </motion.div>
+ );
+ 
+ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => (
+<motion.div 
+  className="bg-white rounded-lg backdrop-blur-sm flex flex-row md:col-span-2 h-[500px] shadow-xl shadow-black/20 w-full col-span-2"
+  whileHover={{ scale: 1.02 }}
+  transition={{ duration: 0.2 }}
+>
+    <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-1/2 rounded-l-lg flex items-center justify-center">
+      {children}
+    </div>
+    <div className='w-1/2 p-12 flex flex-col justify-center'>
+      <h3 className="text-2xl font-semibold text-black">{title}</h3>
+      <p className="text-neutral-500 leading-relaxed text-base">{description}</p>
+    </div>
+  </motion.div>
+ );
 
 const AboutSection = () => {
   const features = [
     {
-      title: "iCloud Private Relay",
-      description: "Takes your privacy to the next level when browsing with Safari. It's designed to prevent websites and network providers from building a profile about you based on your IP address, location, and browsing activity - all while ensuring you're instantly protected.",
+      title: "Développement Web",
+      description: "Passionné par le développement web et mobile, je maîtrise React, TypeScript et d'autres frameworks modernes. J'aime créer des interfaces élégantes et intuitives qui offrent une expérience utilisateur optimale.",
       visual: <img src={logo} alt="Avatar with laptop" className="w-36 h-36" />
     },
     {
-      title: "Hide My Email",
-      description: "Lets you generate unique, random email addresses that automatically forward to your personal inbox. You can use these whenever you reply or sign up for services, so you don't have to share your real email address.",
-      visual: <div className="bg-white rounded-lg w-2/3 py-3 text-sm text-black font-bold flex items-center justify-center gap-2">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 7H3M15 12H3M3 17H15M21 17L21 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-        </svg>
-        maxime@gallotta.fr
-      </div>
+      title: "Musique",
+      description: "La musique occupe une place importante dans ma vie. Je joue de plusieurs instruments et m'intéresse à la production musicale. Cette passion me permet de développer ma créativité et ma sensibilité artistique.",
+      visual: <img src={logo} alt="Avatar with laptop" className="w-36 h-36" />
     },
     {
-      title: "HomeKit Secure Video",
-      description: "Enables activity detected by your security cameras to be recorded, analyzed on your home hub device, and uploaded to iCloud as you can view it. Video clips are encrypted end-to-end, so you can trust that your video is always private.",
-      visual: <img src="/api/placeholder/400/200" alt="Device mockup" className="w-full h-48 object-contain" />,
-      long: true
+      title: "Formation & Objectifs",
+      description: "Actuellement étudiant en informatique, je me spécialise dans le développement d'applications. Mon parcours combine études théoriques et projets pratiques, avec un intérêt particulier pour le sport qui m'aide à maintenir un équilibre et développer mon esprit d'équipe.",
+      long: true,
+      visual: <img src={logo} alt="Avatar with laptop" className="w-48 h-48" />
     }
-  ];
-
+   ];
   return (
-    <section className="min-h-screen relative py-24 px-8 bg-[#0066FF]">
+    <section className="min-h-screen relative py-24 px-8 bg-gradient-to-b from-[#0079EC] to-[#8ed0ff]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-5xl font-bold text-white leading-tight"
-          >
-            More privacy.<br/>
-            More protection.<br/>
-            More peace of mind.
-          </motion.h2>
+          <div className="flex flex-col justify-start *:w-fit">
+            {["Créativité.", "Inoovation.", "Passion."].map((text, index) => (
+              <motion.p
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 0.6,
+                    delay: index * 0.3,
+                    ease: [0.16, 1, 0.3, 1]
+                  }
+                }}
+                className="text-7xl font-bold text-white drop-shadow-md"
+              >
+                {text}
+              </motion.p>
+            ))}
+          </div>
         </div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {features.slice(0, 2).map((feature, index) => (
-            <FeatureCard key={index} title={feature.title} description={feature.description}>
-              {feature.visual}
-            </FeatureCard>
-          ))}
-          <LongFeatureCard title={features[2].title} description={features[2].description}>
-            {features[2].visual}
-          </LongFeatureCard>
-        </motion.div>
+   
+        <div className="grid grid-cols-2 gap-8 relative">
+  {features.slice(0, 2).map((feature, index) => (
+    <motion.div
+      key={index}
+      initial={{ 
+        opacity: 0, 
+        x: index % 2 === 0 ? -50 : 50
+      }}
+      whileInView={{ 
+        opacity: 1,
+        x: 0,
+        transition: {
+          duration: 0.8,
+          delay: 0.6 + (index * 0.2),
+          ease: [0.16, 1, 0.3, 1]
+        }
+      }}
+    >
+      <FeatureCard title={feature.title} description={feature.description}>
+        {feature.visual}
+      </FeatureCard>
+    </motion.div>
+  ))}
+  
+  <motion.div
+    className="col-span-2"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ 
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }}
+  >
+    <LongFeatureCard 
+      title={features[2].title} 
+      description={features[2].description}
+    >
+      {features[2].visual}
+    </LongFeatureCard>
+  </motion.div>
+</div>
       </div>
     </section>
-  );
+   );
 };
 
 export default AboutSection;
