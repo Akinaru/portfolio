@@ -1,10 +1,10 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import logo from '../../assets/logo.webp'
+import logo from '../../assets/logo.webp';
 
 const HomeSection = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: false, amount: 0.5 })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.5 });
 
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.95 },
@@ -16,7 +16,7 @@ const HomeSection = () => {
         delayChildren: 0.2
       }
     }
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -29,7 +29,7 @@ const HomeSection = () => {
         damping: 10
       }
     }
-  }
+  };
 
   const logoVariants = {
     hidden: { 
@@ -47,7 +47,7 @@ const HomeSection = () => {
         damping: 20
       }
     }
-  }
+  };
 
   return (
     <section ref={ref} id="home" className="h-screen flex items-center justify-center bg-gradient-to-b from-[#0f0f0f] via-[#121212] to-[#151515]">
@@ -70,15 +70,7 @@ const HomeSection = () => {
         
         <motion.h1 
           variants={itemVariants}
-          className="text-8xl font-bold mb-4 animated-gradient"
-          style={{
-            background: "linear-gradient(-45deg, white 30%, rgb(107 114 128) 50%, white 70%)",
-            backgroundSize: "200% auto",
-            WebkitBackgroundClip: "text",
-            backgroundClip: "text",
-            color: "transparent",
-            animation: "shine 3s linear infinite"
-          }}
+          className="text-8xl font-bold mb-4 shimmer"
         >
           Maxime Gallotta
         </motion.h1>
@@ -93,15 +85,29 @@ const HomeSection = () => {
 
       <style>
         {`
+          .shimmer {
+            background: linear-gradient(
+              90deg,
+              #ffffff 0%,
+              #808080 50%,
+              #ffffff 100%
+            );
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+          }
+
           @keyframes shine {
             to {
-              backgroundPosition: 200% center;
+              background-position: 200% center;
             }
           }
         `}
       </style>
     </section>
-  )
-}
+  );
+};
 
 export default HomeSection;
