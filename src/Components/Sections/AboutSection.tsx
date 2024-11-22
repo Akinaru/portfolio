@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import logo from '../../assets/logo_computer.svg';
+import goal from '../../assets/goal.svg';
+import peace from '../../assets/peace.svg';
 
 interface FeatureCardProps {
   title: string;
@@ -12,7 +14,6 @@ interface FeatureCardProps {
 const FeatureCard = ({ title, description, children, className = "" }: FeatureCardProps) => (
   <motion.div 
     className={`rounded-lg bg-white/90 flex flex-col gap-4 ${className} rounded-t-xl shadow-lg shadow-black/25 h-[500px]`}
-    whileHover={{ scale: 1.02 }}
     transition={{ duration: 0.2 }}
   >
     <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-full h-48 rounded-t-xl flex items-center justify-center">
@@ -28,7 +29,6 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
 const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => (
   <motion.div 
     className="bg-white/90 rounded-lg flex flex-row md:col-span-2 h-[500px] shadow-lg shadow-black/25 w-full col-span-2"
-    whileHover={{ scale: 1.02 }}
     transition={{ duration: 0.2 }}
   >
     <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-1/2 rounded-l-lg flex items-center justify-center">
@@ -44,20 +44,20 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
 const AboutSection = () => {
   const features = [
     {
-      title: "Développement Web",
-      description: "Passionné par le développement web et mobile, je maîtrise React, TypeScript et d'autres frameworks modernes. J'aime créer des interfaces élégantes et intuitives qui offrent une expérience utilisateur optimale.",
+      title: "👨‍💻 Présentation",
+      description: "290 ans, basé à Annecy (74000), je suis passionné par le développement web le sport et la musique.",
       visual: <img src={logo} alt="Avatar with laptop" className="w-36 h-36" />
     },
     {
-      title: "Musique",
-      description: "La musique occupe une place importante dans ma vie. Je joue de plusieurs instruments et m'intéresse à la production musicale. Cette passion me permet de développer ma créativité et ma sensibilité artistique.",
-      visual: <img src={logo} alt="Avatar with laptop" className="w-36 h-36" />
+      title: "🌐 Compétences linguistiques",
+      description: "Trilingue avec une excellente maîtrise du Français (langue maternelle), de l'Anglais (C2 intermédiaire), et de l'Italien (B2 intermédiaire).",
+      visual: <img src={goal} alt="Languages icon" className="w-36 h-36" />
     },
     {
-      title: "Formation & Objectifs",
-      description: "Actuellement étudiant en informatique, je me spécialise dans le développement d'applications. Mon parcours combine études théoriques et projets pratiques, avec un intérêt particulier pour le sport qui m'aide à maintenir un équilibre et développer mon esprit d'équipe.",
+      title: "🎯 Objectifs & Expérience",
+      description: "Spécialisé dans le développement web et les algorithmes, je suis actuellement chercheur au LISMB. Mon expertise s'étend de la réalisation de catalogues au développement full-stack, avec une appétence particulière pour la programmation et la résolution de problèmes complexes.",
       long: true,
-      visual: <img src={logo} alt="Avatar with laptop" className="w-48 h-48" />
+      visual: <img src={peace} alt="Goals icon" className="w-96 h-96" />
     }
   ];
 
@@ -66,7 +66,7 @@ const AboutSection = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <div className="flex flex-col justify-start *:w-fit">
-            {["Passion.", "Création.", "Innovation."].map((text, index) => (
+            {["Innovation.", "Expertise.", "Excellence."].map((text, index) => (
               <motion.p
                 key={index}
                 initial={{ opacity: 0, y: 20 }}

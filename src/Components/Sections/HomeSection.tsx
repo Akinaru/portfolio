@@ -94,10 +94,10 @@ const HomeSection = () => {
 
         <motion.p 
           variants={itemVariants}
-          className="text-2xl text-neutral-400 tracking-wider subtitle-shine"
-          data-text="Étudiant en Informatique"
+          className="text-2xl text-neutral-400"
         >
-          Étudiant en Informatique
+          <span>🖥️ </span><span className="subtitle-shine  tracking-wider" data-text="Étudiant en Informatique">Étudiant en Informatique</span>
+          
         </motion.p>
       </motion.div>
 
@@ -138,7 +138,7 @@ const HomeSection = () => {
             background: linear-gradient(
               90deg,
               transparent 0%,
-              rgba(255, 215, 0, 0.8) 5%,
+              rgba(255, 255, 255, 0.8) 5%,
               transparent 10%
             );
             -webkit-background-clip: text;
