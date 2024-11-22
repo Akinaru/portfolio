@@ -61,11 +61,11 @@ const AboutSection = () => {
     }
    ];
   return (
-    <section className="min-h-screen relative py-24 px-8 bg-gradient-to-b from-[#0079EC] to-[#8ed0ff]">
+    <section id="about" className="min-h-screen relative py-24 px-8 bg-gradient-to-b from-[#0079EC] to-[#8ed0ff]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <div className="flex flex-col justify-start *:w-fit">
-            {["Créativité.", "Inoovation.", "Passion."].map((text, index) => (
+            {["Passion.", "Créativité.", "Innovation."].map((text, index) => (
               <motion.p
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
