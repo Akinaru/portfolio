@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import logo from '../../assets/logo.webp';
+import logo from '../../assets/logo_memo.webp';
 
 const HomeSection = () => {
   const ref = useRef(null);
@@ -71,7 +71,7 @@ const HomeSection = () => {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="text-center text-white max-w-6xl mx-auto"
+        className="text-center text-white max-w-7xl mx-auto"
       >
         <motion.div 
           variants={logoVariants}

@@ -31,7 +31,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
     className="bg-white/90 rounded-lg flex flex-row md:col-span-2 h-[500px] shadow-lg shadow-black/25 w-full col-span-2"
     transition={{ duration: 0.2 }}
   >
-    <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-1/2 rounded-l-lg flex items-center justify-center">
+    <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-1/2 rounded-l-lg flex items-end justify-center">
       {children}
     </div>
     <div className='w-1/2 p-12 flex flex-col justify-center'>
@@ -45,8 +45,8 @@ const AboutSection = () => {
   const features = [
     {
       title: "👨‍💻 Présentation",
-      description: "290 ans, basé à Annecy (74000), je suis passionné par le développement web le sport et la musique.",
-      visual: <img src={logo} alt="Avatar with laptop" className="w-36 h-36" />
+      description: "20 ans, basé à Annecy (74000), je suis passionné par le développement web le sport et la musique.",
+      visual: <img src={peace} alt="Avatar with laptop" className="w-36 h-36" />
     },
     {
       title: "🌐 Compétences linguistiques",
@@ -57,13 +57,23 @@ const AboutSection = () => {
       title: "🎯 Objectifs & Expérience",
       description: "Spécialisé dans le développement web et les algorithmes, je suis actuellement chercheur au LISMB. Mon expertise s'étend de la réalisation de catalogues au développement full-stack, avec une appétence particulière pour la programmation et la résolution de problèmes complexes.",
       long: true,
-      visual: <img src={peace} alt="Goals icon" className="w-96 h-96" />
-    }
+      visual: <img src={logo} alt="Goals icon" className="w-96 h-96" />
+    },
+    {
+      title: "👨‍💻 Présentation",
+      description: "20 ans, basé à Annecy (74000), je suis passionné par le développement web le sport et la musique.",
+      visual: <img src={logo} alt="Avatar with laptop" className="w-36 h-36" />
+    },
+    {
+      title: "🌐 Compétences linguistiques",
+      description: "Trilingue avec une excellente maîtrise du Français (langue maternelle), de l'Anglais (C2 intermédiaire), et de l'Italien (B2 intermédiaire).",
+      visual: <img src={goal} alt="Languages icon" className="w-36 h-36" />
+    },
   ];
 
   return (
     <section id="about" className="min-h-screen relative py-24 px-8 bg-gradient-to-b from-[#0079EC] to-[#8ed0ff]">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <div className="flex flex-col justify-start *:w-fit">
             {["Innovation.", "Expertise.", "Excellence."].map((text, index) => (
@@ -79,6 +89,16 @@ const AboutSection = () => {
                     ease: [0.16, 1, 0.3, 1]
                   }
                 }}
+                animate={{
+                  x: [0, 8, 0],
+                  transition: {
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    ease: "easeInOut",
+                    delay: index * 0.2
+                  }
+                }}
                 viewport={{ once: true, margin: "-100px" }}
                 className="text-7xl font-bold text-white drop-shadow-md"
               >
@@ -89,6 +109,28 @@ const AboutSection = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-8 relative">
+          <motion.div
+            className="col-span-2"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ 
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 1,
+                delay: 0.2,
+                ease: [0.16, 1, 0.3, 1]
+              }
+            }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <LongFeatureCard 
+              title={features[2].title} 
+              description={features[2].description}
+            >
+              {features[2].visual}
+            </LongFeatureCard>
+          </motion.div>
+
           {features.slice(0, 2).map((feature, index) => (
             <motion.div
               key={index}
@@ -113,27 +155,29 @@ const AboutSection = () => {
             </motion.div>
           ))}
 
-          <motion.div
-            className="col-span-2"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ 
-              opacity: 1,
-              y: 0,
-              transition: {
-                duration: 1,
-                delay: 0.2,
-                ease: [0.16, 1, 0.3, 1]
-              }
-            }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <LongFeatureCard 
-              title={features[2].title} 
-              description={features[2].description}
+          {features.slice(3, 5).map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ 
+                opacity: 0, 
+                x: index % 2 === 0 ? -50 : 50
+              }}
+              whileInView={{ 
+                opacity: 1,
+                x: 0,
+                transition: {
+                  duration: 1,
+                  delay: 0.2,
+                  ease: [0.16, 1, 0.3, 1]
+                }
+              }}
+              viewport={{ once: true, margin: "-100px" }}
             >
-              {features[2].visual}
-            </LongFeatureCard>
-          </motion.div>
+              <FeatureCard title={feature.title} description={feature.description}>
+                {feature.visual}
+              </FeatureCard>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
