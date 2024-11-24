@@ -5,6 +5,7 @@ import logo from '../../assets/logo_memo.webp';
 const HomeSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
+  const text = "Étudiant en Informatique";
 
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.95 },
@@ -49,22 +50,6 @@ const HomeSection = () => {
     }
   };
 
-  const glowAnimation = {
-    initial: { boxShadow: "0 0 10px rgba(255,255,255,0.1)" },
-    animate: {
-      boxShadow: [
-        "0 0 10px rgba(255,255,255,0.1)", 
-        "0 0 20px rgba(255,255,255,0.2)", 
-        "0 0 10px rgba(255,255,255,0.1)"
-      ],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
-
   return (
     <section ref={ref} id="home" className="h-screen flex items-center justify-center bg-gradient-to-b from-[#0f0f0f] via-[#161616] to-[#202020]">
       <motion.div
@@ -80,8 +65,7 @@ const HomeSection = () => {
           <motion.img
             src={logo}
             alt="Profile"
-            className="w-32 h-32 rounded-full mx-auto"
-            {...glowAnimation}
+            className="w-32 h-32 rounded-full mx-auto floating-element"
           />
         </motion.div>
         
@@ -94,10 +78,22 @@ const HomeSection = () => {
 
         <motion.p 
           variants={itemVariants}
-          className="text-2xl text-neutral-400"
+          className="text-2xl"
         >
-          <span>🖥️ </span><span className="subtitle-shine  tracking-wider" data-text="Étudiant en Informatique">Étudiant en Informatique</span>
-          
+          <span>🖥️ </span>
+          <span className="wave-text">
+            {text.split("").map((char, index) => (
+              <span 
+                key={index} 
+                className={char === " " ? "space" : "wave-letter"}
+                style={{ 
+                  animationDelay: `${index * 0.15}s`,
+                }}
+              >
+                {char}
+              </span>
+            ))}
+          </span>
         </motion.p>
       </motion.div>
 
@@ -123,38 +119,47 @@ const HomeSection = () => {
             }
           }
 
-          .subtitle-shine {
-            position: relative;
+          .floating-element {
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+          }
+
+          .wave-text {
             color: #808080;
+            display: inline-block;
           }
 
-          .subtitle-shine::before {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-              90deg,
-              transparent 0%,
-              rgba(255, 255, 255, 0.8) 5%,
-              transparent 10%
-            );
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: shine 5s linear infinite;
+          .wave-letter {
+            display: inline-block;
+            animation: wave 3s ease-in-out infinite;
           }
 
-                    @keyframes shine {
-            from {
-              background-position: 150% center;
+          .space {
+            display: inline-block;
+            width: 0.3em;
+          }
+
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0);
+              opacity: 0.8;
             }
-            to {
-              background-position: -50% center;
+            50% {
+              transform: translateY(-5px);
+              opacity: 1;
             }
+          }
+
+          @keyframes wave {
+            0%, 100% {
+              transform: translateY(0);
+              opacity: 0.8;
+            }
+            50% {
+              transform: translateY(-3px);
+              opacity: 1;
+            }
+          }
         `}
       </style>
     </section>

@@ -24,13 +24,26 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollPos = window.scrollY
-      const windowHeight = window.innerHeight
-      const currentSection = Math.floor(currentScrollPos / windowHeight)
-      setActiveSection(sections[currentSection])
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const threshold = windowHeight * 0.5; // Point de déclenchement à mi-écran
+
+      sections.forEach((section, index) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Si la section est visible et son sommet est au-dessus du seuil
+          if (rect.top <= threshold && rect.bottom > threshold) {
+            setActiveSection(section);
+          }
+        }
+      });
     }
 
     window.addEventListener('scroll', handleScroll)
+    // Appel initial pour définir la section active au chargement
+    handleScroll()
+    
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
   

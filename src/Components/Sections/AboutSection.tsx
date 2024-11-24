@@ -13,30 +13,30 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ title, description, children, className = "" }: FeatureCardProps) => (
   <motion.div 
-    className={`rounded-lg bg-white/90 flex flex-col gap-4 ${className} rounded-t-xl shadow-lg shadow-black/25 h-[500px]`}
+    className={`rounded-lg bg-white/90 flex flex-col gap-4 ${className} rounded-t-xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] h-[350px]`}
     transition={{ duration: 0.2 }}
   >
-    <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-full h-48 rounded-t-xl flex items-center justify-center">
+    <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-full h-32 rounded-t-xl flex items-center justify-center">
       {children}
     </div>
-    <div className='p-12'>
-      <h3 className="text-2xl font-bold text-black mb-1">{title}</h3>
-      <p className="text-neutral-500 leading-relaxed text-base">{description}</p>
+    <div className='p-8'>
+      <h3 className="text-xl font-bold text-black mb-1">{title}</h3>
+      <p className="text-neutral-500 leading-relaxed text-sm">{description}</p>
     </div>
   </motion.div>
 );
 
 const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => (
   <motion.div 
-    className="bg-white/90 rounded-lg flex flex-row md:col-span-2 h-[500px] shadow-lg shadow-black/25 w-full col-span-2"
+    className="bg-white/90 rounded-lg flex flex-row md:col-span-2 h-[350px] shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] w-full col-span-2"
     transition={{ duration: 0.2 }}
   >
     <div className="bg-gradient-to-r from-sky-200/70 to-sky-200/30 w-1/2 rounded-l-lg flex items-end justify-center">
       {children}
     </div>
-    <div className='w-1/2 p-12 flex flex-col justify-center'>
-      <h3 className="text-2xl font-bold text-black mb-1">{title}</h3>
-      <p className="text-neutral-500 leading-relaxed text-base">{description}</p>
+    <div className='w-1/2 p-8 flex flex-col justify-center'>
+      <h3 className="text-xl font-bold text-black mb-1">{title}</h3>
+      <p className="text-neutral-500 leading-relaxed text-sm">{description}</p>
     </div>
   </motion.div>
 );
@@ -46,35 +46,35 @@ const AboutSection = () => {
     {
       title: "👨‍💻 Présentation",
       description: "20 ans, basé à Annecy (74000), je suis passionné par le développement web le sport et la musique.",
-      visual: <img src={peace} alt="Avatar with laptop" className="w-36 h-36" />
+      visual: <img src={peace} alt="Avatar with laptop" className="w-24 h-24" />
     },
     {
       title: "🌐 Compétences linguistiques",
       description: "Trilingue avec une excellente maîtrise du Français (langue maternelle), de l'Anglais (C2 intermédiaire), et de l'Italien (B2 intermédiaire).",
-      visual: <img src={goal} alt="Languages icon" className="w-36 h-36" />
+      visual: <img src={goal} alt="Languages icon" className="w-24 h-24" />
     },
     {
       title: "🎯 Objectifs & Expérience",
       description: "Spécialisé dans le développement web et les algorithmes, je suis actuellement chercheur au LISMB. Mon expertise s'étend de la réalisation de catalogues au développement full-stack, avec une appétence particulière pour la programmation et la résolution de problèmes complexes.",
       long: true,
-      visual: <img src={logo} alt="Goals icon" className="w-96 h-96" />
+      visual: <img src={logo} alt="Goals icon" className="w-64 h-64" />
     },
     {
       title: "👨‍💻 Présentation",
       description: "20 ans, basé à Annecy (74000), je suis passionné par le développement web le sport et la musique.",
-      visual: <img src={logo} alt="Avatar with laptop" className="w-36 h-36" />
+      visual: <img src={logo} alt="Avatar with laptop" className="w-24 h-24" />
     },
     {
       title: "🌐 Compétences linguistiques",
       description: "Trilingue avec une excellente maîtrise du Français (langue maternelle), de l'Anglais (C2 intermédiaire), et de l'Italien (B2 intermédiaire).",
-      visual: <img src={goal} alt="Languages icon" className="w-36 h-36" />
+      visual: <img src={goal} alt="Languages icon" className="w-24 h-24" />
     },
   ];
 
   return (
-    <section id="about" className="min-h-screen relative py-24 px-8 bg-gradient-to-b from-[#0079EC] to-[#8ed0ff]">
+    <section id="about" className="min-h-screen relative py-16 px-8 bg-gradient-radial-chaos">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <div className="flex flex-col justify-start *:w-fit">
             {["Innovation.", "Expertise.", "Excellence."].map((text, index) => (
               <motion.p
@@ -100,7 +100,7 @@ const AboutSection = () => {
                   }
                 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="text-7xl font-bold text-white drop-shadow-md"
+                className="text-6xl font-bold text-white drop-shadow-[0_10px_10px_rgba(0,0,0,0.35)]"
               >
                 {text}
               </motion.p>
@@ -108,7 +108,7 @@ const AboutSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 relative">
+        <div className="grid grid-cols-2 gap-6 relative">
           <motion.div
             className="col-span-2"
             initial={{ opacity: 0, y: 50 }}
@@ -180,6 +180,30 @@ const AboutSection = () => {
           ))}
         </div>
       </div>
+
+      <style>
+        {`
+          .bg-gradient-radial-chaos {
+            background: radial-gradient(circle at 10% 20%, rgb(0, 160, 240) 0%, rgb(0, 200, 255) 90.1%),
+                        radial-gradient(circle at 80% 60%, rgb(0, 120, 220) 0%, rgb(0, 180, 255) 100%);
+            background-blend-mode: overlay;
+            position: relative;
+            overflow: hidden;
+          }
+
+          .bg-gradient-radial-chaos::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgb(0, 140, 230) 0%, transparent 70%);
+            mix-blend-mode: overlay;
+            pointer-events: none;
+          }
+        `}
+      </style>
     </section>
   );
 };

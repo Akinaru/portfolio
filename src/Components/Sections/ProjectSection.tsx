@@ -3,6 +3,7 @@ import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import img_ilc from '../../assets/projects/ilc.jpeg';
 import img_lightzino from '../../assets/projects/lightzino.jpeg';
+import img_fifa from '../../assets/projects/fifa.jpeg';
 import img_unknown from '../../assets/projects/unknown.jpeg';
 
 type Direction = 1 | -1 | 0;;
@@ -79,6 +80,13 @@ const ProjectsSection = () => {
 
   const projects: Project[] = [
     {
+      title: "Lightzino",
+      subtitle: "Design et Développement",
+      description: "Casino en cryptomonnaie en ligne.",
+      img: img_lightzino,
+      type: "Personnel"
+    },
+    {
       title: "ILC",
       subtitle: "Design et Développement",
       description: "Création d'une application web de géstion des déplacements internationnaux.",
@@ -86,11 +94,11 @@ const ProjectsSection = () => {
       type: "Stage"
     },
     {
-      title: "Lightzino",
+      title: "Fifa",
       subtitle: "Design et Développement",
-      description: "Casino en cryptomonnaie en ligne.",
-      img: img_lightzino,
-      type: "Personnel"
+      description: "Boutique non officle d'articles de football.",
+      img: img_fifa,
+      type: "Scolaire"
     },
     {
       title: "Bientôt ...",
