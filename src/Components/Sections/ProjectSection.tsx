@@ -1,54 +1,47 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import background from '../../assets/background.png';
+import img_ilc from '../../assets/projects/ilc.jpeg';
+import img_lightzino from '../../assets/projects/lightzino.jpeg';
 
-type Direction = 1 | -1 | 0;
+type Direction = 1 | -1 | 0;;
+
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  img: string;
+  type: string;
+}
 
 const slideVariants: Variants = {
-  initialEnter: {
-    scale: 0.95,
-    y: 30,
-    opacity: 0,
-  },
   enter: (direction: Direction) => ({
     x: direction > 0 ? '100%' : '-100%',
-    opacity: 0,
-    scale: 0.98,
-    position: 'absolute',
-    width: '100%',
-    height: '100%'
+    opacity: 1,
   }),
   center: {
+    zIndex: 1,
     x: 0,
     opacity: 1,
-    scale: 1,
-    position: 'relative',
-    zIndex: 1
   },
   exit: (direction: Direction) => ({
+    zIndex: 0,
     x: direction < 0 ? '100%' : '-100%',
-    opacity: 0,
-    scale: 0.98,
-    position: 'absolute',
-    width: '100%',
-    height: '100%'
+    opacity: 1,
   })
 };
 
-const contentVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut"
-    }
-  }
+const ProjectBadge = ({ type }: { type: ProjectType }) => {
+  const colors = {
+    Personnel: 'bg-purple-500/20 text-purple-300 border-purple-500/50',
+    Scolaire: 'bg-blue-500/20 text-blue-300 border-blue-500/50'
+  };
+
+  return (
+    <div className={`inline-flex items-center px-3 py-1 rounded-full border ${colors[type]} text-sm font-medium ml-4`}>
+      {type}
+    </div>
+  );
 };
 
 const ProjectsSection = () => {
@@ -60,21 +53,27 @@ const ProjectsSection = () => {
     amount: 0.3
   });
 
-  const projects = [
+  const projects: Project[] = [
     {
-      title: "MacBook Pro",
-      subtitle: "Design & Development",
-      description: "If you can dream it, Mac can do it.",
+      title: "ILC",
+      subtitle: "Design et Développement",
+      description: "Création d'une application web de géstion des déplacements internationnaux.",
+      img: img_ilc,
+      type: "Scolaire"
     },
     {
-      title: "MacBook Air",
-      subtitle: "UX Research",
-      description: "Incredibly thin. Seriously powerful.",
+      title: "Lightzino",
+      subtitle: "Design et Développement",
+      description: "Casino en cryptomonnaie en ligne.",
+      img: img_lightzino,
+      type: "Personnel"
     },
     {
-      title: "iMac",
-      subtitle: "Development",
-      description: "The new iMac. Works like a dream.",
+      title: "Bientôt ...",
+      subtitle: "?",
+      description: "Mystère...",
+      img: img_ilc,
+      type: "Inconnu"
     }
   ];
 
@@ -120,50 +119,47 @@ const ProjectsSection = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <div className="relative h-[600px] overflow-hidden rounded-3xl">
-            <AnimatePresence initial={false} custom={direction} mode="popLayout">
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: "spring", stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 },
-                  scale: { duration: 0.2 }
-                }}
-              >
-                <div className="relative w-full h-[600px] rounded-3xl overflow-hidden">
-                  <motion.img 
-                    src={background}
+            <div className="relative h-[600px] w-full">
+              <AnimatePresence initial={false} custom={direction}>
+                <motion.div
+                  key={currentIndex}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    duration: 0.3,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute inset-0"
+                >
+                  <img 
+                    src={projects[currentIndex].img}
                     alt={projects[currentIndex].title}
-                    className="w-full h-full object-cover"
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.8 }}
+                    className="w-full h-[600px] object-cover rounded-3xl"
                   />
-                  <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 to-transparent">
-                    <motion.div
-                      initial="hidden"
-                      animate="visible"
-                      variants={contentVariants}
-                    >
-                      <h3 className="text-3xl font-bold mb-2">{projects[currentIndex].title}</h3>
-                      <p className="text-lg text-neutral-300 mb-4">{projects[currentIndex].subtitle}</p>
-                      <p className="text-neutral-400 mb-6">{projects[currentIndex].description}</p>
-                      <motion.button
-                        className="px-6 py-3 rounded-full bg-white text-black font-medium"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        En savoir plus
-                      </motion.button>
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent rounded-3xl" />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            
+            <div className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end">
+              <div className="max-w-2xl">
+                
+                <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">{projects[currentIndex].title} <ProjectBadge type={projects[currentIndex].type} /></h3>
+                <p className="text-xl text-white/90 mb-4">{projects[currentIndex].subtitle}</p>
+                <p className="text-lg text-white/80">{projects[currentIndex].description}</p>
+              </div>
+              
+              <motion.button
+                className="px-8 py-4 rounded-full bg-white text-black font-medium text-lg self-end"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                En savoir plus
+              </motion.button>
+            </div>
           </div>
 
           <motion.div 
