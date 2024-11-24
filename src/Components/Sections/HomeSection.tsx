@@ -51,7 +51,7 @@ const HomeSection = () => {
   };
 
   return (
-    <section ref={ref} id="home" className="h-screen flex items-center justify-center bg-gradient-to-b from-[#0f0f0f] via-[#161616] to-[#202020]">
+    <section ref={ref} id="home" className="h-screen flex items-center justify-center bg-gradient-to-b from-black via-[#0a0a0a] to-[#111111]">
       <motion.div
         variants={containerVariants}
         initial="hidden"
