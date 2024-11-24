@@ -3,6 +3,7 @@ import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import img_ilc from '../../assets/projects/ilc.jpeg';
 import img_lightzino from '../../assets/projects/lightzino.jpeg';
+import img_unknown from '../../assets/projects/unknown.jpeg';
 
 type Direction = 1 | -1 | 0;;
 
@@ -31,14 +32,37 @@ const slideVariants: Variants = {
   })
 };
 
-const ProjectBadge = ({ type }: { type: ProjectType }) => {
-  const colors = {
+interface ProjectBadgeProps {
+  type: string;
+  className?: string;
+}
+
+const ProjectBadge: React.FC<ProjectBadgeProps> = ({ type, className = '' }) => {
+  const colors: Record<string, string> = {
     Personnel: 'bg-purple-500/20 text-purple-300 border-purple-500/50',
-    Scolaire: 'bg-blue-500/20 text-blue-300 border-blue-500/50'
+    Scolaire: 'bg-blue-500/20 text-blue-300 border-blue-500/50',
+    Stage: 'bg-green-500/20 text-green-300 border-green-500/50'
   };
 
+  const defaultColor = 'bg-gray-500/20 text-gray-300 border-gray-500/50';
+  const colorClasses = colors[type] || defaultColor;
+
   return (
-    <div className={`inline-flex items-center px-3 py-1 rounded-full border ${colors[type]} text-sm font-medium ml-4`}>
+    <div 
+      className={`
+        inline-flex 
+        items-center 
+        px-3 
+        py-1 
+        rounded-full 
+        border 
+        text-sm 
+        font-medium
+        ml-4
+        ${colorClasses}
+        ${className}
+      `}
+    >
       {type}
     </div>
   );
@@ -59,7 +83,7 @@ const ProjectsSection = () => {
       subtitle: "Design et Développement",
       description: "Création d'une application web de géstion des déplacements internationnaux.",
       img: img_ilc,
-      type: "Scolaire"
+      type: "Stage"
     },
     {
       title: "Lightzino",
@@ -72,7 +96,7 @@ const ProjectsSection = () => {
       title: "Bientôt ...",
       subtitle: "?",
       description: "Mystère...",
-      img: img_ilc,
+      img: img_unknown,
       type: "Inconnu"
     }
   ];
@@ -119,30 +143,30 @@ const ProjectsSection = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <div className="relative h-[600px] overflow-hidden rounded-3xl">
-            <div className="relative h-[600px] w-full">
-              <AnimatePresence initial={false} custom={direction}>
-                <motion.div
-                  key={currentIndex}
-                  custom={direction}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{
-                    duration: 0.3,
-                    ease: "easeInOut"
-                  }}
-                  className="absolute inset-0"
-                >
-                  <img 
-                    src={projects[currentIndex].img}
-                    alt={projects[currentIndex].title}
-                    className="w-full h-[600px] object-cover rounded-3xl"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent rounded-3xl" />
-                </motion.div>
-              </AnimatePresence>
-            </div>
+          <div className="relative h-[600px] w-full">
+            <AnimatePresence initial={false} custom={direction}>
+              <motion.div
+                key={currentIndex}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  duration: 0.3,
+                  ease: "easeInOut"
+                }}
+                className="absolute inset-0"
+              >
+                <img 
+                  src={projects[currentIndex].img}
+                  alt={projects[currentIndex].title}
+                  className="w-full h-[600px] object-cover" // Removed rounded-3xl
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" /> {/* Removed rounded-3xl */}
+              </motion.div>
+            </AnimatePresence>
+          </div>
             
             <div className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end">
               <div className="max-w-2xl">
