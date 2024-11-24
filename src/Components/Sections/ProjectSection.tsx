@@ -1,12 +1,43 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import img_ilc from '../../assets/projects/ilc.jpeg';
 import img_lightzino from '../../assets/projects/lightzino.jpeg';
 import img_fifa from '../../assets/projects/fifa.jpeg';
 import img_unknown from '../../assets/projects/unknown.jpeg';
 
-type Direction = 1 | -1 | 0;;
+type Direction = 1 | -1 | 0;
+
+const ChevronLeft = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M15 18l-6-6 6-6" />
+  </svg>
+);
+
+const ChevronRight = () => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width="20" 
+    height="20" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <path d="M9 18l6-6-6-6" />
+  </svg>
+);
 
 interface Project {
   title: string;
@@ -169,16 +200,15 @@ const ProjectsSection = () => {
                 <img 
                   src={projects[currentIndex].img}
                   alt={projects[currentIndex].title}
-                  className="w-full h-[600px] object-cover" // Removed rounded-3xl
+                  className="w-full h-[600px] object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" /> {/* Removed rounded-3xl */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
               </motion.div>
             </AnimatePresence>
           </div>
             
             <div className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end">
               <div className="max-w-2xl">
-                
                 <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">{projects[currentIndex].title} <ProjectBadge type={projects[currentIndex].type} /></h3>
                 <p className="text-xl text-white/90 mb-4">{projects[currentIndex].subtitle}</p>
                 <p className="text-lg text-white/80">{projects[currentIndex].description}</p>
@@ -209,7 +239,7 @@ const ProjectsSection = () => {
                   : 'text-white hover:bg-white/10'
               } transition-colors`}
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft />
               <span>Précédent</span>
             </button>
 
@@ -238,7 +268,7 @@ const ProjectsSection = () => {
               } transition-colors`}
             >
               <span>Suivant</span>
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight />
             </button>
           </motion.div>
         </motion.div>
