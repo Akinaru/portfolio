@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import img_ilc from '../../assets/projects/ilc.jpeg';
 import img_lightzino from '../../assets/projects/lightzino.jpeg';
 import img_fifa from '../../assets/projects/fifa.jpeg';
@@ -40,6 +41,7 @@ const ChevronRight = () => (
 );
 
 interface Project {
+  id: number;
   title: string;
   subtitle: string;
   description: string;
@@ -103,14 +105,29 @@ const ProjectBadge: React.FC<ProjectBadgeProps> = ({ type, className = '' }) => 
 const ProjectsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<Direction>(0);
+  const [isExpanded, setIsExpanded] = useState(false);
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
   const isInView = useInView(sectionRef, {
     once: true,
     amount: 0.3
   });
 
+  useEffect(() => {
+    if (isExpanded) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isExpanded]);
+
   const projects: Project[] = [
     {
+      id: 1,
       title: "Lightzino",
       subtitle: "Design et Développement",
       description: "Casino en cryptomonnaie en ligne.",
@@ -118,6 +135,7 @@ const ProjectsSection = () => {
       type: "Personnel"
     },
     {
+      id: 2,
       title: "ILC",
       subtitle: "Design et Développement",
       description: "Création d'une application web de géstion des déplacements internationnaux.",
@@ -125,6 +143,7 @@ const ProjectsSection = () => {
       type: "Stage"
     },
     {
+      id: 3,
       title: "Fifa",
       subtitle: "Design et Développement",
       description: "Boutique non officle d'articles de football.",
@@ -132,6 +151,7 @@ const ProjectsSection = () => {
       type: "Scolaire"
     },
     {
+      id: 4,
       title: "Bientôt ...",
       subtitle: "?",
       description: "Mystère...",
@@ -154,126 +174,200 @@ const ProjectsSection = () => {
     }
   };
 
-  return (
-    <section id="projects" ref={sectionRef} className="relative bg-black text-white py-48">
-      <div className="max-w-7xl mx-auto px-4">
-        <motion.h2 
-          className="text-4xl font-bold mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8 }}
-        >
-          Mes Projets
-        </motion.h2>
-        
-        <motion.p 
-          className="text-neutral-400 mb-12"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Découvrez mes projets
-        </motion.p>
-      
-        <motion.div 
-          className="relative w-full max-w-7xl mx-auto"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <div className="relative h-[600px] overflow-hidden rounded-3xl">
-          <div className="relative h-[600px] w-full">
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={currentIndex}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  duration: 0.3,
-                  ease: "easeInOut"
-                }}
-                className="absolute inset-0"
-              >
-                <img 
-                  src={projects[currentIndex].img}
-                  alt={projects[currentIndex].title}
-                  className="w-full h-[600px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-            
-            <div className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end">
-              <div className="max-w-2xl">
-                <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">{projects[currentIndex].title} <ProjectBadge type={projects[currentIndex].type} /></h3>
-                <p className="text-xl text-white/90 mb-4">{projects[currentIndex].subtitle}</p>
-                <p className="text-lg text-white/80">{projects[currentIndex].description}</p>
-              </div>
-              
-              <motion.button
-                className="px-8 py-4 rounded-full bg-white text-black font-medium text-lg self-end"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                En savoir plus
-              </motion.button>
-            </div>
-          </div>
+  const handleExpand = () => {
+    setIsExpanded(true);
+    // Navigate après l'animation
+    setTimeout(() => {
+      navigate(`/project/${projects[currentIndex].id}`);
+    }, 1000); // Durée de l'animation
+  };
 
-          <motion.div 
-            className="flex justify-center items-center gap-4 my-16"
+  return (
+    <>
+      <section id="projects" ref={sectionRef} className="relative bg-black text-white py-48">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.h2 
+            className="text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
-            <button
-              onClick={handlePrevious}
-              disabled={currentIndex === 0}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-                currentIndex === 0 
-                  ? 'text-neutral-500' 
-                  : 'text-white hover:bg-white/10'
-              } transition-colors`}
-            >
-              <ChevronLeft />
-              <span>Précédent</span>
-            </button>
-
-            <div className="flex gap-2">
-              {projects.map((_, i) => (
-                <div
-                  key={i}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    i === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/30'
-                  }`}
-                  onClick={() => {
-                    setDirection(i > currentIndex ? 1 : -1);
-                    setCurrentIndex(i);
+            Mes Projets
+          </motion.h2>
+          
+          <motion.p 
+            className="text-neutral-400 mb-12"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Découvrez mes projets
+          </motion.p>
+        
+          <motion.div 
+            className="relative w-full max-w-7xl mx-auto"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <div className="relative h-[600px] rounded-3xl overflow-hidden">
+              <AnimatePresence initial={false} custom={direction}>
+                <motion.div
+                  key={currentIndex}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    duration: 0.3,
+                    ease: "easeInOut"
                   }}
-                />
-              ))}
+                  className="relative w-full h-full"
+                >
+                 <motion.div 
+                    className="absolute inset-0"
+                    animate={{
+                      scale: isExpanded ? 2 : 1,
+                      opacity: isExpanded ? 0 : 1
+                    }}
+                    transition={{
+                      duration: 1,
+                      ease: [0.4, 0, 0.2, 1]
+                    }}
+                  >
+                    <img 
+                      src={projects[currentIndex].img}
+                      alt={projects[currentIndex].title}
+                      className="w-full h-full object-cover"
+                    />
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
+                      animate={{
+                        opacity: isExpanded ? 0 : 1
+                      }}
+                      transition={{
+                        duration: 0.8
+                      }}
+                    />
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
+              
+              <motion.div 
+                className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end"
+                animate={{
+                  opacity: isExpanded ? 0 : 1,
+                  y: isExpanded ? 100 : 0
+                }}
+                transition={{
+                  duration: 0.3
+                }}
+              >
+                <div className="max-w-2xl">
+                  <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">
+                    {projects[currentIndex].title} 
+                    <ProjectBadge type={projects[currentIndex].type} />
+                  </h3>
+                  <p className="text-xl text-white/90 mb-4">{projects[currentIndex].subtitle}</p>
+                  <p className="text-lg text-white/80">{projects[currentIndex].description}</p>
+                </div>
+                
+                <motion.button
+                  className="px-8 py-4 rounded-full bg-white text-black font-medium text-lg self-end"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleExpand}
+                >
+                  En savoir plus
+                </motion.button>
+              </motion.div>
             </div>
 
-            <button
-              onClick={handleNext}
-              disabled={currentIndex === projects.length - 1}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-                currentIndex === projects.length - 1 
-                  ? 'text-neutral-500 ' 
-                  : 'text-white hover:bg-white/10'
-              } transition-colors`}
+            <motion.div 
+              className="flex justify-center items-center gap-4 my-16"
+              animate={{
+                opacity: isExpanded ? 0 : 1
+              }}
+              transition={{
+                duration: 0.3
+              }}
             >
-              <span>Suivant</span>
-              <ChevronRight />
-            </button>
+              <button
+                onClick={handlePrevious}
+                disabled={currentIndex === 0}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+                  currentIndex === 0 
+                    ? 'text-neutral-500' 
+                    : 'text-white hover:bg-white/10'
+                } transition-colors`}
+              >
+                <ChevronLeft />
+                <span>Précédent</span>
+              </button>
+
+              <div className="flex gap-2">
+                {projects.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      i === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/30'
+                    }`}
+                    onClick={() => {
+                      setDirection(i > currentIndex ? 1 : -1);
+                      setCurrentIndex(i);
+                    }}
+                  />
+                ))}
+              </div>
+
+              <button
+                onClick={handleNext}
+                disabled={currentIndex === projects.length - 1}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+                  currentIndex === projects.length - 1 
+                    ? 'text-neutral-500' 
+                    : 'text-white hover:bg-white/10'
+                } transition-colors`}
+              >
+                <span>Suivant</span>
+                <ChevronRight />
+              </button>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </div>
-    </section>
+        </div>
+      </section>
+
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="fixed inset-0 bg-black/50 z-50"
+            onClick={() => setIsExpanded(false)}
+          >
+            <motion.div 
+              className="absolute inset-0 w-screen h-screen flex items-center justify-center overflow-hidden"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ 
+                duration: 1,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+            >
+              <img 
+                src={projects[currentIndex].img}
+                alt={projects[currentIndex].title}
+                className="min-w-full min-h-full w-auto h-auto max-w-none object-cover"
+                style={{ width: '100vw', height: '100vh' }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

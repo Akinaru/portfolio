@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
-import HomeSection from './Components/Sections/HomeSection';
-import AboutSection from './Components/Sections/AboutSection';
-import ProjectsSection from './Components/Sections/ProjectSection';
-import ContactSection from './Components/Sections/ContactSection';
+import HomePage from './pages/HomePage'
+import InfoProjectPage from './pages/InfoProjectPage '
 import './App.css'
 
 const sections = ['home', 'about', 'projects', 'contact'] as const;
@@ -26,13 +25,12 @@ function App() {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
-      const threshold = windowHeight * 0.5; // Point de déclenchement à mi-écran
+      const threshold = windowHeight * 0.5;
 
-      sections.forEach((section, index) => {
+      sections.forEach((section) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          // Si la section est visible et son sommet est au-dessus du seuil
           if (rect.top <= threshold && rect.bottom > threshold) {
             setActiveSection(section);
           }
@@ -41,60 +39,33 @@ function App() {
     }
 
     window.addEventListener('scroll', handleScroll)
-    // Appel initial pour définir la section active au chargement
     handleScroll()
     
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
   
   return (
-    <div className="relative">
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-white origin-left z-50"
-        style={{ scaleX }}
-      />
-
-      <nav className="fixed top-4 right-4 z-40">
-        <ul className="flex flex-col gap-4">
-          {sections.map(section => (
-            <li key={section} className="relative">
-              <div className="relative flex items-center w-24 justify-end">
-                <motion.span
-                  className={`absolute right-6 whitespace-nowrap text-sm font-bold select-none ${
-                    activeSection === section ? 'text-white' : 'text-neutral-600'
-                  }`}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ 
-                    opacity: hoveredDot === section ? 1 : 0,
-                    x: hoveredDot === section ? 0 : 20 
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {sectionNames[section]}
-                </motion.span>
-                
-                <motion.a
-                  href={`#${section}`}
-                  className={`relative block w-3 h-3 rounded-full ${
-                    activeSection === section ? 'bg-white' : 'bg-neutral-600'
-                  } transition-colors hover:cursor-pointer`}
-                  onMouseEnter={() => setHoveredDot(section)}
-                  onMouseLeave={() => setHoveredDot(null)}
-                  whileHover={{ scale: 1.5 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                />
-              </div>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <HomeSection/>
-      <AboutSection/>
-      <ProjectsSection/>
-      <ContactSection/>
-    </div>
+    <Router>
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <HomePage 
+              sections={sections}
+              sectionNames={sectionNames}
+              activeSection={activeSection}
+              hoveredDot={hoveredDot}
+              setHoveredDot={setHoveredDot}
+              scaleX={scaleX}
+            />
+          } 
+        />
+        <Route 
+          path="/project/:id"
+          element={<InfoProjectPage />} 
+        />
+      </Routes>
+    </Router>
   )
 }
 
