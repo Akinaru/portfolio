@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import HomePage from './pages/HomePage'
-import InfoProjectPage from './pages/InfoProjectPage '
+import InfoProjectPage from './pages/InfoProjectPage'
 import './App.css'
 
 const sections = ['home', 'about', 'projects', 'contact'] as const;
