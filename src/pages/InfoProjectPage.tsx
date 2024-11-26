@@ -71,7 +71,7 @@ const ChevronLeft = () => (
               href={project.links.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-400 rounded-xl hover:from-blue-700 hover:to-blue-500 transition-all transform hover:scale-105"
+              className="px-8 py-3 rounded-xl transition-colors transform bg-white text-black hover:bg-white/10 hover:text-white"
             >
               Voir le site
             </a>

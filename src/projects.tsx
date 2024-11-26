@@ -28,7 +28,7 @@ export const projectsData: Project[] = [
         longDescription: "Une plateforme de casino en ligne innovante utilisant les cryptomonnaies comme moyen de paiement. Le projet intègre des jeux de hasard modernes avec une interface utilisateur intuitive et des transactions sécurisées.",
         img: img_lightzino,
         type: "Personnel",
-        technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Web3.js", "Solidity"],
+        technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Web3.js", "Solidity", ],
         features: [
           "Système de paiement en cryptomonnaie",
           "Jeux de casino en temps réel",
