@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import img_ilc from '../../assets/projects/ilc.jpeg';
 import img_lightzino from '../../assets/projects/lightzino.jpeg';
 import img_fifa from '../../assets/projects/fifa.jpeg';
 import img_unknown from '../../assets/projects/unknown.jpeg';
+import { useNavigate } from 'react-router-dom';
 
 type Direction = 1 | -1 | 0;
 
@@ -105,25 +105,13 @@ const ProjectBadge: React.FC<ProjectBadgeProps> = ({ type, className = '' }) => 
 const ProjectsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<Direction>(0);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isFading, setIsFading] = useState(false);
   const sectionRef = useRef(null);
   const navigate = useNavigate();
   const isInView = useInView(sectionRef, {
     once: true,
     amount: 0.3
   });
-
-  useEffect(() => {
-    if (isExpanded) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isExpanded]);
 
   const projects: Project[] = [
     {
@@ -174,12 +162,11 @@ const ProjectsSection = () => {
     }
   };
 
-  const handleExpand = () => {
-    setIsExpanded(true);
-    // Navigate après l'animation
+  const handleFadeToBlack = () => {
+    setIsFading(true);
     setTimeout(() => {
       navigate(`/project/${projects[currentIndex].id}`);
-    }, 1000); // Durée de l'animation
+    }, 1000);
   };
 
   return (
@@ -225,45 +212,18 @@ const ProjectsSection = () => {
                   }}
                   className="relative w-full h-full"
                 >
-                 <motion.div 
-                    className="absolute inset-0"
-                    animate={{
-                      scale: isExpanded ? 2 : 1,
-                      opacity: isExpanded ? 0 : 1
-                    }}
-                    transition={{
-                      duration: 1,
-                      ease: [0.4, 0, 0.2, 1]
-                    }}
-                  >
+                  <div className="absolute inset-0">
                     <img 
                       src={projects[currentIndex].img}
                       alt={projects[currentIndex].title}
                       className="w-full h-full object-cover"
                     />
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"
-                      animate={{
-                        opacity: isExpanded ? 0 : 1
-                      }}
-                      transition={{
-                        duration: 0.8
-                      }}
-                    />
-                  </motion.div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  </div>
                 </motion.div>
               </AnimatePresence>
               
-              <motion.div 
-                className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end"
-                animate={{
-                  opacity: isExpanded ? 0 : 1,
-                  y: isExpanded ? 100 : 0
-                }}
-                transition={{
-                  duration: 0.3
-                }}
-              >
+              <div className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end">
                 <div className="max-w-2xl">
                   <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">
                     {projects[currentIndex].title} 
@@ -277,22 +237,14 @@ const ProjectsSection = () => {
                   className="px-8 py-4 rounded-full bg-white text-black font-medium text-lg self-end"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={handleExpand}
+                  onClick={handleFadeToBlack}
                 >
                   En savoir plus
                 </motion.button>
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div 
-              className="flex justify-center items-center gap-4 my-16"
-              animate={{
-                opacity: isExpanded ? 0 : 1
-              }}
-              transition={{
-                duration: 0.3
-              }}
-            >
+            <div className="flex justify-center items-center gap-4 my-16">
               <button
                 onClick={handlePrevious}
                 disabled={currentIndex === 0}
@@ -333,38 +285,19 @@ const ProjectsSection = () => {
                 <span>Suivant</span>
                 <ChevronRight />
               </button>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
 
       <AnimatePresence>
-        {isExpanded && (
+        {isFading && (
           <motion.div 
+            className="fixed inset-0 bg-black z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="fixed inset-0 bg-black/50 z-50"
-            onClick={() => setIsExpanded(false)}
-          >
-            <motion.div 
-              className="absolute inset-0 w-screen h-screen flex items-center justify-center overflow-hidden"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 1,
-                ease: [0.4, 0, 0.2, 1],
-              }}
-            >
-              <img 
-                src={projects[currentIndex].img}
-                alt={projects[currentIndex].title}
-                className="min-w-full min-h-full w-auto h-auto max-w-none object-cover"
-                style={{ width: '100vw', height: '100vh' }}
-              />
-            </motion.div>
-          </motion.div>
+            transition={{ duration: 1 }}
+          />
         )}
       </AnimatePresence>
     </>

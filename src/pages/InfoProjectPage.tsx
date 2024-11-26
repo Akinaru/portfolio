@@ -1,6 +1,4 @@
 import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
 import img_ilc from '../assets/projects/ilc.jpeg';
 import img_lightzino from '../assets/projects/lightzino.jpeg';
 import img_fifa from '../assets/projects/fifa.jpeg';
@@ -89,27 +87,6 @@ const InfoProjectPage = () => {
   const { id } = useParams<{ id: string }>();
   const projectId = parseInt(id || '0', 10) - 1;
   const project = projectId >= 0 && projectId < projectsData.length ? projectsData[projectId] : null;
-  const [isAnimating, setIsAnimating] = useState(true);
-  const [showEffects, setShowEffects] = useState(false);
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    
-    const animationTimer = setTimeout(() => {
-      document.body.style.overflow = 'unset';
-      setIsAnimating(false);
-    }, 1500);
-
-    const effectsTimer = setTimeout(() => {
-      setShowEffects(true);
-    }, 1000);
-
-    return () => {
-      clearTimeout(animationTimer);
-      clearTimeout(effectsTimer);
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
 
   if (!project) {
     return (
@@ -125,28 +102,15 @@ const InfoProjectPage = () => {
   return (
     <div className="min-h-screen bg-neutral-900 text-white">
       <div className="fixed inset-0 z-40">
-        <motion.img
+        <img
           src={project.img}
           alt={project.title}
-          className={`w-full h-full object-cover transition-all duration-1000 ${showEffects ? 'grayscale opacity-20' : ''}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          className="w-full h-full object-cover grayscale opacity-20"
         />
-        <motion.div 
-          className="absolute inset-0 bg-black"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: showEffects ? 0.9 : 0 }}
-          transition={{ duration: 1 }}
-        />
+        <div className="absolute inset-0 bg-black opacity-90" />
       </div>
 
-      <motion.div 
-        className="relative z-50 p-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-      >
+      <div className="relative z-50 p-8">
         <div className="max-w-7xl mx-auto">
           <Link 
             to="/" 
@@ -155,12 +119,7 @@ const InfoProjectPage = () => {
             &larr; Retour à l'accueil
           </Link>
 
-          <motion.div 
-            className="space-y-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
-          >
+          <div className="space-y-6">
             <h1 className="text-4xl font-bold mb-6">
               {project.title}
             </h1>
@@ -222,9 +181,9 @@ const InfoProjectPage = () => {
                 </a>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
