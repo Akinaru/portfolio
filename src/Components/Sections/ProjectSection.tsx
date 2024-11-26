@@ -166,12 +166,12 @@ const ProjectsSection = () => {
     setIsFading(true);
     setTimeout(() => {
       navigate(`/project/${projects[currentIndex].id}`);
-    }, 1000);
+    }, 700);
   };
 
   return (
     <>
-      <section id="projects" ref={sectionRef} className="relative bg-black text-white py-48">
+      <section id="projects" ref={sectionRef} className="relative bg-black text-white py-28">
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2 
             className="text-4xl font-bold mb-4"
@@ -296,7 +296,7 @@ const ProjectsSection = () => {
             className="fixed inset-0 bg-black z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.6 }}
           />
         )}
       </AnimatePresence>
