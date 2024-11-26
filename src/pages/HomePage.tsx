@@ -17,27 +17,6 @@ interface HomePageProps {
   setHoveredDot: (section: Section | null) => void
 }
 
-const scrollbarStyles = `
-  .modern-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-  }
-  .modern-scrollbar::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-  }
-  .modern-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .modern-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    transition: background-color 0.3s;
-  }
-  .modern-scrollbar::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-`;
 
 const HomePage = ({
   sections,
@@ -48,9 +27,8 @@ const HomePage = ({
 }: HomePageProps) => {
   return (
     <>
-    <style>{scrollbarStyles}</style>
 
-      <div className="relative modern-scrollbar h-screen overflow-y-auto">
+      <div className="relative h-screen">
         <nav className="fixed top-4 right-4 z-40">
           <ul className="flex flex-col gap-4">
             {sections.map(section => (

@@ -5,16 +5,6 @@ import HomePage from './pages/HomePage'
 import InfoProjectPage from './pages/InfoProjectPage'
 import './App.css'
 
-const hideScrollbarStyles = `
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-`;
-
 const sections = ['home', 'about', 'projects', 'contact'] as const;
 type Section = typeof sections[number];
 
@@ -33,9 +23,6 @@ function App() {
 
 
   useEffect(() => {
-      const styleElement = document.createElement('style');
-      styleElement.textContent = hideScrollbarStyles;
-      document.head.appendChild(styleElement);
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
