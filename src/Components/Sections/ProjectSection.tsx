@@ -1,10 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
-import img_ilc from '../../assets/projects/ilc.jpeg';
-import img_lightzino from '../../assets/projects/lightzino.jpeg';
-import img_fifa from '../../assets/projects/fifa.jpeg';
-import img_unknown from '../../assets/projects/unknown.jpeg';
 import { useNavigate } from 'react-router-dom';
+import { Project, projectsData } from '../../projects';
 
 type Direction = 1 | -1 | 0;
 
@@ -39,15 +36,6 @@ const ChevronRight = () => (
     <path d="M9 18l6-6-6-6" />
   </svg>
 );
-
-interface Project {
-  id: number;
-  title: string;
-  subtitle: string;
-  description: string;
-  img: string;
-  type: string;
-}
 
 const slideVariants: Variants = {
   enter: (direction: Direction) => ({
@@ -102,7 +90,7 @@ const ProjectBadge: React.FC<ProjectBadgeProps> = ({ type, className = '' }) => 
   );
 };
 
-const ProjectsSection = () => {
+const ProjectsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<Direction>(0);
   const [isFading, setIsFading] = useState(false);
@@ -113,41 +101,6 @@ const ProjectsSection = () => {
     amount: 0.3
   });
 
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Lightzino",
-      subtitle: "Design et Développement",
-      description: "Casino en cryptomonnaie en ligne.",
-      img: img_lightzino,
-      type: "Personnel"
-    },
-    {
-      id: 2,
-      title: "ILC",
-      subtitle: "Design et Développement",
-      description: "Création d'une application web de géstion des déplacements internationnaux.",
-      img: img_ilc,
-      type: "Stage"
-    },
-    {
-      id: 3,
-      title: "Fifa",
-      subtitle: "Design et Développement",
-      description: "Boutique non officle d'articles de football.",
-      img: img_fifa,
-      type: "Scolaire"
-    },
-    {
-      id: 4,
-      title: "Bientôt ...",
-      subtitle: "?",
-      description: "Mystère...",
-      img: img_unknown,
-      type: "Inconnu"
-    }
-  ];
-
   const handlePrevious = () => {
     if (currentIndex > 0) {
       setDirection(-1);
@@ -156,7 +109,7 @@ const ProjectsSection = () => {
   };
 
   const handleNext = () => {
-    if (currentIndex < projects.length - 1) {
+    if (currentIndex < projectsData.length - 1) {
       setDirection(1);
       setCurrentIndex(currentIndex + 1);
     }
@@ -165,7 +118,7 @@ const ProjectsSection = () => {
   const handleFadeToBlack = () => {
     setIsFading(true);
     setTimeout(() => {
-      navigate(`/project/${projects[currentIndex].id}`);
+      navigate(`/project/${projectsData[currentIndex].id}`);
     }, 700);
   };
 
@@ -214,8 +167,8 @@ const ProjectsSection = () => {
                 >
                   <div className="absolute inset-0">
                     <img 
-                      src={projects[currentIndex].img}
-                      alt={projects[currentIndex].title}
+                      src={projectsData[currentIndex].img}
+                      alt={projectsData[currentIndex].title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
@@ -226,16 +179,15 @@ const ProjectsSection = () => {
               <div className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end">
                 <div className="max-w-2xl">
                   <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">
-                    {projects[currentIndex].title} 
-                    <ProjectBadge type={projects[currentIndex].type} />
+                    {projectsData[currentIndex].title} 
+                    <ProjectBadge type={projectsData[currentIndex].type} />
                   </h3>
-                  <p className="text-xl text-white/90 mb-4">{projects[currentIndex].subtitle}</p>
-                  <p className="text-lg text-white/80">{projects[currentIndex].description}</p>
+                  <p className="text-xl text-white/90 mb-4">{projectsData[currentIndex].subtitle}</p>
+                  <p className="text-lg text-white/80">{projectsData[currentIndex].description}</p>
                 </div>
                 
                 <motion.button
-                  className="px-8 py-4 rounded-full bg-white text-black font-medium text-lg self-end"
-                  whileHover={{ scale: 1.05 }}
+                  className="px-8 py-4 rounded-full bg-white text-black font-medium text-lg self-end hover:bg-white/10 hover:text-white transition-colors"
                   whileTap={{ scale: 0.95 }}
                   onClick={handleFadeToBlack}
                 >
@@ -259,7 +211,7 @@ const ProjectsSection = () => {
               </button>
 
               <div className="flex gap-2">
-                {projects.map((_, i) => (
+                {projectsData.map((_, i) => (
                   <div
                     key={i}
                     className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
@@ -275,9 +227,9 @@ const ProjectsSection = () => {
 
               <button
                 onClick={handleNext}
-                disabled={currentIndex === projects.length - 1}
+                disabled={currentIndex === projectsData.length - 1}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-                  currentIndex === projects.length - 1 
+                  currentIndex === projectsData.length - 1 
                     ? 'text-neutral-500' 
                     : 'text-white hover:bg-white/10'
                 } transition-colors`}
