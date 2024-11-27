@@ -8,7 +8,56 @@
     "description": "Découvrez mes projets",
     "learnMore": "En savoir plus",
     "next": "Suivant",
-    "previous": "Précédent"
+    "previous": "Précédent",
+    "about": "À propos",
+    "techStack": "Stack technique",
+    "keyFeatures": "Fonctionnalités clés", 
+    "home": "Accueil",
+    "viewWebsite": "Voir le site",
+    "viewGithub": "Voir le GitHub",
+
+    "lightzino": {
+      "title": "Lightzino",
+      "subtitle": "Design et Développement",
+      "description": "Casino en cryptomonnaie en ligne.",
+      "longDescription": "Une plateforme de casino en ligne innovante utilisant les cryptomonnaies comme moyen de paiement. Le projet intègre des jeux de hasard modernes avec une interface utilisateur intuitive et des transactions sécurisées.",
+      "type": "Personnel",
+      "features": {
+        "1": "Système de paiement en cryptomonnaie",
+        "2": "Jeux de casino en temps réel",
+        "3": "Interface utilisateur moderne et responsive",
+        "4": "Système de récompenses et de fidélité",
+        "5": "Sécurité renforcée des transactions"
+      }
+    },
+    "ilc": {
+      "title": "ILC",
+      "subtitle": "Design et Développement",
+      "description": "Application web de gestion des déplacements internationaux.",
+      "longDescription": "Application web permettant la gestion complète des déplacements internationaux pour les étudiants de l'IUT d'Annecy. Le site permet la visualisation (avec filtres) des destinations. Les étudiants peuvent gérer leurs voeux et les administrateurs peuvent faire l'arbitrage pour valider les choix de destinations.",
+      "type": "Stage",
+      "features": {
+        "1": "Affichage des destinations",
+        "2": "Gestion des voeux et des documents",
+        "3": "Arbitrage des déplacements",
+        "4": "Gestion des éléments du site (articles, événements, destinations, utilisateurs)",
+        "5": "Interface multilingue"
+      }
+    },
+    "fifa": {
+      "title": "Fifa",
+      "subtitle": "Design et Développement", 
+      "description": "Boutique non officielle d'articles de football.",
+      "longDescription": "Une boutique en ligne spécialisée dans les produits de football, offrant une large gamme d'équipements et d'accessoires pour les passionnés du ballon rond.",
+      "type": "Scolaire",
+      "features": {
+        "1": "Catalogue produits détaillé",
+        "2": "Système de panier d'achat",
+        "3": "Paiement sécurisé",
+        "4": "Gestion des commandes",
+        "5": "Système de recherche avancé"
+      }
+    }
   }
 
 }

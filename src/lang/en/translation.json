@@ -8,6 +8,55 @@
     "description": "Découvrez mes projets",
     "learnMore": "Learn more",
     "next": "Next",
-    "previous": "Previous"
+    "previous": "Previous",
+    "about": "About",
+    "techStack": "Tech Stack",
+    "keyFeatures": "Key Features", 
+    "home": "Home",
+    "viewWebsite": "View Website",
+    "viewGithub": "View on GitHub",
+
+    "lightzino": {
+      "title": "Lightzino",
+      "subtitle": "Design and Development",
+      "description": "Online cryptocurrency casino.",
+      "longDescription": "An innovative online casino platform using cryptocurrencies as payment method. The project integrates modern casino games with an intuitive user interface and secure transactions.",
+      "type": "Personal",
+      "features": {
+        "1": "Cryptocurrency payment system",
+        "2": "Real-time casino games",
+        "3": "Modern and responsive user interface",
+        "4": "Rewards and loyalty system",
+        "5": "Enhanced transaction security"
+      }
+    },
+    "ilc": {
+      "title": "ILC",
+      "subtitle": "Design and Development",
+      "description": "Web application for managing international mobility.",
+      "longDescription": "Web application for complete management of international mobility for IUT Annecy students. The site allows visualization (with filters) of destinations. Students can manage their wishes and administrators can make decisions to validate destination choices.",
+      "type": "Internship",
+      "features": {
+        "1": "Destination display",
+        "2": "Wish and document management",
+        "3": "Mobility decision-making",
+        "4": "Site element management (articles, events, destinations, users)",
+        "5": "Multilingual interface"
+      }
+    },
+    "fifa": {
+      "title": "Fifa",
+      "subtitle": "Design and Development",
+      "description": "Unofficial football merchandise store.",
+      "longDescription": "An online store specialized in football products, offering a wide range of equipment and accessories for football enthusiasts.",
+      "type": "Academic",
+      "features": {
+        "1": "Detailed product catalog",
+        "2": "Shopping cart system",
+        "3": "Secure payment",
+        "4": "Order management",
+        "5": "Advanced search system"
+      }
+    }
   }
 }

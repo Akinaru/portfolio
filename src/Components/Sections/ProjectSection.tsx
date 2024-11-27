@@ -1,39 +1,19 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Project, projectsData } from '../../projects';
 import { useTranslation } from 'react-i18next';
+import { projectsData } from '../../projects';
 
 type Direction = 1 | -1 | 0;
 
 const ChevronLeft = () => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="20" 
-    height="20" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M15 18l-6-6 6-6" />
   </svg>
 );
 
 const ChevronRight = () => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width="20" 
-    height="20" 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round"
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 18l6-6-6-6" />
   </svg>
 );
@@ -56,7 +36,7 @@ const slideVariants: Variants = {
 };
 
 const imageVariants: Variants = {
-  enter: (direction: Direction) => ({
+  enter: () => ({
     scale: 1.2,
     opacity: 0,
   }),
@@ -64,7 +44,7 @@ const imageVariants: Variants = {
     scale: 1,
     opacity: 1,
   },
-  exit: (direction: Direction) => ({
+  exit: () => ({
     scale: 0.9,
     opacity: 0,
   })
@@ -78,29 +58,18 @@ interface ProjectBadgeProps {
 const ProjectBadge: React.FC<ProjectBadgeProps> = ({ type, className = '' }) => {
   const colors: Record<string, string> = {
     Personnel: 'bg-purple-500/20 text-purple-300 border-purple-500/50',
+    Personal: 'bg-purple-500/20 text-purple-300 border-purple-500/50',
     Scolaire: 'bg-blue-500/20 text-blue-300 border-blue-500/50',
-    Stage: 'bg-green-500/20 text-green-300 border-green-500/50'
+    Academic: 'bg-blue-500/20 text-blue-300 border-blue-500/50',
+    Stage: 'bg-green-500/20 text-green-300 border-green-500/50',
+    Internship: 'bg-green-500/20 text-green-300 border-green-500/50'
   };
 
   const defaultColor = 'bg-gray-500/20 text-gray-300 border-gray-500/50';
   const colorClasses = colors[type] || defaultColor;
 
   return (
-    <div 
-      className={`
-        inline-flex 
-        items-center 
-        px-3 
-        py-1 
-        rounded-full 
-        border 
-        text-sm 
-        font-medium
-        ml-4
-        ${colorClasses}
-        ${className}
-      `}
-    >
+    <div className={`inline-flex items-center px-3 py-1 rounded-full border text-sm font-medium ml-4 ${colorClasses} ${className}`}>
       {type}
     </div>
   );
@@ -114,10 +83,9 @@ const ProjectsSection: React.FC = () => {
   const { t } = useTranslation();
   const { lang } = useParams();
   const navigate = useNavigate();
-  const isInView = useInView(sectionRef, {
-    once: true,
-    amount: 0.3
-  });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+  const currentProject = projectsData[currentIndex];
 
   const handlePrevious = () => {
     if (currentIndex > 0) {
@@ -136,7 +104,7 @@ const ProjectsSection: React.FC = () => {
   const handleFadeToBlack = () => {
     setIsFading(true);
     setTimeout(() => {
-      navigate(`/${lang}/project/${projectsData[currentIndex].id}`);
+      navigate(`/${lang}/project/${currentProject.id}`);
     }, 700);
   };
 
@@ -189,14 +157,11 @@ const ProjectsSection: React.FC = () => {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{
-                      duration: 0.5,
-                      ease: "easeInOut"
-                    }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
                     <img 
-                      src={projectsData[currentIndex].img}
-                      alt={projectsData[currentIndex].title}
+                      src={currentProject.img}
+                      alt={t(`projects.${currentProject.translationKey}.title`)}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
@@ -215,11 +180,15 @@ const ProjectsSection: React.FC = () => {
                     className="max-w-2xl"
                   >
                     <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">
-                      {projectsData[currentIndex].title} 
-                      <ProjectBadge type={projectsData[currentIndex].type} />
+                      {t(`projects.${currentProject.translationKey}.title`)}
+                      <ProjectBadge type={t(`projects.${currentProject.translationKey}.type`)} />
                     </h3>
-                    <p className="text-xl text-white/90 mb-4">{projectsData[currentIndex].subtitle}</p>
-                    <p className="text-lg text-white/80">{projectsData[currentIndex].description}</p>
+                    <p className="text-xl text-white/90 mb-4">
+                      {t(`projects.${currentProject.translationKey}.subtitle`)}
+                    </p>
+                    <p className="text-lg text-white/80">
+                      {t(`projects.${currentProject.translationKey}.description`)}
+                    </p>
                   </motion.div>
                 </AnimatePresence>
                 
@@ -239,9 +208,7 @@ const ProjectsSection: React.FC = () => {
                 disabled={currentIndex === 0}
                 whileTap={currentIndex !== 0 ? { scale: 0.95 } : undefined}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-                  currentIndex === 0 
-                    ? 'text-neutral-500' 
-                    : 'text-white hover:bg-white/10'
+                  currentIndex === 0 ? 'text-neutral-500' : 'text-white hover:bg-white/10'
                 } transition-colors`}
               >
                 <ChevronLeft />
@@ -266,12 +233,10 @@ const ProjectsSection: React.FC = () => {
   
               <motion.button
                 onClick={handleNext}
-                whileTap={currentIndex !== projectsData.length - 1 ? { scale: 0.95 } : undefined}
                 disabled={currentIndex === projectsData.length - 1}
+                whileTap={currentIndex !== projectsData.length - 1 ? { scale: 0.95 } : undefined}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-                  currentIndex === projectsData.length - 1 
-                    ? 'text-neutral-500' 
-                    : 'text-white hover:bg-white/10'
+                  currentIndex === projectsData.length - 1 ? 'text-neutral-500' : 'text-white hover:bg-white/10'
                 } transition-colors`}
               >
                 <span>{t('projects.next')}</span>
