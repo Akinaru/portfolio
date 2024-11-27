@@ -1,11 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import logo from '../../assets/logo_memo.webp';
+import { useTranslation } from 'react-i18next';
 
 const HomeSection = () => {
+  const { t } = useTranslation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.5 });
-  const text = "Étudiant en Informatique";
 
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.95 },
@@ -36,12 +37,10 @@ const HomeSection = () => {
     hidden: { 
       scale: 0,
       rotate: -180,
-      filter: "blur(10px)"
     },
     visible: {
       scale: 1,
       rotate: 0,
-      filter: "blur(0px)",
       transition: {
         type: "spring",
         stiffness: 200,
@@ -82,17 +81,7 @@ const HomeSection = () => {
         >
           <span>🖥️ </span>
           <span className="wave-text">
-            {text.split("").map((char, index) => (
-              <span 
-                key={index} 
-                className={char === " " ? "space" : "wave-letter"}
-                style={{ 
-                  animationDelay: `${index * 0.15}s`,
-                }}
-              >
-                {char}
-              </span>
-            ))}
+              { t('home.title') }
           </span>
         </motion.p>
       </motion.div>

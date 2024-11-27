@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Project, projectsData } from '../../projects';
 
 type Direction = 1 | -1 | 0;
@@ -110,6 +110,7 @@ const ProjectsSection: React.FC = () => {
   const [direction, setDirection] = useState<Direction>(0);
   const [isFading, setIsFading] = useState(false);
   const sectionRef = useRef(null);
+  const { lang } = useParams();
   const navigate = useNavigate();
   const isInView = useInView(sectionRef, {
     once: true,
@@ -133,7 +134,7 @@ const ProjectsSection: React.FC = () => {
   const handleFadeToBlack = () => {
     setIsFading(true);
     setTimeout(() => {
-      navigate(`/project/${projectsData[currentIndex].id}`);
+      navigate(`/${lang}/project/${projectsData[currentIndex].id}`);
     }, 700);
   };
 
