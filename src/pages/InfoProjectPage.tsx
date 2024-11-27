@@ -28,19 +28,19 @@ const ChevronLeft = () => (
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Section titre et type */}
-        <div className="md:col-span-2 bg-neutral-800/50 p-8 rounded-xl">
+        <div className="md:col-span-2 bg-neutral-800/70 p-8 rounded-xl">
           <h1 className="text-5xl font-bold mb-4">{project.title}</h1>
           <span className="text-xl text-neutral-400">{project.type}</span>
         </div>
 
         {/* Description */}
-        <div className="bg-neutral-800/50 p-8 rounded-xl">
+        <div className="bg-neutral-800/70 p-8 rounded-xl">
           <h2 className="text-2xl font-semibold mb-4">À propos</h2>
           <p className="text-neutral-300 leading-relaxed">{project.longDescription}</p>
         </div>
 
         {/* Technologies */}
-        <div className="bg-neutral-800/50 p-8 rounded-xl">
+        <div className="bg-neutral-800/70 p-8 rounded-xl">
           <h2 className="text-2xl font-semibold mb-4">Stack technique</h2>
           <div className="flex flex-wrap gap-3">
             {project.technologies.map((tech) => (
@@ -52,7 +52,7 @@ const ChevronLeft = () => (
         </div>
 
         {/* Fonctionnalités */}
-        <div className="md:col-span-2 bg-neutral-800/50 p-8 rounded-xl">
+        <div className="md:col-span-2 bg-neutral-800/70 p-8 rounded-xl">
           <h2 className="text-2xl font-semibold mb-6">Fonctionnalités clés</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {project.features.map((feature) => (
@@ -154,7 +154,7 @@ const InfoProjectPage: React.FC = () => {
         />
         <div 
           className={`absolute inset-0 bg-black transition-opacity duration-1000 ease-in-out ${
-            isLoading ? 'opacity-100' : 'opacity-80'
+            isLoading ? 'opacity-100' : 'opacity-60'
           }`} 
         />
       </div>
