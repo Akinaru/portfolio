@@ -35,30 +35,30 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ project }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-{/* Section titre et type */}
-<div className={`md:col-span-2 bg-neutral-800/70 p-8 rounded-xl transform transition-all duration-700 ${
-  isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-}`}>
-  <div className="flex justify-start items-center">
-  {project.logo && (
-      <img 
-        src={project.logo} 
-        alt={`${project.title} logo`}
-        className={`w-24 h-24 object-contain transition-all duration-500 ${
-          isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
-        }`}
-      />
-    )}
-    <div>
-      <h1 className="text-5xl font-bold mb-4 animate-fade-in">{project.title}</h1>
-      <span className="text-xl text-neutral-400">{project.type}</span>
-    </div>
+      {/* Section titre et type */}
+      <div className={`md:col-span-2 bg-neutral-800/70  p-8 rounded-xl transform transition-all duration-500 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+      }`}>
+        <div className="flex justify-start items-center">
+        {project.logo && (
+            <img 
+              src={project.logo} 
+              alt={`${project.title} logo`}
+              className={`w-24 h-24 object-contain transition-all duration-500 mr-4 ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+              }`}
+            />
+          )}
+          <div>
+            <h1 className="text-5xl font-bold mb-4 animate-fade-in">{project.title}</h1>
+            <span className="text-xl text-neutral-400">{project.type}</span>
+          </div>
 
-  </div>
-</div>
+        </div>
+      </div>
 
       {/* Description */}
-      <div className={`bg-neutral-800/70 p-8 rounded-xl transform transition-all duration-700 delay-100 ${
+      <div className={`bg-neutral-800/70  p-8 rounded-xl transform transition-all duration-500 delay-75 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
         <h2 className="text-2xl font-semibold mb-4">À propos</h2>
@@ -66,7 +66,7 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ project }) => {
       </div>
 
       {/* Technologies */}
-      <div className={`bg-neutral-800/70 p-8 rounded-xl transform transition-all duration-700 delay-200 ${
+      <div className={`bg-neutral-800/70  p-8 rounded-xl transform transition-all duration-500 delay-150 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
         <h2 className="text-2xl font-semibold mb-4">Stack technique</h2>
@@ -86,7 +86,7 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ project }) => {
       </div>
 
       {/* Fonctionnalités */}
-      <div className={`md:col-span-2 bg-neutral-800/70 p-8 rounded-xl transform transition-all duration-700 delay-300 ${
+      <div className={`md:col-span-2 bg-neutral-800/70  p-8 rounded-xl transform transition-all duration-500 delay-200 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
         <h2 className="text-2xl font-semibold mb-6">Fonctionnalités clés</h2>
@@ -107,7 +107,7 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ project }) => {
       </div>
 
       {/* Liens */}
-      <div className={`md:col-span-2 flex gap-4 justify-center mt-4 transform transition-all duration-700 delay-400 ${
+      <div className={`md:col-span-2 flex gap-4 justify-center mt-4 transform transition-all duration-500 delay-300 ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
         {project.links?.website && (
@@ -115,7 +115,7 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ project }) => {
             href={project.links.website}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 rounded-xl transition-all duration-300 transform bg-white text-black hover:bg-white/10 hover:text-white hover:scale-105"
+            className="px-8 py-3 rounded-xl transition-all duration-300 transform bg-white text-black hover:bg-white/10 hover:text-white "
           >
             Voir le site
           </a>
@@ -125,7 +125,7 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ project }) => {
             href={project.links.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 bg-gradient-to-r from-neutral-800 to-neutral-700 rounded-xl transition-all duration-300 transform hover:from-neutral-700 hover:to-neutral-600 hover:scale-105"
+            className="px-8 py-3 bg-gradient-to-r from-neutral-800 to-neutral-700 rounded-xl transition-all duration-300 transform hover:from-neutral-700 hover:to-neutral-600 "
           >
             Voir sur GitHub
           </a>
@@ -134,6 +134,50 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ project }) => {
     </div>
   );
 };
+
+const ProjectLayout: React.FC<{
+  children: React.ReactNode;
+  backgroundImage: string;
+  isLoading: boolean;
+  className?: string;
+}> = ({ children, backgroundImage, isLoading, className }) => {
+  return (
+    <div className="min-h-screen bg-neutral-900 text-white">
+      <div className="fixed inset-0 z-40">
+        <img
+          src={backgroundImage}
+          alt="Background"
+          className={`w-full h-full object-cover transition-all duration-1000 ease-in-out ${
+            isLoading ? 'opacity-0 scale-105' : 'opacity-70 scale-100'
+          }`}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0) 100%)',
+            pointerEvents: 'none'
+          }}
+        />
+      </div>
+
+      <div className={`relative z-50 p-8 transition-all duration-700 ease-in-out ${
+        isLoading ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+      }`}>
+        <div className={`max-w-7xl mx-auto ${className}`}>
+          <div className="mb-8">
+            <Link to="/" className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit">
+              <ChevronLeft />
+              <p>Accueil</p>
+            </Link>
+          </div>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 const InfoProjectPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -149,71 +193,21 @@ const InfoProjectPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!project) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <div className="fixed inset-0 z-40">
-          <img
-            src={img_unknown}
-            alt="Image projet introuvable."
-            className={`w-full h-full object-cover transition-all duration-1000 ease-in-out ${
-              isLoading ? 'opacity-0 scale-105' : 'opacity-70 scale-100'
-            }`}
-          />
-          <div 
-            className={`absolute inset-0 bg-black transition-opacity duration-1000 ease-in-out ${
-              isLoading ? 'opacity-100' : 'opacity-85'
-            }`} 
-          />
-        </div>
-        <div className={`relative w-full max-w-7xl z-50 p-8 transition-all duration-700 ease-in-out ${
-          isLoading ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-        }`}>
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-bold text-white">Projet non trouvé</h1>
-            <p className="text-neutral-500 mb-4">Le projet demandé n'est pas disponible.</p>
-            <Link to="/" className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit">
-              <ChevronLeft />
-              <p>Accueil</p>
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-neutral-900 text-white">
-      <div className="fixed inset-0 z-40">
-        <img
-          src={project.img}
-          alt={project.title}
-          className={`w-full h-full object-cover transition-all duration-1000 ease-in-out ${
-            isLoading ? 'opacity-0 scale-105' : 'opacity-70 scale-100'
-          }`}
-        />
-        <div 
-          className={`absolute inset-0 bg-black transition-opacity duration-1000 ease-in-out ${
-            isLoading ? 'opacity-100' : 'opacity-60'
-          }`} 
-        />
-      </div>
-
-      <div className={`relative z-50 p-8 transition-all duration-700 ease-in-out ${
-        isLoading ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-      }`}>
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <Link to="/" className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit">
-              <ChevronLeft />
-              <p>Accueil</p>
-            </Link>
-          </div>
-
-          <ProjectContentCards project={project} />
+    <ProjectLayout
+      backgroundImage={project ? project.img : img_unknown}
+      isLoading={isLoading}
+      className={project ? '' : 'h-[calc(100vh-120px)] flex flex-col justify-center'}
+    >
+      {project ? (
+        <ProjectContentCards project={project} />
+      ) : (
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-white">Projet non trouvé</h1>
+          <p className="text-neutral-500 mb-4">Le projet demandé n'est pas disponible.</p>
         </div>
-      </div>
-    </div>
+      )}
+    </ProjectLayout>
   );
 };
 

@@ -1,6 +1,14 @@
 {
-    "home": {
-      "title": "Étudiant en Informatique",
-      "profileAlt": "Photo de profil"
-    }
+  "home": {
+    "title": "Étudiant en Informatique",
+    "profileAlt": "Photo de profil"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "description": "Découvrez mes projets",
+    "learnMore": "En savoir plus",
+    "next": "Suivant",
+    "previous": "Précédent"
   }
+
+}

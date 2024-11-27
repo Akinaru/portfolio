@@ -3,6 +3,7 @@ import logo_ilc from './assets/projects/logo_ilc.png';
 import img_lightzino from './assets/projects/lightzino.jpeg';
 import logo_lightzino from './assets/projects/logo_lightzino.png';
 import img_fifa from './assets/projects/fifa.jpeg';
+import logo_fifa from './assets/projects/logo_fifa.png';
 
 export interface Project {
     id: number;
@@ -71,7 +72,7 @@ export const projectsData: Project[] = [
         description: "Boutique non officle d'articles de football.",
         longDescription: "Une boutique en ligne spécialisée dans les produits de football, offrant une large gamme d'équipements et d'accessoires pour les passionnés du ballon rond.",
         img: img_fifa,
-        logo: img_fifa,
+        logo: logo_fifa,
         type: "Scolaire",
         technologies: ["React", "Express", "MySQL", "Stripe", "AWS"],
         features: [

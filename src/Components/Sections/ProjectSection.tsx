@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Project, projectsData } from '../../projects';
+import { useTranslation } from 'react-i18next';
 
 type Direction = 1 | -1 | 0;
 
@@ -110,6 +111,7 @@ const ProjectsSection: React.FC = () => {
   const [direction, setDirection] = useState<Direction>(0);
   const [isFading, setIsFading] = useState(false);
   const sectionRef = useRef(null);
+  const { t } = useTranslation();
   const { lang } = useParams();
   const navigate = useNavigate();
   const isInView = useInView(sectionRef, {
@@ -148,7 +150,7 @@ const ProjectsSection: React.FC = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8 }}
           >
-            Mes Projets
+            {t('projects.title')}
           </motion.h2>
           
           <motion.p 
@@ -157,7 +159,7 @@ const ProjectsSection: React.FC = () => {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Découvrez mes projets
+            {t('projects.description')}
           </motion.p>
         
           <motion.div 
@@ -222,19 +224,20 @@ const ProjectsSection: React.FC = () => {
                 </AnimatePresence>
                 
                 <motion.button
-                  className="px-8 py-4 rounded-full bg-white text-black font-medium text-lg self-end hover:bg-white/10 hover:text-white transition-colors"
+                  className="px-8 py-4 rounded-full bg-white text-black text-lg self-end hover:bg-white/10 hover:text-white transition-colors font-semibold"
                   whileTap={{ scale: 0.95 }}
                   onClick={handleFadeToBlack}
                 >
-                  En savoir plus
+                  {t('projects.learnMore')}
                 </motion.button>
               </div>
             </div>
   
             <div className="flex justify-center items-center gap-4 my-16">
-              <button
+              <motion.button
                 onClick={handlePrevious}
                 disabled={currentIndex === 0}
+                whileTap={currentIndex !== 0 ? { scale: 0.95 } : undefined}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full ${
                   currentIndex === 0 
                     ? 'text-neutral-500' 
@@ -242,13 +245,14 @@ const ProjectsSection: React.FC = () => {
                 } transition-colors`}
               >
                 <ChevronLeft />
-                <span>Précédent</span>
-              </button>
+                <span>{t('projects.previous')}</span>
+              </motion.button>
   
               <div className="flex gap-2">
                 {projectsData.map((_, i) => (
-                  <div
+                  <motion.button
                     key={i}
+                    whileTap={{ scale: 0.75 }}
                     className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                       i === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/30'
                     }`}
@@ -260,8 +264,9 @@ const ProjectsSection: React.FC = () => {
                 ))}
               </div>
   
-              <button
+              <motion.button
                 onClick={handleNext}
+                whileTap={currentIndex !== projectsData.length - 1 ? { scale: 0.95 } : undefined}
                 disabled={currentIndex === projectsData.length - 1}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full ${
                   currentIndex === projectsData.length - 1 
@@ -269,9 +274,9 @@ const ProjectsSection: React.FC = () => {
                     : 'text-white hover:bg-white/10'
                 } transition-colors`}
               >
-                <span>Suivant</span>
+                <span>{t('projects.next')}</span>
                 <ChevronRight />
-              </button>
+              </motion.button>
             </div>
           </motion.div>
         </div>

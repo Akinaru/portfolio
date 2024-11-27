@@ -1,6 +1,13 @@
 {
-    "home": {
-      "title": "Computer Science Student",
-      "profileAlt": "Profile picture"
-    }
+  "home": {
+    "title": "Computer Science Student",
+    "profileAlt": "Profile picture"
+  },
+  "projects": {
+    "title": "My Projects",
+    "description": "Découvrez mes projets",
+    "learnMore": "Learn more",
+    "next": "Next",
+    "previous": "Previous"
   }
+}
