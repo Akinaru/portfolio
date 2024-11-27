@@ -52,7 +52,7 @@ const AboutSection = () => {
   const features = [
     {
       title: "🎓 Présentation",
-      description: "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy, spécialisé en développement.\n\nPassionné par le codage, le sport, les jeux vidéo et la musique.\n\n",
+      description: "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy, spécialisé en développement d'application.\n\nJe suis passionné par le codage 💻, le sport 🥋, les jeux vidéo 🎮 et la musique 🎵.\n\n",
       long: true,
       visual: <img src={logo} alt="Profile" className="w-64 h-64" />
     },

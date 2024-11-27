@@ -40,7 +40,7 @@ const ChevronRight = () => (
 const slideVariants: Variants = {
   enter: (direction: Direction) => ({
     x: direction > 0 ? '100%' : '-100%',
-    opacity: 1,
+    opacity: 0,
   }),
   center: {
     zIndex: 1,
@@ -50,7 +50,22 @@ const slideVariants: Variants = {
   exit: (direction: Direction) => ({
     zIndex: 0,
     x: direction < 0 ? '100%' : '-100%',
+    opacity: 0,
+  })
+};
+
+const imageVariants: Variants = {
+  enter: (direction: Direction) => ({
+    scale: 1.2,
+    opacity: 0,
+  }),
+  center: {
+    scale: 1,
     opacity: 1,
+  },
+  exit: (direction: Direction) => ({
+    scale: 0.9,
+    opacity: 0,
   })
 };
 
@@ -151,7 +166,7 @@ const ProjectsSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <div className="relative h-[600px] rounded-3xl overflow-hidden">
-              <AnimatePresence initial={false} custom={direction}>
+              <AnimatePresence initial={false} custom={direction} mode="popLayout">
                 <motion.div
                   key={currentIndex}
                   custom={direction}
@@ -160,31 +175,50 @@ const ProjectsSection: React.FC = () => {
                   animate="center"
                   exit="exit"
                   transition={{
-                    duration: 0.3,
-                    ease: "easeInOut"
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.5 }
                   }}
-                  className="relative w-full h-full"
+                  className="absolute inset-0 w-full h-full"
                 >
-                  <div className="absolute inset-0">
+                  <motion.div
+                    className="absolute inset-0"
+                    variants={imageVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      duration: 0.5,
+                      ease: "easeInOut"
+                    }}
+                  >
                     <img 
                       src={projectsData[currentIndex].img}
                       alt={projectsData[currentIndex].title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                  </div>
+                  </motion.div>
                 </motion.div>
               </AnimatePresence>
               
               <div className="absolute bottom-0 left-0 w-full p-12 z-20 flex justify-between items-end">
-                <div className="max-w-2xl">
-                  <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">
-                    {projectsData[currentIndex].title} 
-                    <ProjectBadge type={projectsData[currentIndex].type} />
-                  </h3>
-                  <p className="text-xl text-white/90 mb-4">{projectsData[currentIndex].subtitle}</p>
-                  <p className="text-lg text-white/80">{projectsData[currentIndex].description}</p>
-                </div>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="max-w-2xl"
+                  >
+                    <h3 className="text-4xl font-bold mb-3 text-white/95 flex items-center justify-start">
+                      {projectsData[currentIndex].title} 
+                      <ProjectBadge type={projectsData[currentIndex].type} />
+                    </h3>
+                    <p className="text-xl text-white/90 mb-4">{projectsData[currentIndex].subtitle}</p>
+                    <p className="text-lg text-white/80">{projectsData[currentIndex].description}</p>
+                  </motion.div>
+                </AnimatePresence>
                 
                 <motion.button
                   className="px-8 py-4 rounded-full bg-white text-black font-medium text-lg self-end hover:bg-white/10 hover:text-white transition-colors"
@@ -195,7 +229,7 @@ const ProjectsSection: React.FC = () => {
                 </motion.button>
               </div>
             </div>
-
+  
             <div className="flex justify-center items-center gap-4 my-16">
               <button
                 onClick={handlePrevious}
@@ -209,7 +243,7 @@ const ProjectsSection: React.FC = () => {
                 <ChevronLeft />
                 <span>Précédent</span>
               </button>
-
+  
               <div className="flex gap-2">
                 {projectsData.map((_, i) => (
                   <div
@@ -224,7 +258,7 @@ const ProjectsSection: React.FC = () => {
                   />
                 ))}
               </div>
-
+  
               <button
                 onClick={handleNext}
                 disabled={currentIndex === projectsData.length - 1}
@@ -241,7 +275,7 @@ const ProjectsSection: React.FC = () => {
           </motion.div>
         </div>
       </section>
-
+  
       <AnimatePresence>
         {isFading && (
           <motion.div 

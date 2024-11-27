@@ -1,5 +1,7 @@
 import img_ilc from './assets/projects/ilc.jpeg';
+import logo_ilc from './assets/projects/logo_ilc.png';
 import img_lightzino from './assets/projects/lightzino.jpeg';
+import logo_lightzino from './assets/projects/logo_lightzino.png';
 import img_fifa from './assets/projects/fifa.jpeg';
 
 export interface Project {
@@ -9,6 +11,7 @@ export interface Project {
     description: string;
     longDescription: string;
     img: string;
+    logo: string;
     type: string;
     technologies: string[];
     features: string[];
@@ -27,8 +30,9 @@ export const projectsData: Project[] = [
         description: "Casino en cryptomonnaie en ligne.",
         longDescription: "Une plateforme de casino en ligne innovante utilisant les cryptomonnaies comme moyen de paiement. Le projet intègre des jeux de hasard modernes avec une interface utilisateur intuitive et des transactions sécurisées.",
         img: img_lightzino,
+        logo: logo_lightzino,
         type: "Personnel",
-        technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Web3.js", "Solidity", ],
+        technologies: ["React", "TypeScript", "Express", "Socket.io" ],
         features: [
           "Système de paiement en cryptomonnaie",
           "Jeux de casino en temps réel",
@@ -45,16 +49,17 @@ export const projectsData: Project[] = [
         id: 2,
         title: "ILC",
         subtitle: "Design et Développement",
-        description: "Création d'une application web de géstion des déplacements internationnaux.",
-        longDescription: "Application web permettant la gestion complète des déplacements internationaux pour les entreprises. L'outil optimise le processus de planification, de suivi et de reporting des voyages d'affaires.",
+        description: "Application web de géstion des déplacements internationnaux.",
+        longDescription: "Application web permettant la gestion complète des déplacements internationaux pour les étudiants de l'IUT d'Annecy. Le site permet la visualisations (avec filtres) des destinations. Les étudiants peuvent gérer leurs voeux et les administrateurs peuvent faire l'arbitrage pour valider les choix de destinations.",
         img: img_ilc,
+        logo: logo_ilc,
         type: "Stage",
-        technologies: ["Vue.js", "Python", "Django", "PostgreSQL", "Docker"],
+        technologies: ["Vue.js", "TailwindCSS", "MySQL", "Laravel", "Javascript", "DaisyUI"],
         features: [
-          "Planning des déplacements",
-          "Gestion des visas et documents",
-          "Suivi des dépenses en temps réel",
-          "Rapports analytiques",
+          "Affichage des destinations",
+          "Gestion des voeux et des documents",
+          "Arbitrage des déplacements",
+          "Gestion des éléments du site (articles, événements, destinations, utilisateurs)",
           "Interface multilingue"
         ],
         date: "2022"
@@ -66,6 +71,7 @@ export const projectsData: Project[] = [
         description: "Boutique non officle d'articles de football.",
         longDescription: "Une boutique en ligne spécialisée dans les produits de football, offrant une large gamme d'équipements et d'accessoires pour les passionnés du ballon rond.",
         img: img_fifa,
+        logo: img_fifa,
         type: "Scolaire",
         technologies: ["React", "Express", "MySQL", "Stripe", "AWS"],
         features: [
