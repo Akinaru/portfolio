@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import img_unknown from '../assets/projects/unknown.jpeg';
 import { projectsData } from '../projects';
+import { TechBadgeGroup } from '../hooks/techBadge';
 
 interface ProjectContentProps {
   projectId: string;
@@ -77,19 +78,11 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ projectId }) => {
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
         <h2 className="text-2xl font-semibold mb-4">{t('projects.techStack')}</h2>
-        <div className="flex flex-wrap gap-3">
-          {project.technologies.map((tech, index) => (
-            <span 
-              key={tech} 
-              className={`px-4 py-2 bg-blue-500/20 text-blue-300 rounded-lg text-sm font-medium transform transition-all duration-500 hover:scale-105 hover:bg-blue-500/30 ${
-                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+        <TechBadgeGroup 
+          technologies={project.technologies}
+          isVisible={isVisible}
+          className="flex flex-wrap gap-3"
+        />
       </div>
 
       <div className={`md:col-span-2 bg-neutral-800/70 p-8 rounded-xl transform transition-all duration-500 delay-200 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] ${
