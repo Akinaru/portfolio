@@ -170,7 +170,7 @@ const ProjectsSection: React.FC = () => {
                     <img 
                       src={currentProject.img}
                       alt={t(`projects.${currentProject.translationKey}.title`)}
-                      className="w-full h-full object-cover object-top"
+                      className="select-none pointer-events-none w-full h-full object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent" />
                   </motion.div>

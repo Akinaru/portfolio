@@ -34,7 +34,7 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
       whileHover={{ scale: 1.02 }}
     >
       <div 
-        className="w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center"
+        className="select-none pointer-events-none w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${banner})` }}
       >
         <motion.div 
@@ -86,18 +86,12 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
       whileHover={{ scale: 1.02 }}
     >
       <div 
-        className="w-full md:w-1/2 h-48 md:h-auto rounded-t-lg md:rounded-l-lg md:rounded-tr-none flex items-center md:items-end justify-center bg-cover bg-center"
+        className="select-none pointer-events-none w-full md:w-1/2 h-48 md:h-auto rounded-t-lg md:rounded-l-lg md:rounded-tr-none flex items-center md:items-end justify-center bg-cover bg-center"
         style={{ backgroundImage: `url(${banner})` }}
       >
         <motion.div 
-          animate={isInView ? { 
-            scale: 1, 
-            rotate: 0 
-          } : { 
-            scale: 0, 
-            rotate: -180 
-          }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
+          animate={isInView ? { scale: 1 } : { scale: 0 }}
+          transition={{ delay: 0.2, type: "spring" }}
           className="scale-75 md:scale-100 mb-0 md:mb-8"
         >
           {children}

@@ -55,27 +55,32 @@ const HomeSection = () => {
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="text-center text-white max-w-7xl mx-auto relative z-10"
+        className="select-none text-center text-white max-w-7xl mx-auto relative z-10"
       >
-        <motion.div variants={logoVariants} className="mb-8">
+        <motion.div 
+          variants={logoVariants} 
+          className="mb-8 select-none pointer-events-none"
+          draggable="false"
+        >
           <motion.img
             src={logo}
             alt={t('home.profileAlt')}
-            className="w-32 h-32 rounded-full mx-auto floating-element"
+            className="w-32 h-32 rounded-full mx-auto floating-element select-none pointer-events-none"
+            draggable="false"
           />
         </motion.div>
-        
+                
         <motion.h1 
-  variants={itemVariants} 
-  className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-8 md:mb-12 lg:mb-16 shimmer"
->
-  Maxime Gallotta
-</motion.h1>
+          variants={itemVariants} 
+          className="select-none text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-8 md:mb-12 lg:mb-16 shimmer"
+        >
+          Maxime Gallotta
+        </motion.h1>
 
-<motion.p variants={itemVariants} className="text-base md:text-lg lg:text-xl xl:text-2xl">
-  <span>🖥️</span>
-  <span className="text-neutral-600 ml-2 md:ml-3">{t('home.title')}</span>
-</motion.p>
+        <motion.p variants={itemVariants} className="select-none text-base md:text-lg lg:text-xl xl:text-2xl">
+          <span>🖥️</span>
+          <span className="text-neutral-600 ml-2 md:ml-3">{t('home.title')}</span>
+        </motion.p>
 
       </motion.div>
 
