@@ -3,6 +3,22 @@
     "title": "Étudiant en Informatique",
     "profileAlt": "Photo de profil"
   },
+
+  "about": {
+    "title1": "Développement.",
+    "title2": "Innovation.",
+    "title3": "Excellence.",
+
+    "longCard": "🎓 Présentation",
+    "longCardDesc": "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy, spécialisé en développement d'application.\n\nJe suis passionné par le codage 💻, le sport 🥋, les jeux vidéo 🎮 et la musique 🎵.\n\n",
+
+    "card1": "🌐 Langues & Compétences",
+    "card1Desc": "Langues :\n• Français : Langue maternelle\n• Anglais : B2 intermédiaire\n• Italien : B2 intermédiaire",
+
+    "card2": "📍 Contact & Localisation",
+    "card2Desc": "Adresse :\n74000 Annecy, France"
+  },
+
   "projects": {
     "title": "Mes Projets",
     "description": "Découvrez mes projets",

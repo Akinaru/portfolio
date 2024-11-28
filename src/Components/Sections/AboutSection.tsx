@@ -4,6 +4,7 @@ import logo from '../../assets/logo_computer.svg';
 import goal from '../../assets/goal.svg';
 import peace from '../../assets/peace.svg';
 import banner from '../../assets/banner.png';
+import { useTranslation } from 'react-i18next';
 
 interface FeatureCardProps {
   title: string;
@@ -13,6 +14,7 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ title, description, children, className = "" }: FeatureCardProps) => (
+  
   <motion.div 
     className={`rounded-lg bg-white/90 flex flex-col gap-4 ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] h-[350px]`}
     transition={{ duration: 0.2 }}
@@ -49,21 +51,22 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
 );
 
 const AboutSection = () => {
+const { t } = useTranslation();
   const features = [
     {
-      title: "🎓 Présentation",
-      description: "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy, spécialisé en développement d'application.\n\nJe suis passionné par le codage 💻, le sport 🥋, les jeux vidéo 🎮 et la musique 🎵.\n\n",
+      title: t('about.longCard'),
+      description: t('about.longCardDesc'),
       long: true,
       visual: <img src={logo} alt="Profile" className="w-64 h-64" />
     },
     {
-      title: "🌐 Langues & Compétences",
-      description: "Langues :\n• Français : Langue maternelle\n• Anglais : B2 intermédiaire\n• Italien : B2 intermédiaire",
+      title: t('about.card1'),
+      description: t('about.card1Desc'),
       visual: <img src={peace} alt="Languages and Skills" className="w-24 h-24" />
     },
     {
-      title: "📍 Contact & Localisation",
-      description: "Adresse :\n3 Rue sainte bernadette\n74940 Annecy, France",
+      title: t('about.card2'),
+      description: t('about.card2Desc'),
       visual: <img src={logo} alt="Contact info" className="w-24 h-24" />
     },
   ];
@@ -73,7 +76,7 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="flex flex-col justify-start *:w-fit">
-            {["Développement.", "Innovation.", "Excellence."].map((text, index) => (
+            {[t('about.title1'), t('about.title2'), t('about.title3')].map((text, index) => (
               <motion.p
                 key={index}
                 initial={{ opacity: 0, y: 20 }}

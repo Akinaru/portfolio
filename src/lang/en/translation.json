@@ -3,6 +3,22 @@
     "title": "Computer Science Student",
     "profileAlt": "Profile picture"
   },
+
+  "about": {
+    "title1": "Development.",
+    "title2": "Innovation.",
+    "title3": "Excellence.",
+
+    "longCard": "🎓 Introduction",
+    "longCardDesc": "I am a third-year student pursuing a Bachelor's degree in Computer Science at the IUT of Annecy, specializing in application development.\n\nI am passionate about coding 💻, sports 🥋, video games 🎮 and music 🎵.\n\n",
+
+    "card1": "🌐 Languages & Skills",
+    "card1Desc": "Languages:\n• French: Native language\n• English: B2 intermediate\n• Italian: B2 intermediate",
+
+    "card2": "📍 Contact & Location",
+    "card2Desc": "Address:\n74000 Annecy, France"
+  },
+
   "projects": {
     "title": "My Projects",
     "description": "Découvrez mes projets",
