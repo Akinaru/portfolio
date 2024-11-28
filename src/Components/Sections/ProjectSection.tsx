@@ -110,7 +110,7 @@ const ProjectsSection: React.FC = () => {
 
   return (
     <>
-      <section id="projects" ref={sectionRef} className="relative bg-black text-white py-28">
+      <section id="projects" ref={sectionRef} className="relative  text-white py-28">
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2 
             className="text-4xl font-bold mb-4"
