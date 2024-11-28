@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from "framer-motion";
 import logo from '../../assets/logo_computer.svg';
 import peace from '../../assets/peace.svg';
@@ -14,12 +14,27 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ title, description, children, className = "" }: FeatureCardProps) => {
   const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: false, amount: 0.3 });
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const isInView = useInView(cardRef, { amount: 0.3 });
+
+  useEffect(() => {
+    if (isInView && !hasBeenVisible) {
+      setHasBeenVisible(true);
+      setShouldAnimate(true);
+    } else if (!isInView && hasBeenVisible) {
+      const timeout = setTimeout(() => {
+        setShouldAnimate(false);
+        setHasBeenVisible(false);
+      }, 500); // Durée de l'animation de sortie
+      return () => clearTimeout(timeout);
+    }
+  }, [isInView, hasBeenVisible]);
 
   return (
     <motion.div
       ref={cardRef}
-      animate={isInView
+      animate={shouldAnimate
         ? { opacity: 1, y: 0, scale: 1 }
         : { opacity: 0, y: 50, scale: 0.9 }}
       transition={{ duration: 0.5 }}
@@ -31,7 +46,7 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
         style={{ backgroundImage: `url(${banner})` }}
       >
         <motion.div
-          animate={isInView ? { scale: 1 } : { scale: 0 }}
+          animate={shouldAnimate ? { scale: 1 } : { scale: 0 }}
           transition={{ delay: 0.2, type: "spring" }}
           className="scale-75 md:scale-100"
         >
@@ -40,14 +55,14 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
       </div>
       <div className="p-4 md:p-8 flex flex-col h-full">
         <motion.h3
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          animate={shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
           transition={{ delay: 0.3 }}
           className="text-lg md:text-xl font-bold text-black mb-1"
         >
           {title}
         </motion.h3>
         <motion.p
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.4 }}
           className="ml-5 text-neutral-500 leading-relaxed text-sm md:text-base overflow-y-auto whitespace-pre-line"
         >
@@ -60,12 +75,27 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
 
 const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => {
   const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: false, amount: 0.3 });
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const isInView = useInView(cardRef, { amount: 0.3 });
+
+  useEffect(() => {
+    if (isInView && !hasBeenVisible) {
+      setHasBeenVisible(true);
+      setShouldAnimate(true);
+    } else if (!isInView && hasBeenVisible) {
+      const timeout = setTimeout(() => {
+        setShouldAnimate(false);
+        setHasBeenVisible(false);
+      }, 500);
+      return () => clearTimeout(timeout);
+    }
+  }, [isInView, hasBeenVisible]);
 
   return (
     <motion.div 
       ref={cardRef}
-      animate={isInView ? { 
+      animate={shouldAnimate ? { 
         opacity: 1, 
         y: 0,
         scale: 1,
@@ -83,7 +113,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
         style={{ backgroundImage: `url(${banner})` }}
       >
         <motion.div 
-          animate={isInView ? { scale: 1 } : { scale: 0 }}
+          animate={shouldAnimate ? { scale: 1 } : { scale: 0 }}
           transition={{ delay: 0.2, type: "spring" }}
           className="scale-75 md:scale-100 mb-0 md:mb-8"
         >
@@ -92,14 +122,14 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
       </div>
       <div className='w-full md:w-1/2 p-4 md:p-8 flex flex-col justify-center'>
         <motion.h3 
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          animate={shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
           transition={{ delay: 0.3 }}
           className="text-lg md:text-xl font-bold text-black mb-1"
         >
           {title}
         </motion.h3>
         <motion.p 
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.4 }}
           className="ml-5 text-neutral-500 leading-relaxed text-sm md:text-base whitespace-pre-line"
         >
