@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -81,6 +81,7 @@ const ProjectsSection: React.FC = () => {
   const [isFading, setIsFading] = useState(false);
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
   const { t } = useTranslation();
   const { lang } = useParams();
   const navigate = useNavigate();
@@ -110,9 +111,24 @@ const ProjectsSection: React.FC = () => {
     }, 700);
   };
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // 768px est le breakpoint md de Tailwind
+    };
+
+    // Vérifier initialement
+    checkMobile();
+
+    // Ajouter un listener pour le redimensionnement
+    window.addEventListener('resize', checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <>
-      <section id="projects" ref={sectionRef} className="relative text-white py-16 md:py-28">
+      <section id="projects" ref={sectionRef} className="min-h-screen relative text-white py-16 md:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4"
@@ -168,7 +184,7 @@ const ProjectsSection: React.FC = () => {
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
                     <img 
-                      src={currentProject.img}
+                       src={isMobile ? currentProject.img_mobile : currentProject.img}
                       alt={t(`projects.${currentProject.translationKey}.title`)}
                       className="select-none pointer-events-none w-full h-full object-cover object-top"
                     />

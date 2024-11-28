@@ -1,7 +1,96 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import logo from '../../assets/logo_memo.webp';
+
+const ScrollIndicator = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start({
+      opacity: [0, 0.85], // Opacité réduite
+      y: [20, 0],
+      transition: { duration: 1, delay: 2 }
+    });
+
+    const checkScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 0 && isVisible) {
+        controls.start({
+          opacity: 0,
+          transition: { duration: 0.5 }
+        });
+        setTimeout(() => setIsVisible(false), 500);
+      } else if (scrollPosition === 0 && !isVisible) {
+        setIsVisible(true);
+        // Animation complète de réapparition
+        controls.start({
+          opacity: [0, 0.85], // Même animation que l'apparition initiale
+          y: [20, 0],
+          transition: { duration: 1 }
+        });
+      }
+    };
+
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    checkScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isVisible]);
+
+  if (!isVisible) return null;
+
+  return (
+    <motion.div
+      className="flex flex-col items-center gap-3"
+      animate={controls}
+      initial={{ opacity: 0, y: 20 }}
+    >
+      <motion.div
+        className="absolute w-8 h-14 top-28 rounded-full border-2 border-white/20 flex justify-center p-1.5 cursor-pointer"
+        whileHover={{
+          scale: 1.1,
+          backgroundColor: "rgba(255, 255, 255, 0.2)",
+        }}
+        initial={{
+          scale: 1,
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+        }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        onClick={() => window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        })}
+      >
+        <motion.div
+          className="w-1 rounded-full bg-white/50"
+          animate={{
+            height: ["30%", "60%", "30%"],
+            y: [0, 12, 0],
+          }}
+          transition={{
+            duration: 2.4,
+            repeat: Infinity,
+            ease: [0.76, 0, 0.24, 1]
+          }}
+        />
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const HomeSection = () => {
   const { t } = useTranslation();
@@ -77,11 +166,13 @@ const HomeSection = () => {
           Maxime Gallotta
         </motion.h1>
 
-        <motion.p variants={itemVariants} className="select-none text-base md:text-lg lg:text-xl xl:text-2xl">
+        <motion.p variants={itemVariants} className="select-none text-base md:text-lg lg:text-xl xl:text-2xl mb-8">
           <span>🖥️</span>
           <span className="text-neutral-600 ml-2 md:ml-3">{t('home.title')}</span>
         </motion.p>
-
+        <div className="relative">
+          <ScrollIndicator />
+        </div>
       </motion.div>
 
       <style>

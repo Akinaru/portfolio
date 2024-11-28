@@ -5,18 +5,19 @@
   },
 
   "about": {
-    "title1": "Développement.",
-    "title2": "Innovation.",
-    "title3": "Excellence.",
+    "title1": "🍜 Manger",
+    "title2": "💻 Coder",
+    "title3": "🏋️‍♂️ S'entrainer",
+    "title4": "⌛ Répéter",
 
     "longCard": "🎓 Présentation",
-    "longCardDesc": "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy, spécialisé en développement d'application.\n\nJe suis passionné par le codage 💻, le sport 🥋, les jeux vidéo 🎮 et la musique 🎵.\n\n",
+    "longCardDesc": "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy ⛰️, spécialisé en développement d'applications.\n\nJe m'amuse à développer divers projets depuis maintenant plus de 9 ans 🤯! Cela fait de moi un utilisateur aguérri de l'ordinateur. Ces années de pratique m'ont permis d'acquérir une grande agilité technique et une excellente capacité à résoudre des problèmes. 🔩",
 
-    "card1": "🌐 Langues & Compétences",
-    "card1Desc": "Langues :\n• Français : Langue maternelle\n• Anglais : B2 intermédiaire\n• Italien : B2 intermédiaire",
+    "card1": "🌐 Informations",
+    "card1Desc": "Localisation: Annecy 74000, France\nLangues :\n• FR : Langue maternelle • EN : B2 intermédiaire • IT : B2 intermédiaire",
 
-    "card2": "📍 Contact & Localisation",
-    "card2Desc": "Adresse :\n74000 Annecy, France"
+    "card2": "📍 Loisirs",
+    "card2Desc": "🎮 Jeux vidéos\n• Outer Wilds • RD2, Minecraft • Elden Ring\n💿 Musique\n• Rap • Techno • Piano\n🥋 Sport\n• Musculation • Judo \n"
   },
 
   "projects": {

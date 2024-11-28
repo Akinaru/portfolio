@@ -138,16 +138,29 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ projectId }) => {
 const ProjectLayout: React.FC<{
   children: React.ReactNode;
   backgroundImage: string;
+  backgroundImageMobile: string;
   isLoading: boolean;
   className?: string;
-}> = ({ children, backgroundImage, isLoading, className }) => {
+}> = ({ children, backgroundImage, backgroundImageMobile, isLoading, className }) => {
   const { t } = useTranslation();
-  
+  const [isMobile, setIsMobile] = useState(false);
+  const { lang } = useParams<{ lang: string }>();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <div className="min-h-screen bg-neutral-900 text-white">
       <div className="fixed inset-0 z-40">
         <img
-          src={backgroundImage}
+          src={isMobile ? backgroundImageMobile : backgroundImage}
           alt="Background"
           className={`w-full h-full object-cover transition-all duration-1000 ease-in-out ${
             isLoading ? 'opacity-0 scale-105' : 'opacity-70 scale-100'
@@ -168,10 +181,13 @@ const ProjectLayout: React.FC<{
       }`}>
         <div className={`max-w-7xl mx-auto ${className}`}>
           <div className="mb-8">
-            <Link to="/" className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit">
-              <ChevronLeft />
-              <p>{t('projects.home')}</p>
-            </Link>
+          <Link 
+            to={`/${lang}`} 
+            className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit"
+          >
+            <ChevronLeft />
+            <p>{t('projects.home')}</p>
+          </Link>
           </div>
           {children}
         </div>
@@ -197,6 +213,7 @@ const InfoProjectPage: React.FC = () => {
   return (
     <ProjectLayout
       backgroundImage={project ? project.img : img_unknown}
+      backgroundImageMobile={project ? project.img_mobile : img_unknown}
       isLoading={isLoading}
       className={project ? '' : 'h-[calc(100vh-120px)] flex flex-col justify-center'}
     >

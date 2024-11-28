@@ -17,26 +17,20 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
   const isInView = useInView(cardRef, { once: false, amount: 0.3 });
 
   return (
-    <motion.div 
+    <motion.div
       ref={cardRef}
-      animate={isInView ? { 
-        opacity: 1, 
-        y: 0,
-        scale: 1,
-      } : { 
-        opacity: 0, 
-        y: 50,
-        scale: 0.9,
-      }}
+      animate={isInView
+        ? { opacity: 1, y: 0, scale: 1 }
+        : { opacity: 0, y: 50, scale: 0.9 }}
       transition={{ duration: 0.5 }}
-      className={`rounded-lg bg-white/90 flex flex-col gap-2 md:gap-4 ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] h-[300px] md:h-[350px]`}
+      className={`rounded-lg bg-white/90 flex flex-col ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] h-[300px] md:h-[400px]`}
       whileHover={{ scale: 1.02 }}
     >
-      <div 
-        className="select-none pointer-events-none w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center"
+      <div
+        className="select-none pointer-events-none w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center shrink-0"
         style={{ backgroundImage: `url(${banner})` }}
       >
-        <motion.div 
+        <motion.div
           animate={isInView ? { scale: 1 } : { scale: 0 }}
           transition={{ delay: 0.2, type: "spring" }}
           className="scale-75 md:scale-100"
@@ -44,18 +38,18 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
           {children}
         </motion.div>
       </div>
-      <div className='p-4 md:p-8'>
-        <motion.h3 
+      <div className="p-4 md:p-8 flex flex-col h-full">
+        <motion.h3
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
           transition={{ delay: 0.3 }}
           className="text-lg md:text-xl font-bold text-black mb-1"
         >
           {title}
         </motion.h3>
-        <motion.p 
+        <motion.p
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.4 }}
-          className="text-neutral-500 leading-relaxed text-xs md:text-sm whitespace-pre-line line-clamp-6 md:line-clamp-none"
+          className="ml-5 text-neutral-500 leading-relaxed text-sm md:text-base overflow-y-auto whitespace-pre-line"
         >
           {description}
         </motion.p>
@@ -107,7 +101,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
         <motion.p 
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ delay: 0.4 }}
-          className="text-neutral-500 leading-relaxed text-xs md:text-sm whitespace-pre-line"
+          className="ml-5 text-neutral-500 leading-relaxed text-sm md:text-base whitespace-pre-line"
         >
           {description}
         </motion.p>
@@ -145,7 +139,7 @@ const AboutSection = () => {
       <div className="max-w-7xl mx-auto">
         <div ref={titleRef} className="text-center mb-8 md:mb-16">
           <div className="flex flex-col justify-start *:w-fit">
-            {[t('about.title1'), t('about.title2'), t('about.title3')].map((text, index) => (
+            {[t('about.title1'), t('about.title2'), t('about.title3'), t('about.title4')].map((text, index) => (
               <motion.p
                 key={index}
                 animate={isInView ? {

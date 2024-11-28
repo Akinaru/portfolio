@@ -5,18 +5,19 @@
   },
 
   "about": {
-    "title1": "Development.",
-    "title2": "Innovation.",
-    "title3": "Excellence.",
+      "title1": "🍜 Eat",
+      "title2": "💻 Code",
+      "title3": "🏋️‍♂️ Train",
+      "title4": "⌛ Repeat",
 
-    "longCard": "🎓 Introduction",
-    "longCardDesc": "I am a third-year student pursuing a Bachelor's degree in Computer Science at the IUT of Annecy, specializing in application development.\n\nI am passionate about coding 💻, sports 🥋, video games 🎮 and music 🎵.\n\n",
+      "longCard": "🎓 Introduction",
+      "longCardDesc": "I am a third-year student in Computer Science at the IUT of Annecy ⛰️, specializing in application development.\n\nI've been having fun developing various projects for over 9 years now 🤯! This has made me a skilled computer user. These years of practice have allowed me to acquire great technical agility and excellent problem-solving abilities. 🔩",
 
-    "card1": "🌐 Languages & Skills",
-    "card1Desc": "Languages:\n• French: Native language\n• English: B2 intermediate\n• Italian: B2 intermediate",
+      "card1": "🌐 Information",
+      "card1Desc": "Location: Annecy 74000, France\nLanguages:\n• FR: Native language • EN: B2 intermediate • IT: B2 intermediate",
 
-    "card2": "📍 Contact & Location",
-    "card2Desc": "Address:\n74000 Annecy, France"
+      "card2": "📍 Hobbies",
+      "card2Desc": "🎮 Video games\n• Outer Wilds • RD2, Minecraft • Elden Ring\n💿 Music\n• Rap • Techno • Piano\n🥋 Sports\n• Gym • Judo \n"
   },
 
   "projects": {
