@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from "framer-motion";
 import logo from '../../assets/logo_computer.svg';
-import goal from '../../assets/goal.svg';
 import peace from '../../assets/peace.svg';
 import banner from '../../assets/banner.png';
 import { useTranslation } from 'react-i18next';
