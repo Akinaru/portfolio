@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import logo from '../../assets/logo_memo.webp';
 
 const ScrollIndicator = () => {
-  const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const controls = useAnimation();
 
@@ -68,8 +67,6 @@ const ScrollIndicator = () => {
           scale: 1,
           backgroundColor: "rgba(255, 255, 255, 0.1)",
         }}
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
         onClick={() => window.scrollTo({
           top: window.innerHeight,
           behavior: 'smooth'
