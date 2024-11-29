@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import HomeSection from '../Components/Sections/HomeSection';
 import AboutSection from '../Components/Sections/AboutSection';
 import ProjectsSection from '../Components/Sections/ProjectSection';
+import { SparklesCore } from "../libs/sparkles";
 
 const HomePage = () => {
   const paths = [
@@ -65,58 +66,17 @@ const HomePage = () => {
     <div className="relative">
       {/* Animated Background */}
       <div className="fixed inset-0 w-full h-full bg-black">
-        <motion.svg
-          viewBox="0 0 1440 900"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="w-full h-full"
-          preserveAspectRatio="xMidYMid slice"
-        >
-          {paths.map((path, idx) => (
-            <motion.path
-              key={`path-first-${idx}`}
-              d={path}
-              stroke={colors[idx]}
-              strokeWidth="2.3"
-              strokeLinecap="round"
-              variants={pathVariants}
-              initial="initial"
-              animate="animate"
-              transition={{
-                duration: 10,
-                ease: "linear",
-                repeat: Infinity,
-                repeatType: "loop",
-                delay: Math.floor(Math.random() * 10),
-                repeatDelay: Math.floor(Math.random() * 10 + 2),
-              }}
-            />
-          ))}
-
-          {paths.map((path, idx) => (
-            <motion.path
-              key={`path-second-${idx}`}
-              d={path}
-              stroke={colors[idx]}
-              strokeWidth="2.3"
-              strokeLinecap="round"
-              variants={pathVariants}
-              initial="initial"
-              animate="animate"
-              transition={{
-                duration: 10,
-                ease: "linear",
-                repeat: Infinity,
-                repeatType: "loop",
-                delay: Math.floor(Math.random() * 10),
-                repeatDelay: Math.floor(Math.random() * 10 + 2),
-              }}
-            />
-          ))}
-        </motion.svg>
+        <div className="w-full h-full absolute inset-0">
+          <SparklesCore
+            id="tsparticlesfullpage"
+            background="transparent"
+            minSize={0.6}
+            maxSize={1.4}
+            particleDensity={100}
+            className="w-full h-full"
+            particleColor="#FFFFFF"
+          />
+        </div>
       </div>
 
       {/* Content */}
