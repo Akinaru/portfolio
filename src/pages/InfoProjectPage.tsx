@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import img_unknown from '../assets/projects/unknown.jpeg';
@@ -7,6 +7,7 @@ import { TechBadgeGroup } from '../hooks/techBadge';
 
 interface ProjectContentProps {
   projectId: string;
+  isLeaving: boolean;
 }
 
 const ChevronLeft = () => (
@@ -25,7 +26,7 @@ const ChevronLeft = () => (
   </svg>
 );
 
-const ProjectContentCards: React.FC<ProjectContentProps> = ({ projectId }) => {
+const ProjectContentCards: React.FC<ProjectContentProps> = ({ projectId, isLeaving }) => {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useTranslation();
   const project = projectsData.find(p => p.translationKey === projectId);
@@ -40,7 +41,9 @@ const ProjectContentCards: React.FC<ProjectContentProps> = ({ projectId }) => {
   if (!project) return null;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transform transition-all duration-500 ${
+      isLeaving ? 'opacity-0 translate-y-4' : ''
+    }`}>
       <div className={`md:col-span-2 bg-neutral-800/70 p-8 rounded-xl transform transition-all duration-500 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] ${
         isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
       }`}>
@@ -140,8 +143,10 @@ const ProjectLayout: React.FC<{
   backgroundImage: string;
   backgroundImageMobile: string;
   isLoading: boolean;
+  isLeaving: boolean;
   className?: string;
-}> = ({ children, backgroundImage, backgroundImageMobile, isLoading, className }) => {
+  onNavigate: (to: string) => void;
+}> = ({ children, backgroundImage, backgroundImageMobile, isLoading, isLeaving, className, onNavigate }) => {
   const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
   const { lang } = useParams<{ lang: string }>();
@@ -156,51 +161,67 @@ const ProjectLayout: React.FC<{
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  return (
-    <div className="min-h-screen bg-neutral-900 text-white">
-      <div className="fixed inset-0 z-40">
-        <img
-          src={isMobile ? backgroundImageMobile : backgroundImage}
-          alt="Background"
-          className={`w-full h-full object-cover transition-all duration-1000 ease-in-out ${
-            isLoading ? 'opacity-0 scale-105' : 'opacity-70 scale-100'
-          }`}
-        />
-        <div className="absolute inset-0 bg-black/50" />
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0) 100%)',
-            pointerEvents: 'none'
-          }}
-        />
-      </div>
+  const handleNavigate = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onNavigate(`/${lang}#projects`);
+  };
 
-      <div className={`relative z-50 p-8 transition-all duration-700 ease-in-out ${
-        isLoading ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-      }`}>
-        <div className={`max-w-7xl mx-auto ${className}`}>
-          <div className="mb-8">
-          <Link 
-            to={`/${lang}`} 
-            className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit"
-          >
-            <ChevronLeft />
-            <p>{t('projects.home')}</p>
-          </Link>
+  return (
+    <>
+      {/* Overlay de transition noir */}
+      <div 
+        className={`fixed inset-0 bg-black z-[60] transition-opacity duration-500 pointer-events-none ${
+          isLeaving ? 'opacity-100' : 'opacity-0'
+        }`} 
+      />
+
+      <div className="min-h-screen bg-neutral-900 text-white">
+        <div className="fixed inset-0 z-40">
+          <img
+            src={isMobile ? backgroundImageMobile : backgroundImage}
+            alt="Background"
+            className={`w-full h-full object-cover transition-all duration-1000 ease-in-out ${
+              isLoading ? 'opacity-0 scale-105' : 'opacity-70 scale-100'
+            }`}
+          />
+          <div className="absolute inset-0 bg-black/50" />
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0) 100%)',
+              pointerEvents: 'none'
+            }}
+          />
+        </div>
+
+        <div className={`relative z-50 p-8 transition-all duration-700 ease-in-out ${
+          isLoading ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+        }`}>
+          <div className={`max-w-7xl mx-auto ${className}`}>
+            <div className="mb-8">
+              <button
+                onClick={handleNavigate}
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit"
+              >
+                <ChevronLeft />
+                <p>{t('projects.home')}</p>
+              </button>
+            </div>
+            {children}
           </div>
-          {children}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
 const InfoProjectPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const project = projectsData.find(p => p.id.toString() === id);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLeaving, setIsLeaving] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -210,15 +231,27 @@ const InfoProjectPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleNavigate = (to: string) => {
+    setIsLeaving(true);
+    setTimeout(() => {
+      navigate(to);
+    }, 500);
+  };
+
   return (
     <ProjectLayout
       backgroundImage={project ? project.img : img_unknown}
       backgroundImageMobile={project ? project.img_mobile : img_unknown}
       isLoading={isLoading}
+      isLeaving={isLeaving}
+      onNavigate={handleNavigate}
       className={project ? '' : 'h-[calc(100vh-120px)] flex flex-col justify-center'}
     >
       {project ? (
-        <ProjectContentCards projectId={project.translationKey} />
+        <ProjectContentCards 
+          projectId={project.translationKey} 
+          isLeaving={isLeaving} 
+        />
       ) : (
         <div className="text-center">
           <h1 className="text-2xl font-bold text-white">{t('projects.notFound')}</h1>
