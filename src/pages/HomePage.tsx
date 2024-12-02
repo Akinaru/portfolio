@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
 import HomeSection from '../Components/Sections/HomeSection';
 import AboutSection from '../Components/Sections/AboutSection';
 import ProjectsSection from '../Components/Sections/ProjectSection';
+import ExperienceSection from '../Components/Sections/ExperienceSection';
 import { SparklesCore } from "../libs/sparkles";
 
 const HomePage = () => {
@@ -84,6 +84,7 @@ const HomePage = () => {
         <HomeSection />
         <AboutSection />
         <ProjectsSection />
+        <ExperienceSection />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useInView } from "framer-motion";
 import logo from '../../assets/logo_computer.svg';
 import peace from '../../assets/peace.svg';
@@ -70,6 +70,88 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
         </motion.p>
       </div>
     </motion.div>
+  );
+};
+
+interface WaveTransitionProps {
+  direction?: 'up' | 'down';
+  color?: string;
+  className?: string;
+}
+
+const WaveTransition = ({ 
+  direction = 'down',
+  color = '#0099ff',
+  className = ''
+}: WaveTransitionProps) => {
+  return (
+    <div 
+      className={`w-full h-48 overflow-hidden ${
+        direction === 'up' ? '-mb-1' : '-mt-1'
+      } ${className}`}
+    >
+      <svg
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+        className="w-full h-full"
+        style={{ 
+          transform: direction === 'up' ? 'rotate(180deg)' : 'rotate(0deg)'
+        }}
+      >
+        {/* Première vague avec la couleur exacte passée en paramètre */}
+        <path
+          d="M0,0 C400,40 800,80 1200,40 L1200,120 L0,120 Z"
+          fill={color}
+          className="translate-x-0"
+        >
+          <animate
+            attributeName="d"
+            dur="10s"
+            repeatCount="indefinite"
+            values="
+              M0,0 C400,40 800,80 1200,40 L1200,120 L0,120 Z;
+              M0,0 C400,80 800,40 1200,80 L1200,120 L0,120 Z;
+              M0,0 C400,40 800,80 1200,40 L1200,120 L0,120 Z"
+          />
+        </path>
+
+        {/* Deuxième vague avec opacité réduite */}
+        <path
+          d="M0,0 C300,60 600,30 1200,60 L1200,120 L0,120 Z"
+          fill={color}
+          opacity="0.5"
+          className="translate-x-0"
+        >
+          <animate
+            attributeName="d"
+            dur="7s"
+            repeatCount="indefinite"
+            values="
+              M0,0 C300,60 600,30 1200,60 L1200,120 L0,120 Z;
+              M0,0 C300,30 600,60 1200,30 L1200,120 L0,120 Z;
+              M0,0 C300,60 600,30 1200,60 L1200,120 L0,120 Z"
+          />
+        </path>
+
+        {/* Troisième vague avec opacité encore plus réduite */}
+        <path
+          d="M0,0 C200,50 400,20 1200,50 L1200,120 L0,120 Z"
+          fill={color}
+          opacity="0.2"
+          className="translate-x-0"
+        >
+          <animate
+            attributeName="d"
+            dur="5s"
+            repeatCount="indefinite"
+            values="
+              M0,0 C200,50 400,20 1200,50 L1200,120 L0,120 Z;
+              M0,0 C200,20 400,50 1200,20 L1200,120 L0,120 Z;
+              M0,0 C200,50 400,20 1200,50 L1200,120 L0,120 Z"
+          />
+        </path>
+      </svg>
+    </div>
   );
 };
 
@@ -165,57 +247,63 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="min-h-screen relative py-16 md:py-32 px-4 md:px-8 bg-gradient-to-b from-sky-400 via-sky-500 to-sky-400">
-      <div className="max-w-7xl mx-auto">
-        <div ref={titleRef} className="text-center mb-8 md:mb-16">
-          <div className="flex flex-col justify-start *:w-fit">
-            {[t('about.title1'), t('about.title2'), t('about.title3'), t('about.title4')].map((text, index) => (
-              <motion.p
-                key={index}
-                animate={isInView ? {
-                  opacity: 1,
-                  y: 0,
-                  x: [0, 8, 0]
-                } : {
-                  opacity: 0,
-                  y: 20,
-                  x: 0
-                }}
-                transition={{
-                  opacity: { duration: 0.8, delay: index * 0.15 },
-                  y: { duration: 0.8, delay: index * 0.15 },
-                  x: { duration: 2, repeat: Infinity, repeatType: "loop", delay: index * 0.2 }
-                }}
-                className="text-2xl md:text-4xl font-bold text-white drop-shadow-[12px_12px_10px_rgba(0,0,0,0.2)]"
+    <section className="min-h-screen relative ">
+
+      <WaveTransition direction="down" color="#0099ff" />
+      <div id="about" className="bg-gradient-to-b from-[#0099ff] via-sky-500 to-sky-400">
+        <div className="max-w-7xl mx-auto relative z-10 py-16 md:py-32 px-4 md:px-8 ">
+          <div ref={titleRef} className="text-center mb-8 md:mb-16">
+            <div className="flex flex-col justify-start *:w-fit">
+              {[t('about.title1'), t('about.title2'), t('about.title3'), t('about.title4')].map((text, index) => (
+                <motion.p
+                  key={index}
+                  animate={isInView ? {
+                    opacity: 1,
+                    y: 0,
+                    x: [0, 8, 0]
+                  } : {
+                    opacity: 0,
+                    y: 20,
+                    x: 0
+                  }}
+                  transition={{
+                    opacity: { duration: 0.8, delay: index * 0.15 },
+                    y: { duration: 0.8, delay: index * 0.15 },
+                    x: { duration: 2, repeat: Infinity, repeatType: "loop", delay: index * 0.2 }
+                  }}
+                  className="text-2xl md:text-4xl font-bold text-white drop-shadow-[12px_12px_10px_rgba(0,0,0,0.2)]"
+                >
+                  {text}
+                </motion.p>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 relative">
+            <div className="col-span-1 md:col-span-2">
+              <LongFeatureCard 
+                title={features[0].title} 
+                description={features[0].description}
               >
-                {text}
-              </motion.p>
+                {features[0].visual}
+              </LongFeatureCard>
+            </div>
+
+            {features.slice(1).map((feature, index) => (
+              <div key={index}>
+                <FeatureCard 
+                  title={feature.title} 
+                  description={feature.description}
+                >
+                  {feature.visual}
+                </FeatureCard>
+              </div>
             ))}
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 relative">
-          <div className="col-span-1 md:col-span-2">
-            <LongFeatureCard 
-              title={features[0].title} 
-              description={features[0].description}
-            >
-              {features[0].visual}
-            </LongFeatureCard>
-          </div>
-
-          {features.slice(1).map((feature, index) => (
-            <div key={index}>
-              <FeatureCard 
-                title={feature.title} 
-                description={feature.description}
-              >
-                {feature.visual}
-              </FeatureCard>
-            </div>
-          ))}
-        </div>
       </div>
+      <WaveTransition direction="up" color="#38bdf8" />
+
     </section>
   );
 };

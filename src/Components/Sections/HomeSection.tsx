@@ -136,7 +136,7 @@ const HomeSection = () => {
   };
 
   return (
-    <section ref={ref} id="home" className="relative min-h-screen flex items-center justify-center">
+    <section ref={ref} id="home" className="relative min-h-screen flex items-center justify-center mb-1">
       <motion.div
         variants={containerVariants}
         initial="hidden"

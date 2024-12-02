@@ -75,5 +75,42 @@
         "5": "Advanced search system"
       }
     }
+  },
+  "experience": {
+    "title": "My Journey",
+    "description": "Discover my professional journey",
+
+    "fullstack": {
+      "title": "FULLSTACK DEVELOPER",
+      "company": "IUT ANNECY",
+      "location": "Annecy-Le-Vieux",
+      "date": "April 2024",
+      "description": "Development of a complete application for managing students' semesters abroad, with a public section accessible to all and a private section allowing students to manage their travel preferences, documents, and personal information.",
+      "type": "Internship"
+    },
+    "polyvalent": {
+      "title": "VERSATILE EMPLOYEE",
+      "company": "INTERMARCHÉ PARMELAN",
+      "location": "Annecy",
+      "date": "July 2023",
+      "description": "Management and maintenance of self-service checkout systems. Additionally, support for fresh produce staff, assisting with shelf restocking, product presentation, and expiration date management.",
+      "type": "Fixed-term"
+    },
+    "helpHub": {
+      "title": "WEB DEVELOPMENT PROJECT",
+      "company": "HelpHub (fictional) - Platform for volunteer actions",
+      "location": "Annecy",
+      "date": "November 2023",
+      "description": "As part of IUT coursework, creation of a website cataloging action posts from associations. Users can log in and modify site elements based on their role (administrator, association, etc.).",
+      "type": "Academic"
+    },
+    "webmecanik": {
+      "title": "WEB DEVELOPER INTERN",
+      "company": "Webmecanik, CRM Marketing Software and Tools",
+      "location": "Annecy",
+      "date": "March 2018",
+      "description": "Learning web development fundamentals (HTML, CSS, and JavaScript) on the OpenClassrooms platform under the supervision of company professionals. Assistance with code review and application update deployments.",
+      "type": "Internship"
+    }
   }
 }

@@ -75,6 +75,43 @@
         "5": "Système de recherche avancé"
       }
     }
-  }
+  },
 
+  "experience": {
+    "title": "Mon Parcours",
+    "description": "Découvrez mon parcours professionnel",
+
+    "fullstack": {
+      "title": "DEVELOPPEUR FULLSTACK",
+      "company": "IUT ANNECY",
+      "location": "Annecy-Le-Vieux",
+      "date": "Avril 2024",
+      "description": "Développement d'une application complète pour la gestion des semestres à l'étranger des étudiants, avec une section publique accessible à tous et une section privée permettant aux étudiants de gérer leurs préférences de voyage, documents et informations personnelles.",
+      "type": "Stage"
+    },
+    "polyvalent": {
+      "title": "EMPLOYÉ POLYVALENT",
+      "company": "INTERMARCHÉ PARMELAN",
+      "location": "Annecy",
+      "date": "Juillet 2023",
+      "description": "Gestion et maintenance du bon fonctionnement des caisses en libre-service. En parallèle, soutien au personnel des produits frais, avec assistance au réapprovisionnement des rayons, à la mise en avant des produits et à la gestion des dates de péremption.",
+      "type": "CDD"
+    },
+    "helpHub": {
+      "title": "PROJET DEVELOPPEMENT WEB",
+      "company": "HelpHub (fictif) - Site pour actions bénévoles",
+      "location": "Annecy",
+      "date": "Novembre 2023",
+      "description": "Dans le cadre de l'IUT, création d'un site qui répertorie des publications d'actions postées par des associations. Il est possible de se connecter et de modifier les éléments du site en fonction du rôle de l'utilisateur (administrateur, association, etc.).",
+      "type": "Scolaire"
+    },
+    "webmecanik": {
+      "title": "STAGE DEVELOPPEUR WEB",
+      "company": "Webmecanik, CRM Marketing Software and Tools",
+      "location": "Annecy",
+      "date": "Mars 2018",
+      "description": "Apprentissage des bases du développement web (HTML, CSS et JavaScript) sur la plateforme OpenClassrooms, sous la supervision de professionnels de l'entreprise. Assistance à la correction de code et au déploiement des mises à jour d'applications.",
+      "type": "Stage"
+    }
+  }
 }
