@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
+import CompetenceSection from '../Components/Sections/CompetenceSection';
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -130,6 +131,7 @@ const HomePage = () => {
           <AboutSection />
           <ProjectsSection />
           <ExperienceSection />
+          <CompetenceSection />
         </div>
       </div>
     </>
