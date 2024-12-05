@@ -4,7 +4,7 @@ import ProjectsSection from '../Components/Sections/ProjectSection';
 import ExperienceSection from '../Components/Sections/ExperienceSection';
 import { SparklesCore } from "../libs/sparkles";
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import CompetenceSection from '../Components/Sections/CompetenceSection';
@@ -137,7 +137,7 @@ const HomePage = () => {
         <NavBar/>
         {/* Animated Background */}
         <div className="fixed inset-0 w-full h-full bg-black">
-          <div className="w-full h-full absolute inset-0">
+          <div className="w-full h-full absolute inset-0 opacity-50">
             <SparklesCore
               id="tsparticlesfullpage"
               background="transparent"

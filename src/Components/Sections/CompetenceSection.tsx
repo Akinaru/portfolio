@@ -76,7 +76,12 @@ const WaveTransition = ({
   );
 };
 
-const AnimatedSection = ({ children, delay = 0 }) => {
+interface AnimatedSectionProps {
+  children: React.ReactNode;
+  delay?: number;
+}
+
+const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
   const elementRef = useRef(null);
@@ -236,11 +241,9 @@ const CompetenceSection = () => {
   const interactiveRef = useRef<HTMLDivElement | null>(null);
   const [curX, setCurX] = useState(0);
   const [curY, setCurY] = useState(0);
-  const [tgX, setTgX] = useState(0);
-  const [tgY, setTgY] = useState(0);
+  const [tgX] = useState(0);
+  const [tgY] = useState(0);
   const [isSafari, setIsSafari] = useState(false);
-
-  
 
   const sections = {
     techStack: {
@@ -296,13 +299,6 @@ const CompetenceSection = () => {
     move();
   }, [tgX, tgY, curX, curY]);
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>): void => {
-    if (!interactiveRef.current) return;
-    const rect = interactiveRef.current.getBoundingClientRect();
-    setTgX(event.clientX - rect.left);
-    setTgY(event.clientY - rect.top);
-  };
-
   return (
     <section id="competences" className="min-h-screen w-screen relative overflow-hidden">
       <WaveTransition direction="up" />
@@ -330,72 +326,72 @@ const CompetenceSection = () => {
       {/* Content */}
       <div className="relative w-full bg-transparent text-white p-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {Object.entries(sections).map(([key, section], sectionIndex) => (
-          <AnimatedSection key={key} delay={sectionIndex * 200}>
-            <div className="mb-16">
+        <AnimatedSection>
+          {Object.entries(sections).map(([key, section], sectionIndex) => (
+            <div key={key} className="mb-16">
               <h2 className="text-3xl font-semibold mb-8 text-center">
                 {t(section.titleKey)}
               </h2>
               
-            {/* Container avec effet glass */}
-            <div className="relative rounded-3xl p-1 backdrop-blur-2xl bg-white/5 border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.1)] overflow-hidden">
-              {/* Effet de brillance */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50" />
-              
-              {/* Zone de défilement */}
-              <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-xl">
-                {/* Masques de dégradé */}
-                <div className="absolute left-0 top-0 bottom-0 w-40 z-10"
-                    style={{
-                      maskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
-                      WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
-                      backgroundColor: 'rgba(255,255,255,0.1)'
-                    }}
-                />
-                <div className="absolute right-0 top-0 bottom-0 w-40 z-10"
-                    style={{
-                      maskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
-                      WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
-                      backgroundColor: 'rgba(255,255,255,0.1)'
-                    }}
-                />
+              {/* Container avec effet glass */}
+              <div className="relative rounded-3xl p-1 backdrop-blur-2xl bg-white/5 border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.1)] overflow-hidden">
+                {/* Effet de brillance */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50" />
+                
+                {/* Zone de défilement */}
+                <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-xl">
+                  {/* Masques de dégradé */}
+                  <div className="absolute left-0 top-0 bottom-0 w-40 z-10"
+                      style={{
+                        maskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
+                        WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
+                        backgroundColor: 'rgba(255,255,255,0.1)'
+                      }}
+                  />
+                  <div className="absolute right-0 top-0 bottom-0 w-40 z-10"
+                      style={{
+                        maskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
+                        WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
+                        backgroundColor: 'rgba(255,255,255,0.1)'
+                      }}
+                  />
 
-                {/* Contenu défilant */}
-                <div className="whitespace-nowrap py-4">
-                  <div 
-                    className="inline-flex" 
-                    style={{
-                      animation: `${sectionIndex % 2 === 0 ? 'scrollRight' : 'scrollLeft'} ${getDuration(section.items.length)} linear infinite`,
-                      willChange: 'transform',
-                      backfaceVisibility: 'hidden',
-                      transform: 'translate3d(0,0,0)'
-                    }}
-                  >
-                    {[...Array(6)].map((_, i) => (
-                      <div key={i} className="inline-flex gap-4 px-2">
-                        {section.items.map((item, index) => (
-                          <div
-                            key={`${item}-${i}-${index}`}
-                            className="backdrop-blur-xl bg-white/5
-                                    border border-white/10
-                                    px-6 py-3 rounded-xl
-                                    hover:bg-white/10
-                                    transition-all duration-300 
-                                    shadow-lg hover:shadow-xl
-                                    transform hover:-translate-y-1"
-                          >
-                            <span className="text-lg whitespace-nowrap select-none">{item}</span>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
+                  {/* Contenu défilant */}
+                  <div className="whitespace-nowrap py-4">
+                    <div 
+                      className="inline-flex" 
+                      style={{
+                        animation: `${sectionIndex % 2 === 0 ? 'scrollRight' : 'scrollLeft'} ${getDuration(section.items.length)} linear infinite`,
+                        willChange: 'transform',
+                        backfaceVisibility: 'hidden',
+                        transform: 'translate3d(0,0,0)'
+                      }}
+                    >
+                      {[...Array(6)].map((_, i) => (
+                        <div key={i} className="inline-flex gap-4 px-2">
+                          {section.items.map((item, index) => (
+                            <div
+                              key={`${item}-${i}-${index}`}
+                              className="backdrop-blur-xl bg-white/5
+                                      border border-white/10
+                                      px-6 py-3 rounded-xl
+                                      hover:bg-white/10
+                                      transition-all duration-300 
+                                      shadow-lg hover:shadow-xl
+                                      transform hover:-translate-y-1"
+                            >
+                              <span className="text-lg whitespace-nowrap select-none">{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          </AnimatedSection>
           ))}
+          </AnimatedSection>
         </div>
       </div>
 

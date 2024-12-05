@@ -253,9 +253,9 @@ const AboutSection = () => {
         <div className="max-w-7xl mx-auto relative z-10 py-16 md:py-32 px-4 md:px-8 ">
           <div ref={titleRef} className="text-center mb-8 md:mb-16">
             <div className="flex flex-col justify-start *:w-fit">
-              <p className="text-2xl md:text-4xl font-bold text-white drop-shadow-[12px_12px_10px_rgba(0,0,0,0.2)]">
-              {t('about.title')}  
-              </p>
+            <p className="text-2xl md:text-4xl font-bold text-white drop-shadow-[5px_5px_5px_rgba(0,0,0,0.4)]">
+                {t('about.title')}  
+            </p>
               
             </div>
           </div>

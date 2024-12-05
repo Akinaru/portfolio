@@ -64,7 +64,7 @@ export const ExperienceSection = () => {
                         <div className="absolute left-0 top-3 bottom-0 w-px bg-white/20 transform -translate-x-1/2" />
                       )}
                       
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 md:p-8 hover:bg-white/20 transition-colors border border-white/10 shadow-lg">
+                      <div className=" backdrop-blur-sm rounded-xl p-6 md:p-8 hover:bg-white/5 transition-colors border border-white/10 shadow-lg">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-4">
                           <h3 className="text-xl md:text-2xl font-bold text-white">
                             {t(`experience.${key}.title`)}
