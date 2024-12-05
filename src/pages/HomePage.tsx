@@ -15,7 +15,7 @@ const NavBar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -43,7 +43,7 @@ const NavBar = () => {
 
   return (
     <motion.nav 
-      className="fixed left-0 right-0 mx-auto top-6 z-50"
+      className="fixed left-0 right-0 w-fit mx-auto top-6 z-50 hover:cursor-pointer"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -58,28 +58,30 @@ const NavBar = () => {
         }}
         animate={{
           width: isExpanded ? "fit-content" : "80px",
-          height: isExpanded ? "auto" : "40px",
+          height: isExpanded ? "40px" : "40px",
         }}
         transition={{ 
-          duration: 0.4,
+          duration: 0.3,
           ease: [0.4, 0, 0.2, 1]
         }}
       >
         <motion.div 
-          className="flex gap-1 px-2 py-1"
+          className="h-full flex justify-center items-center whitespace-nowrap"
+          initial={false}
           animate={{
             opacity: isExpanded ? 1 : 0,
+            clipPath: isExpanded ? "inset(0% 0% 0% 0%)" : "inset(0% 100% 0% 0%)"
           }}
           transition={{ 
-            duration: isExpanded ? 0.2 : 0.1,
-            delay: isExpanded ? 0.15 : 0 
+            duration: 0.2,
+            delay: isExpanded ? 0.15 : 0,
           }}
         >
           {navItems.map(({ id, label }) => (
             <motion.button
               key={id}
               onClick={() => scrollToSection(id)}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all ${
+              className={`relative px-4 py-1 text-sm font-medium rounded-full transition-all ${
                 activeSection === id 
                   ? 'text-white' 
                   : 'text-white/70 hover:text-white'
@@ -87,20 +89,7 @@ const NavBar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {activeSection === id && (
-                <motion.div
-                  className="absolute inset-0 bg-white/15 rounded-full"
-                  layoutId="activeSection"
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 400, 
-                    damping: 30 
-                  }}
-                  style={{
-                    boxShadow: 'inset 0 0 0 0.5px rgba(255, 255, 255, 0.25)'
-                  }}
-                />
-              )}
+
               <span className="relative z-10">{label}</span>
             </motion.button>
           ))}
