@@ -4,7 +4,7 @@ import ProjectsSection from '../Components/Sections/ProjectSection';
 import ExperienceSection from '../Components/Sections/ExperienceSection';
 import { SparklesCore } from "../libs/sparkles";
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import CompetenceSection from '../Components/Sections/CompetenceSection';
@@ -95,6 +95,7 @@ const NavBar = () => {
 };
 
 
+
 const HomePage = () => {
   const location = useLocation();
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -151,11 +152,11 @@ const HomePage = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          <HomeSection />
-          <AboutSection />
-          <ProjectsSection />
-          <ExperienceSection />
-          <CompetenceSection />
+            <HomeSection />
+            <AboutSection />
+            <ProjectsSection />
+            <ExperienceSection />
+            <CompetenceSection />
         </div>
       </div>
     </>
