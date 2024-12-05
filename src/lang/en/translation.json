@@ -118,5 +118,24 @@
       "description": "Learning web development fundamentals (HTML, CSS, and JavaScript) on the OpenClassrooms platform under the supervision of company professionals. Assistance with code review and application update deployments.",
       "type": "Internship"
     }
+  },
+  "competences": {
+    "sections": {
+      "techStack": {
+        "title": "💻 Tech Stack"
+      },
+      "frameworks": {
+        "title": "🛠️ Frameworks"
+      },
+      "libraries": {
+        "title": "📖 Libraries"
+      },
+      "tools": {
+        "title": "🛠️ Software & Tools"
+      },
+      "os": {
+        "title": "🎛️ Operating Systems"
+      }
+    }
   }
 }

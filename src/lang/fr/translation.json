@@ -119,5 +119,24 @@
       "description": "Apprentissage des bases du développement web (HTML, CSS et JavaScript) sur la plateforme OpenClassrooms, sous la supervision de professionnels de l'entreprise. Assistance à la correction de code et au déploiement des mises à jour d'applications.",
       "type": "Stage"
     }
+  },
+  "competences": {
+    "sections": {
+      "techStack": {
+        "title": "💻 Stack Technique"
+      },
+      "frameworks": {
+        "title": "🛠️ Frameworks"
+      },
+      "libraries": {
+        "title": "📖 Bibliothèques"
+      },
+      "tools": {
+        "title": "🛠️ Logiciels & Outils"
+      },
+      "os": {
+        "title": "🎛️ Systèmes d'exploitation"
+      }
+    }
   }
 }

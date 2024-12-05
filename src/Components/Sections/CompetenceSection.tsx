@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { cn } from "../../libs/utils";
+import { useTranslation } from 'react-i18next';
 
 
 const WaveTransition = ({ 
@@ -126,6 +127,7 @@ const AnimatedSection = ({ children, delay = 0 }) => {
 };
 
 const CompetenceSection = () => {
+  const { t } = useTranslation();
   const interactiveRef = useRef<HTMLDivElement | null>(null);
   const [curX, setCurX] = useState(0);
   const [curY, setCurY] = useState(0);
@@ -137,23 +139,23 @@ const CompetenceSection = () => {
 
   const sections = {
     techStack: {
-      title: "💻 Tech Stack",
+      titleKey: "competences.sections.techStack.title", // 💻 Tech Stack
       items: ["JavaScript", "PHP", "Java", "HTML5", "TypeScript", "CSS3", "Python", "C#", "Arduino", "Raspberry Pi", "PostgreSQL", "MySQL", "MongoDB", "Docker"]
     },
     frameworks: {
-      title: "🛠️ Frameworks", 
+      titleKey: "competences.sections.frameworks.title", // 🛠️ Frameworks
       items: ["React", "Vue.js", "Node.js", "Express.js", "Laravel", "Flutter", "Symfony", "Monogame", "Blazor", "Spring Boot", "Flask"]
     },
     libraries: {
-      title: "📖 Libraries",
+      titleKey: "competences.sections.libraries.title", // 📖 Libraries
       items: ["TailwindCSS", "Socket.io", "DaisyUI", "Bootstrap", "ThreeJS", "TensorFlow", "PyTorch", "Keras", "Pandas", "Matplotlib", "NumPy", "Scikit-learn"]
     },
     tools: {
-      title: "🛠️ Softwares & Tools",
+      titleKey: "competences.sections.tools.title", // 🛠️ Softwares & Tools
       items: ["Visual Studio Code", "Visual Studio", "Vim", "IntelliJ IDEA", "Eclipse"]
     },
     os: {
-      title: "🎛️ OS",
+      titleKey: "competences.sections.os.title", // 🎛️ OS
       items: ["Debian", "Ubuntu", "iOS", "Kali", "Linux", "macOS", "Windows"]
     }
   };
@@ -273,10 +275,12 @@ const CompetenceSection = () => {
       <div className="relative w-full bg-transparent text-white p-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {Object.entries(sections).map(([key, section], sectionIndex) => (
-        <AnimatedSection key={key} delay={sectionIndex * 200}>
-          <div className="mb-16">
-            <h2 className="text-3xl font-semibold mb-8 text-center">{section.title}</h2>
-            
+          <AnimatedSection key={key} delay={sectionIndex * 200}>
+            <div className="mb-16">
+              <h2 className="text-3xl font-semibold mb-8 text-center">
+                {t(section.titleKey)}
+              </h2>
+              
             {/* Container avec effet glass */}
             <div className="relative rounded-3xl p-1 backdrop-blur-2xl bg-white/5 border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.1)] overflow-hidden">
               {/* Effet de brillance */}
