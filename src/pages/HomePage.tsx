@@ -43,7 +43,7 @@ const NavBar = () => {
 
   return (
     <motion.nav 
-      className="fixed left-0 right-0 w-fit mx-auto top-6 z-50 hover:cursor-pointer"
+      className="border-2 border-white/50 rounded-3xl fixed left-0 right-0 w-fit mx-auto top-6 z-50 hover:cursor-pointer"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -51,11 +51,7 @@ const NavBar = () => {
       onMouseLeave={() => setIsExpanded(false)}
     >
       <motion.div 
-        className="relative mx-auto bg-white/10 backdrop-blur-xl border border-white/20 rounded-full overflow-hidden shadow-lg"
-        style={{
-          background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 0.5px rgba(255, 255, 255, 0.2)'
-        }}
+        className="relative mx-auto bg-white/25 backdrop-blur-md rounded-full overflow-hidden shadow-lg"
         animate={{
           width: isExpanded ? "fit-content" : "80px",
           height: isExpanded ? "40px" : "40px",
@@ -89,7 +85,6 @@ const NavBar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-
               <span className="relative z-10">{label}</span>
             </motion.button>
           ))}
@@ -98,6 +93,7 @@ const NavBar = () => {
     </motion.nav>
   );
 };
+
 
 const HomePage = () => {
   const location = useLocation();

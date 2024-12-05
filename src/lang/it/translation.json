@@ -1,0 +1,123 @@
+{
+
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "experience": "Expériences",
+    "competence": "Compétences"
+  },
+
+  "home": {
+    "title": "Étudiant en Informatique",
+    "profileAlt": "Photo de profil"
+  },
+
+  "about": {
+    "title": "À propos",
+
+    "longCard": "🎓 Présentation",
+    "longCardDesc": "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy ⛰️, spécialisé en développement d'applications.\n\nJe m'amuse à développer divers projets depuis maintenant plus de 9 ans 🤯! Cela fait de moi un utilisateur aguérri de l'ordinateur. Ces années de pratique m'ont permis d'acquérir une grande agilité technique et une excellente capacité à résoudre des problèmes. 🔩",
+
+    "card1": "🌐 Informations",
+    "card1Desc": "Localisation: Annecy 74000, France\nLangues :\n• FR : Langue maternelle • EN : B2 intermédiaire • IT : B2 intermédiaire",
+
+    "card2": "📍 Loisirs",
+    "card2Desc": "🎮 Jeux vidéos\n• Outer Wilds • RD2, Minecraft • Elden Ring\n💿 Musique\n• Rap • Techno • Piano\n🥋 Sport\n• Musculation • Judo \n"
+  },
+
+  "projects": {
+    "title": "Mes Projets",
+    "description": "Découvrez mes projets",
+    "learnMore": "En savoir plus",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "about": "À propos",
+    "techStack": "Stack technique",
+    "keyFeatures": "Fonctionnalités clés", 
+    "home": "Accueil",
+    "viewWebsite": "Voir le site",
+    "viewGithub": "Voir le GitHub",
+
+    "lightzino": {
+      "title": "Lightzino",
+      "subtitle": "Design et Développement",
+      "description": "Casino en cryptomonnaie en ligne.",
+      "longDescription": "Une plateforme de casino en ligne innovante utilisant les cryptomonnaies comme moyen de paiement. Le projet intègre des jeux de hasard modernes avec une interface utilisateur intuitive et des transactions sécurisées.",
+      "type": "Personnel",
+      "features": {
+        "1": "Système de paiement en cryptomonnaie",
+        "2": "Jeux de casino en temps réel",
+        "3": "Interface utilisateur moderne et responsive",
+        "4": "Système de récompenses et de fidélité",
+        "5": "Sécurité renforcée des transactions"
+      }
+    },
+    "ilc": {
+      "title": "ILC",
+      "subtitle": "Design et Développement",
+      "description": "Application web de gestion des déplacements internationaux.",
+      "longDescription": "Application web permettant la gestion complète des déplacements internationaux pour les étudiants de l'IUT d'Annecy. Le site permet la visualisation (avec filtres) des destinations. Les étudiants peuvent gérer leurs voeux et les administrateurs peuvent faire l'arbitrage pour valider les choix de destinations.",
+      "type": "Stage",
+      "features": {
+        "1": "Affichage des destinations",
+        "2": "Gestion des voeux et des documents",
+        "3": "Arbitrage des déplacements",
+        "4": "Gestion des éléments du site (articles, événements, destinations, utilisateurs)",
+        "5": "Interface multilingue"
+      }
+    },
+    "fifa": {
+      "title": "Fifa",
+      "subtitle": "Design et Développement", 
+      "description": "Boutique non officielle d'articles de football.",
+      "longDescription": "Une boutique en ligne spécialisée dans les produits de football, offrant une large gamme d'équipements et d'accessoires pour les passionnés du ballon rond.",
+      "type": "Scolaire",
+      "features": {
+        "1": "Catalogue produits détaillé",
+        "2": "Système de panier d'achat",
+        "3": "Paiement sécurisé",
+        "4": "Gestion des commandes",
+        "5": "Système de recherche avancé"
+      }
+    }
+  },
+
+  "experience": {
+    "title": "Mes Experiences",
+    "description": "Découvrez mon parcours professionnel",
+
+    "fullstack": {
+      "title": "DEVELOPPEUR FULLSTACK",
+      "company": "IUT ANNECY",
+      "location": "Annecy-Le-Vieux",
+      "date": "Avril 2024 - Maintenant",
+      "description": "Développement d'une application complète pour la gestion des semestres à l'étranger des étudiants, avec une section publique accessible à tous et une section privée permettant aux étudiants de gérer leurs préférences de voyage, documents et informations personnelles.",
+      "type": "Stage"
+    },
+    "polyvalent": {
+      "title": "EMPLOYÉ POLYVALENT",
+      "company": "INTERMARCHÉ PARMELAN",
+      "location": "Annecy",
+      "date": "Juillet 2023 - Maintenant",
+      "description": "Gestion et maintenance du bon fonctionnement des caisses en libre-service. En parallèle, soutien au personnel des produits frais, avec assistance au réapprovisionnement des rayons, à la mise en avant des produits et à la gestion des dates de péremption.",
+      "type": "CDD"
+    },
+    "helpHub": {
+      "title": "PROJET DEVELOPPEMENT WEB",
+      "company": "HelpHub (fictif) - Site pour actions bénévoles",
+      "location": "Annecy",
+      "date": "Novembre 2023 - Fevrier 2024",
+      "description": "Dans le cadre de l'IUT, création d'un site qui répertorie des publications d'actions postées par des associations. Il est possible de se connecter et de modifier les éléments du site en fonction du rôle de l'utilisateur (administrateur, association, etc.).",
+      "type": "Scolaire"
+    },
+    "webmecanik": {
+      "title": "STAGE DEVELOPPEUR WEB",
+      "company": "Webmecanik, CRM Marketing Software and Tools",
+      "location": "Annecy",
+      "date": "Mars 2018 - Avril 2018",
+      "description": "Apprentissage des bases du développement web (HTML, CSS et JavaScript) sur la plateforme OpenClassrooms, sous la supervision de professionnels de l'entreprise. Assistance à la correction de code et au déploiement des mises à jour d'applications.",
+      "type": "Stage"
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './lang/i18n';
 import './App.css';
+import LanguageSwitcher from './Components/LanguageSwitcher';
 
 function App() {
   const { i18n } = useTranslation();
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <div className="overflow-x-hidden">
+      <LanguageSwitcher />
       <Outlet />
     </div>
   );

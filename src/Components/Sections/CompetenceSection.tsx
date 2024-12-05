@@ -133,6 +133,8 @@ const CompetenceSection = () => {
   const [tgY, setTgY] = useState(0);
   const [isSafari, setIsSafari] = useState(false);
 
+  
+
   const sections = {
     techStack: {
       title: "💻 Tech Stack",
@@ -273,64 +275,64 @@ const CompetenceSection = () => {
         {Object.entries(sections).map(([key, section], sectionIndex) => (
         <AnimatedSection key={key} delay={sectionIndex * 200}>
           <div className="mb-16">
-  <h2 className="text-3xl font-semibold mb-8 text-center">{section.title}</h2>
-  
-  {/* Container avec effet glass */}
-  <div className="relative rounded-3xl p-1 backdrop-blur-2xl bg-white/5 border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.1)] overflow-hidden">
-    {/* Effet de brillance */}
-    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50" />
-    
-    {/* Zone de défilement */}
-    <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-xl">
-      {/* Masques de dégradé */}
-      <div className="absolute left-0 top-0 bottom-0 w-40 z-10"
-           style={{
-             maskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
-             WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
-             backgroundColor: 'rgba(255,255,255,0.1)'
-           }}
-      />
-      <div className="absolute right-0 top-0 bottom-0 w-40 z-10"
-           style={{
-             maskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
-             WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
-             backgroundColor: 'rgba(255,255,255,0.1)'
-           }}
-      />
+            <h2 className="text-3xl font-semibold mb-8 text-center">{section.title}</h2>
+            
+            {/* Container avec effet glass */}
+            <div className="relative rounded-3xl p-1 backdrop-blur-2xl bg-white/5 border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.1)] overflow-hidden">
+              {/* Effet de brillance */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50" />
+              
+              {/* Zone de défilement */}
+              <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-xl">
+                {/* Masques de dégradé */}
+                <div className="absolute left-0 top-0 bottom-0 w-40 z-10"
+                    style={{
+                      maskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
+                      WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
+                      backgroundColor: 'rgba(255,255,255,0.1)'
+                    }}
+                />
+                <div className="absolute right-0 top-0 bottom-0 w-40 z-10"
+                    style={{
+                      maskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
+                      WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
+                      backgroundColor: 'rgba(255,255,255,0.1)'
+                    }}
+                />
 
-      {/* Contenu défilant */}
-      <div className="whitespace-nowrap py-4">
-        <div 
-          className="inline-flex" 
-          style={{
-            animation: `${sectionIndex % 2 === 0 ? 'scrollRight' : 'scrollLeft'} ${getDuration(section.items.length)} linear infinite`,
-            willChange: 'transform',
-            backfaceVisibility: 'hidden',
-            transform: 'translate3d(0,0,0)'
-          }}
-        >
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="inline-flex gap-4 px-2">
-              {section.items.map((item, index) => (
-                <div
-                  key={`${item}-${i}-${index}`}
-                  className="backdrop-blur-xl bg-white/5
-                           border border-white/10
-                           px-6 py-3 rounded-xl
-                           hover:bg-white/10
-                           transition-all duration-300 
-                           shadow-lg hover:shadow-xl
-                           transform hover:-translate-y-1"
-                >
-                  <span className="text-lg whitespace-nowrap">{item}</span>
+                {/* Contenu défilant */}
+                <div className="whitespace-nowrap py-4">
+                  <div 
+                    className="inline-flex" 
+                    style={{
+                      animation: `${sectionIndex % 2 === 0 ? 'scrollRight' : 'scrollLeft'} ${getDuration(section.items.length)} linear infinite`,
+                      willChange: 'transform',
+                      backfaceVisibility: 'hidden',
+                      transform: 'translate3d(0,0,0)'
+                    }}
+                  >
+                    {[...Array(6)].map((_, i) => (
+                      <div key={i} className="inline-flex gap-4 px-2">
+                        {section.items.map((item, index) => (
+                          <div
+                            key={`${item}-${i}-${index}`}
+                            className="backdrop-blur-xl bg-white/5
+                                    border border-white/10
+                                    px-6 py-3 rounded-xl
+                                    hover:bg-white/10
+                                    transition-all duration-300 
+                                    shadow-lg hover:shadow-xl
+                                    transform hover:-translate-y-1"
+                          >
+                            <span className="text-lg whitespace-nowrap select-none">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
           </div>
           </AnimatedSection>
           ))}
