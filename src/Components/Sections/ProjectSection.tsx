@@ -3,6 +3,8 @@ import { motion, AnimatePresence, Variants, useInView } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { projectsData } from '../../projects';
+import { createNoise3D } from 'simplex-noise';
+import { cn } from '../../libs/utils';
 
 type Direction = 1 | -1 | 0;
 
@@ -50,6 +52,174 @@ const imageVariants: Variants = {
   })
 };
 
+
+const WavyBackground = ({
+  children,
+  className,
+  containerClassName,
+  colors,
+  waveWidth,
+  blur = 10,
+  speed = "fast",
+  waveOpacity = 0.5,
+  ...props
+}: {
+  children?: any;
+  className?: string;
+  containerClassName?: string;
+  colors?: string[];
+  waveWidth?: number;
+  blur?: number;
+  speed?: "slow" | "fast";
+  waveOpacity?: number;
+  [key: string]: any;
+}) => {
+  const noise = createNoise3D();
+  let w: number,
+    h: number,
+    nt: number,
+    i: number,
+    x: number,
+    ctx: any,
+    canvas: any;
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentColors, setCurrentColors] = useState(colors);
+  const [targetColors, setTargetColors] = useState(colors);
+  
+  useEffect(() => {
+    setTargetColors(colors);
+  }, [colors]);
+
+  const getSpeed = () => {
+    switch (speed) {
+      case "slow":
+        return 0.001;
+      case "fast":
+        return 0.002;
+      default:
+        return 0.001;
+    }
+  };
+
+  const init = () => {
+    canvas = canvasRef.current;
+    ctx = canvas.getContext("2d");
+    w = ctx.canvas.width = window.innerWidth;
+    h = ctx.canvas.height = window.innerHeight;
+    ctx.filter = `blur(${blur}px)`;
+    nt = 0;
+    window.onresize = function () {
+      w = ctx.canvas.width = window.innerWidth;
+      h = ctx.canvas.height = window.innerHeight;
+      ctx.filter = `blur(${blur}px)`;
+    };
+    setIsVisible(true);
+    render();
+  };
+
+  const lerp = (start: number, end: number, t: number) => {
+    return start * (1 - t) + end * t;
+  };
+
+  const lerpColor = (color1: string, color2: string, t: number) => {
+    const c1 = hexToRgb(color1);
+    const c2 = hexToRgb(color2);
+    
+    const r = Math.round(lerp(c1.r, c2.r, t));
+    const g = Math.round(lerp(c1.g, c2.g, t));
+    const b = Math.round(lerp(c1.b, c2.b, t));
+    
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+
+  const hexToRgb = (hex: string) => {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : { r: 0, g: 0, b: 0 };
+  };
+
+  const drawWave = (n: number, timestamp: number) => {
+    nt += getSpeed();
+    ctx.clearRect(0, 0, w, h);
+    
+    // Calcul de la progression de la transition (sur 500ms)
+    const transitionDuration = 500;
+    const progress = Math.min((timestamp % transitionDuration) / transitionDuration, 1);
+    
+    for (i = 0; i < n; i++) {
+      ctx.beginPath();
+      ctx.lineWidth = waveWidth || 50;
+      
+      // Interpolation des couleurs
+      const currentColor = currentColors?.[i] || "#000000";
+      const targetColor = targetColors?.[i] || "#000000";
+      const interpolatedColor = lerpColor(currentColor, targetColor, progress);
+      
+      ctx.strokeStyle = interpolatedColor;
+      ctx.globalAlpha = waveOpacity;
+      
+      for (x = 0; x < w; x += 5) {
+        var y = noise(x / 800, 0.3 * i, nt) * 100;
+        ctx.lineTo(x, y + h * 0.5);
+      }
+      ctx.stroke();
+      ctx.closePath();
+    }
+
+    if (progress === 1) {
+      setCurrentColors(targetColors);
+    }
+  };
+
+  let animationId: number;
+  const render = (timestamp = 0) => {
+    drawWave(5, timestamp);
+    animationId = requestAnimationFrame(render);
+  };
+
+  useEffect(() => {
+    init();
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, []);
+
+  const [isSafari, setIsSafari] = useState(false);
+  useEffect(() => {
+    setIsSafari(
+      typeof window !== "undefined" &&
+        navigator.userAgent.includes("Safari") &&
+        !navigator.userAgent.includes("Chrome")
+    );
+  }, []);
+
+  return (
+    <div className={cn("relative w-full h-full", containerClassName)} {...props}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isVisible ? 1 : 0 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+      >
+        <canvas
+          className="absolute inset-0 z-0"
+          ref={canvasRef}
+          id="canvas"
+          style={{
+            ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
+          }}
+        />
+      </motion.div>
+      <div className={cn("relative z-10 h-full", className)}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 interface ProjectBadgeProps {
   type: string;
   className?: string;
@@ -87,22 +257,29 @@ const ProjectsSection: React.FC = () => {
   const navigate = useNavigate();
   const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
   const isContentInView = useInView(contentRef, { once: false, amount: 0.3 });
-
   const currentProject = projectsData[currentIndex];
 
+
+  const handleProjectChange = (newIndex: number) => {
+    const newDirection = newIndex > currentIndex ? 1 : -1;
+    setDirection(newDirection);
+    setCurrentIndex(newIndex);
+  };
+
+  // Remplacez les lignes où vous appelez handlePrevious et handleNext
   const handlePrevious = () => {
     if (currentIndex > 0) {
-      setDirection(-1);
-      setCurrentIndex(currentIndex - 1);
+      handleProjectChange(currentIndex - 1);
     }
   };
+
 
   const handleNext = () => {
     if (currentIndex < projectsData.length - 1) {
-      setDirection(1);
-      setCurrentIndex(currentIndex + 1);
+      handleProjectChange(currentIndex + 1);
     }
   };
+
 
   const handleFadeToBlack = () => {
     setIsFading(true);
@@ -129,6 +306,13 @@ const ProjectsSection: React.FC = () => {
   return (
     <>
       <section id="projects" ref={sectionRef} className="relative text-white">
+      <WavyBackground
+          key={currentProject.id} // Utiliser l'ID du projet comme clé unique
+          colors={currentProject.waveColors} // Utiliser directement les couleurs du projet actuel
+          blur={10}
+          speed="fast"
+          waveOpacity={0.5}
+        />
         {/* Main content container with relative positioning */}
         <div className="relative">
           {/* Project content area */}
@@ -261,10 +445,7 @@ const ProjectsSection: React.FC = () => {
                         className={`h-1.5 md:h-2 rounded-full transition-all duration-300 cursor-pointer ${
                           i === currentIndex ? 'w-6 md:w-8 bg-white' : 'w-1.5 md:w-2 bg-white/30'
                         }`}
-                        onClick={() => {
-                          setDirection(i > currentIndex ? 1 : -1);
-                          setCurrentIndex(i);
-                        }}
+                        onClick={() => handleProjectChange(i)}
                       />
                     ))}
                   </div>
