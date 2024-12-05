@@ -75,6 +75,56 @@ const WaveTransition = ({
   );
 };
 
+const AnimatedSection = ({ children, delay = 0 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const elementRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            setHasAnimated(true);
+          } else if (hasAnimated) {
+            setIsVisible(false);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '50px'
+      }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, [hasAnimated]);
+
+  return (
+    <div
+      ref={elementRef}
+      className={cn(
+        "transition-all duration-1000 ease-out",
+        isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-20"
+      )}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
+
 const CompetenceSection = () => {
   const interactiveRef = useRef<HTMLDivElement | null>(null);
   const [curX, setCurX] = useState(0);
@@ -145,9 +195,9 @@ const CompetenceSection = () => {
   };
 
   return (
-    <div className="h-screen w-screen relative overflow-hidden">
+    <section id="competences" className="min-h-screen w-screen relative overflow-hidden">
       <WaveTransition direction="up" />
-<div className="absolute inset-0 bg-black/90 z-0" />
+      <div className="absolute inset-0 bg-black/90 z-0" />
 
       {/* SVG Filters */}
       <svg className="hidden">
@@ -220,8 +270,9 @@ const CompetenceSection = () => {
       {/* Content */}
       <div className="relative w-full bg-transparent text-white p-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {Object.entries(sections).map(([key, section], sectionIndex) => (
-            <div key={key} className="mb-16">
+        {Object.entries(sections).map(([key, section], sectionIndex) => (
+        <AnimatedSection key={key} delay={sectionIndex * 200}>
+          <div className="mb-16">
   <h2 className="text-3xl font-semibold mb-8 text-center">{section.title}</h2>
   
   {/* Container avec effet glass */}
@@ -280,7 +331,8 @@ const CompetenceSection = () => {
       </div>
     </div>
   </div>
-</div>
+          </div>
+          </AnimatedSection>
           ))}
         </div>
       </div>
@@ -303,7 +355,7 @@ const CompetenceSection = () => {
           }
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 

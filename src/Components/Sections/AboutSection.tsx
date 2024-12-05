@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from "framer-motion";
 import logo from '../../assets/logo_computer.svg';
 import banner from '../../assets/banner.png';
@@ -227,7 +227,6 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
 const AboutSection = () => {
   const { t } = useTranslation();
   const titleRef = useRef(null);
-  const isInView = useInView(titleRef, { once: false, amount: 0.3 });
 
   const features = [
     {
