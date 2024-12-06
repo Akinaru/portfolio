@@ -247,23 +247,23 @@ const CompetenceSection = () => {
 
   const sections = {
     techStack: {
-      titleKey: "competences.sections.techStack.title", // 💻 Tech Stack
+      titleKey: "competences.sections.techStack.title",
       items: ["JavaScript", "PHP", "Java", "HTML5", "TypeScript", "CSS3", "Python", "C#", "Arduino", "Raspberry Pi", "PostgreSQL", "MySQL", "MongoDB", "Docker"]
     },
     frameworks: {
-      titleKey: "competences.sections.frameworks.title", // 🛠️ Frameworks
+      titleKey: "competences.sections.frameworks.title",
       items: ["React", "Vue.js", "Node.js", "Express.js", "Laravel", "Flutter", "Symfony", "Monogame", "Blazor", "Spring Boot", "Flask"]
     },
     libraries: {
-      titleKey: "competences.sections.libraries.title", // 📖 Libraries
+      titleKey: "competences.sections.libraries.title",
       items: ["TailwindCSS", "Socket.io", "DaisyUI", "Bootstrap", "ThreeJS", "TensorFlow", "PyTorch", "Keras", "Pandas", "Matplotlib", "NumPy", "Scikit-learn"]
     },
     tools: {
-      titleKey: "competences.sections.tools.title", // 🛠️ Softwares & Tools
+      titleKey: "competences.sections.tools.title",
       items: ["Visual Studio Code", "Visual Studio", "Vim", "IntelliJ IDEA", "Eclipse"]
     },
     os: {
-      titleKey: "competences.sections.os.title", // 🎛️ OS
+      titleKey: "competences.sections.os.title",
       items: ["Debian", "Ubuntu", "iOS", "Kali", "Linux", "macOS", "Windows"]
     }
   };
@@ -324,12 +324,12 @@ const CompetenceSection = () => {
       <AnimatedGradientBackground isSafari={isSafari} />
 
       {/* Content */}
-      <div className="relative w-full bg-transparent text-white p-8">
+      <div className="relative w-full bg-transparent text-white p-4 md:p-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
           {Object.entries(sections).map(([key, section], sectionIndex) => (
-            <div key={key} className="mb-16">
-              <h2 className="text-3xl font-semibold mb-8 text-center">
+            <div key={key} className="mb-8 md:mb-16">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 md:mb-8 text-center">
                 {t(section.titleKey)}
               </h2>
               
@@ -341,14 +341,14 @@ const CompetenceSection = () => {
                 {/* Zone de défilement */}
                 <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-xl">
                   {/* Masques de dégradé */}
-                  <div className="absolute left-0 top-0 bottom-0 w-40 z-10"
+                  <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 z-10"
                       style={{
                         maskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
                         WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
                         backgroundColor: 'rgba(255,255,255,0.1)'
                       }}
                   />
-                  <div className="absolute right-0 top-0 bottom-0 w-40 z-10"
+                  <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 z-10"
                       style={{
                         maskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
                         WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
@@ -357,7 +357,7 @@ const CompetenceSection = () => {
                   />
 
                   {/* Contenu défilant */}
-                  <div className="whitespace-nowrap py-4">
+                  <div className="whitespace-nowrap py-2 md:py-4">
                     <div 
                       className="inline-flex" 
                       style={{
@@ -368,19 +368,19 @@ const CompetenceSection = () => {
                       }}
                     >
                       {[...Array(6)].map((_, i) => (
-                        <div key={i} className="inline-flex gap-4 px-2">
+                        <div key={i} className="inline-flex gap-2 md:gap-4 px-2">
                           {section.items.map((item, index) => (
                             <div
                               key={`${item}-${i}-${index}`}
                               className="backdrop-blur-xl bg-white/5
                                       border border-white/10
-                                      px-6 py-3 rounded-xl
+                                      px-4 md:px-6 py-2 md:py-3 rounded-xl
                                       hover:bg-white/10
                                       transition-all duration-300 
                                       shadow-lg hover:shadow-xl
                                       transform hover:-translate-y-1"
                             >
-                              <span className="text-lg whitespace-nowrap select-none">{item}</span>
+                              <span className="text-base md:text-lg whitespace-nowrap select-none">{item}</span>
                             </div>
                           ))}
                         </div>

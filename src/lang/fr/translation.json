@@ -4,7 +4,7 @@
     "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
-    "experience": "Expériences",
+    "experience": "Parcours",
     "competence": "Compétences"
   },
 
@@ -14,7 +14,7 @@
   },
 
   "about": {
-    "title": "📁 À propos",
+    "title": "🎴 À propos",
 
     "longCard": "🎓 Présentation",
     "longCardDesc": "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy ⛰️, spécialisé en développement d'applications.\n\nJe m'amuse à développer divers projets depuis maintenant plus de 9 ans 🤯! Cela fait de moi un utilisateur aguérri de l'ordinateur. Ces années de pratique m'ont permis d'acquérir une grande agilité technique et une excellente capacité à résoudre des problèmes. 🔩",
@@ -83,42 +83,59 @@
     }
   },
 
-  "experience": {
-    "title": "Mes Experiences",
+  "parcours": {
+    "title": "Mon parcours",
     "description": "Découvrez mon parcours professionnel",
 
-    "fullstack": {
-      "title": "DEVELOPPEUR FULLSTACK",
-      "company": "IUT ANNECY",
-      "location": "Annecy-Le-Vieux",
-      "date": "Avril 2024 - Maintenant",
-      "description": "Développement d'une application complète pour la gestion des semestres à l'étranger des étudiants, avec une section publique accessible à tous et une section privée permettant aux étudiants de gérer leurs préférences de voyage, documents et informations personnelles.",
-      "type": "Stage"
+
+    "experiences": {
+      "title": "Experiences",
+      "fullstack": {
+        "title": "DEVELOPPEUR FULLSTACK",
+        "company": "IUT ANNECY",
+        "location": "Annecy-Le-Vieux",
+        "date": "Avril 2024 - Maintenant",
+        "description": "Développement d'une application complète pour la gestion des semestres à l'étranger des étudiants, avec une section publique accessible à tous et une section privée permettant aux étudiants de gérer leurs préférences de voyage, documents et informations personnelles.",
+        "type": "Stage"
+      },
+      "polyvalent": {
+        "title": "EMPLOYÉ POLYVALENT",
+        "company": "INTERMARCHÉ PARMELAN",
+        "location": "Annecy",
+        "date": "Juillet 2023 - Maintenant",
+        "description": "Gestion et maintenance du bon fonctionnement des caisses en libre-service. En parallèle, soutien au personnel des produits frais, avec assistance au réapprovisionnement des rayons, à la mise en avant des produits et à la gestion des dates de péremption.",
+        "type": "CDD"
+      },
+      "helpHub": {
+        "title": "PROJET DEVELOPPEMENT WEB",
+        "company": "HelpHub (fictif) - Site pour actions bénévoles",
+        "location": "Annecy",
+        "date": "Novembre 2023 - Fevrier 2024",
+        "description": "Dans le cadre de l'IUT, création d'un site qui répertorie des publications d'actions postées par des associations. Il est possible de se connecter et de modifier les éléments du site en fonction du rôle de l'utilisateur (administrateur, association, etc.).",
+        "type": "Scolaire"
+      },
+      "webmecanik": {
+        "title": "STAGE DEVELOPPEUR WEB",
+        "company": "Webmecanik, CRM Marketing Software and Tools",
+        "location": "Annecy",
+        "date": "Mars 2018 - Avril 2018",
+        "description": "Apprentissage des bases du développement web (HTML, CSS et JavaScript) sur la plateforme OpenClassrooms, sous la supervision de professionnels de l'entreprise. Assistance à la correction de code et au déploiement des mises à jour d'applications.",
+        "type": "Stage"
+      }
     },
-    "polyvalent": {
-      "title": "EMPLOYÉ POLYVALENT",
-      "company": "INTERMARCHÉ PARMELAN",
-      "location": "Annecy",
-      "date": "Juillet 2023 - Maintenant",
-      "description": "Gestion et maintenance du bon fonctionnement des caisses en libre-service. En parallèle, soutien au personnel des produits frais, avec assistance au réapprovisionnement des rayons, à la mise en avant des produits et à la gestion des dates de péremption.",
-      "type": "CDD"
-    },
-    "helpHub": {
-      "title": "PROJET DEVELOPPEMENT WEB",
-      "company": "HelpHub (fictif) - Site pour actions bénévoles",
-      "location": "Annecy",
-      "date": "Novembre 2023 - Fevrier 2024",
-      "description": "Dans le cadre de l'IUT, création d'un site qui répertorie des publications d'actions postées par des associations. Il est possible de se connecter et de modifier les éléments du site en fonction du rôle de l'utilisateur (administrateur, association, etc.).",
-      "type": "Scolaire"
-    },
-    "webmecanik": {
-      "title": "STAGE DEVELOPPEUR WEB",
-      "company": "Webmecanik, CRM Marketing Software and Tools",
-      "location": "Annecy",
-      "date": "Mars 2018 - Avril 2018",
-      "description": "Apprentissage des bases du développement web (HTML, CSS et JavaScript) sur la plateforme OpenClassrooms, sous la supervision de professionnels de l'entreprise. Assistance à la correction de code et au déploiement des mises à jour d'applications.",
-      "type": "Stage"
-    }
+    "study": {
+      "title": "Formation",
+      "but": {
+        "title": "BUT INFORMATIQUE (BACHELOR Universitaire de Technologie)",
+        "place": "USMB / IUT ANNECY - Annecy-Le-Vieux, France",
+        "date": "Septembre 2022 - Maintenant"
+      },
+      "lycee": {
+        "title": "BAC Technologique STI2D avec mention bien (SIN)",
+        "place": "Lycée de l’Albanais - Rumilly, France",
+        "date": "Septembre 2019 - Juillet 2022"
+      }
+    } 
   },
   "competences": {
     "sections": {

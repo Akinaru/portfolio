@@ -4,7 +4,7 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "experience": "Experience",
+    "experience": "My Journey",
     "competence": "Skills"
   },
 
@@ -14,7 +14,7 @@
   },
 
   "about": {
-      "title": "📁 About",
+      "title": "🎴 About",
 
       "longCard": "🎓 Introduction",
       "longCardDesc": "I am a third-year student in Computer Science at the IUT of Annecy ⛰️, specializing in application development.\n\nI've been having fun developing various projects for over 9 years now 🤯! This has made me a skilled computer user. These years of practice have allowed me to acquire great technical agility and excellent problem-solving abilities. 🔩",
@@ -82,43 +82,62 @@
       }
     }
   },
-  "experience": {
-    "title": "My Experiences",
-    "description": "Discover my professional experiences",
+    "parcours": {
+      "title": "My Journey",
+      "description": "Discover my professional path",
+  
+      "experiences": {
+        "title": "Experience",
+        "fullstack": {
+          "title": "FULLSTACK DEVELOPER",
+          "company": "IUT ANNECY",
+          "location": "Annecy-Le-Vieux",
+          "date": "April 2024 - Now",
+          "description": "Development of a complete application for managing students' overseas semesters, featuring a public section accessible to all and a private section allowing students to manage their travel preferences, documents, and personal information.",
+          "type": "Internship"
+        },
+        "polyvalent": {
+          "title": "VERSATILE EMPLOYEE",
+          "company": "INTERMARCHÉ PARMELAN",
+          "location": "Annecy",
+          "date": "July 2023 - Now",
+          "description": "Management and maintenance of self-service checkout systems. Additionally, support to fresh produce staff, assisting with shelf restocking, product presentation, and expiration date management.",
+          "type": "Fixed-term Contract"
+        },
+        "helpHub": {
+          "title": "WEB DEVELOPMENT PROJECT",
+          "company": "HelpHub (fictional) - Volunteer Actions Platform",
+          "location": "Annecy",
+          "date": "November 2023 - February 2024",
+          "description": "As part of IUT coursework, creation of a website cataloging action posts from associations. Users can log in and modify site elements based on their role (administrator, association, etc.).",
+          "type": "Academic"
+        },
+        "webmecanik": {
+          "title": "WEB DEVELOPER INTERN",
+          "company": "Webmecanik, CRM Marketing Software and Tools",
+          "location": "Annecy",
+          "date": "March 2018 - April 2018",
+          "description": "Learning web development fundamentals (HTML, CSS, and JavaScript) through OpenClassrooms platform, under company professionals' supervision. Assistance with code correction and application update deployments.",
+          "type": "Internship"
+        }
+      },
+      "study": {
+        "title": "Education",
+        "but": {
+          "title": "BUT IN COMPUTER SCIENCE (Bachelor of Technology)",
+          "place": "USMB / IUT ANNECY - Annecy-Le-Vieux, France",
+          "date": "September 2022 - Now"
+        },
+        "lycee": {
+          "title": "Technological BAC STI2D with honors (SIN)",
+          "place": "Lycée de l'Albanais - Rumilly, France",
+          "date": "September 2019 - July 2022"
+        }
+      }
+    },
 
-    "fullstack": {
-      "title": "FULLSTACK DEVELOPER",
-      "company": "IUT ANNECY",
-      "location": "Annecy-Le-Vieux",
-      "date": "April 2024 - Now",
-      "description": "Development of a complete application for managing students' semesters abroad, with a public section accessible to all and a private section allowing students to manage their travel preferences, documents, and personal information.",
-      "type": "Internship"
-    },
-    "polyvalent": {
-      "title": "VERSATILE EMPLOYEE",
-      "company": "INTERMARCHÉ PARMELAN",
-      "location": "Annecy",
-      "date": "July 2023 - Now",
-      "description": "Management and maintenance of self-service checkout systems. Additionally, support for fresh produce staff, assisting with shelf restocking, product presentation, and expiration date management.",
-      "type": "Fixed-term"
-    },
-    "helpHub": {
-      "title": "WEB DEVELOPMENT PROJECT",
-      "company": "HelpHub (fictional) - Platform for volunteer actions",
-      "location": "Annecy",
-      "date": "November 2023 - February 2024",
-      "description": "As part of IUT coursework, creation of a website cataloging action posts from associations. Users can log in and modify site elements based on their role (administrator, association, etc.).",
-      "type": "Academic"
-    },
-    "webmecanik": {
-      "title": "WEB DEVELOPER INTERN",
-      "company": "Webmecanik, CRM Marketing Software and Tools",
-      "location": "Annecy",
-      "date": "March 2018 - April 2018",
-      "description": "Learning web development fundamentals (HTML, CSS, and JavaScript) on the OpenClassrooms platform under the supervision of company professionals. Assistance with code review and application update deployments.",
-      "type": "Internship"
-    }
-  },
+
+
   "competences": {
     "sections": {
       "techStack": {

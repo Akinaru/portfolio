@@ -415,7 +415,7 @@ const ProjectsSection: React.FC = () => {
                 </div>
   
                 <motion.div 
-                  className="flex justify-center items-center gap-2 md:gap-4 my-8 md:my-12 lg:my-16"
+                  className="flex justify-center items-center gap-4 my-8 md:my-12 lg:my-16"
                   animate={isContentInView ? { 
                     opacity: 1, 
                     y: 0 
@@ -429,36 +429,36 @@ const ProjectsSection: React.FC = () => {
                     onClick={handlePrevious}
                     disabled={currentIndex === 0}
                     whileTap={currentIndex !== 0 ? { scale: 0.95 } : undefined}
-                    className={`flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-base ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm ${
                       currentIndex === 0 ? 'text-neutral-500' : 'text-white hover:bg-white/10'
                     } transition-colors`}
                   >
                     <ChevronLeft />
-                    <span className="hidden md:inline">{t('projects.previous')}</span>
+                    <span>{t('projects.previous')}</span>
                   </motion.button>
-  
-                  <div className="flex gap-1 md:gap-2">
+
+                  <div className="flex gap-2">
                     {projectsData.map((_, i) => (
                       <motion.button
                         key={i}
                         whileTap={{ scale: 0.75 }}
-                        className={`h-1.5 md:h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                          i === currentIndex ? 'w-6 md:w-8 bg-white' : 'w-1.5 md:w-2 bg-white/30'
+                        className={`h-2 md:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                          i === currentIndex ? 'w-8 md:w-10 bg-white' : 'w-2 md:w-2.5 bg-white/30'
                         }`}
                         onClick={() => handleProjectChange(i)}
                       />
                     ))}
                   </div>
-  
+
                   <motion.button
                     onClick={handleNext}
                     disabled={currentIndex === projectsData.length - 1}
                     whileTap={currentIndex !== projectsData.length - 1 ? { scale: 0.95 } : undefined}
-                    className={`flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-base ${
+                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm ${
                       currentIndex === projectsData.length - 1 ? 'text-neutral-500' : 'text-white hover:bg-white/10'
                     } transition-colors`}
                   >
-                    <span className="hidden md:inline">{t('projects.next')}</span>
+                    <span>{t('projects.next')}</span>
                     <ChevronRight />
                   </motion.button>
                 </motion.div>
