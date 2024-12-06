@@ -49,8 +49,8 @@ interface Language {
 const languages: Language[] = [
   { code: 'en', name: 'English' },
   { code: 'fr', name: 'Français' },
-  { code: 'it', name: '⌛' },
-  { code: 'ja', name: '⌛' },
+  { code: 'it', name: 'Italiano' },
+  { code: 'ja', name: '日本語' }
 ];
 
 const LanguageSwitcher = () => {

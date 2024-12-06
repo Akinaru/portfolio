@@ -1,123 +1,160 @@
 {
-
   "nav": {
-    "home": "Accueil",
-    "about": "À propos",
-    "projects": "Projets",
-    "experience": "Expériences",
-    "competence": "Compétences"
+    "home": "Home",
+    "about": "Chi sono",
+    "projects": "Progetti",
+    "experience": "Esperienza",
+    "competence": "Competenze"
   },
 
   "home": {
-    "title": "Étudiant en Informatique",
-    "profileAlt": "Photo de profil"
+    "title": "Studente di Informatica",
+    "profileAlt": "Foto profilo"
   },
 
   "about": {
-    "title": "À propos",
+    "title": "🎴 Chi sono",
 
-    "longCard": "🎓 Présentation",
-    "longCardDesc": "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy ⛰️, spécialisé en développement d'applications.\n\nJe m'amuse à développer divers projets depuis maintenant plus de 9 ans 🤯! Cela fait de moi un utilisateur aguérri de l'ordinateur. Ces années de pratique m'ont permis d'acquérir une grande agilité technique et une excellente capacité à résoudre des problèmes. 🔩",
+    "longCard": "🎓 Presentazione",
+    "longCardDesc": "Sono uno studente del terzo anno di BUT Informatica presso l'IUT di Annecy ⛰️, specializzato nello sviluppo di applicazioni.\n\nMi diverto a sviluppare vari progetti da più di 9 anni 🤯! Questo mi ha reso un utente esperto del computer. Questi anni di pratica mi hanno permesso di acquisire una grande agilità tecnica e un'eccellente capacità di risolvere problemi. 🔩",
 
-    "card1": "🌐 Informations",
-    "card1Desc": "Localisation: Annecy 74000, France\nLangues :\n• FR : Langue maternelle • EN : B2 intermédiaire • IT : B2 intermédiaire",
+    "card1": "🌐 Informazioni",
+    "card1Desc": "Località: Annecy 74000, Francia\nLingue:\n• FR: Madrelingua • EN: B2 intermedio • IT: B2 intermedio",
 
-    "card2": "📍 Loisirs",
-    "card2Desc": "🎮 Jeux vidéos\n• Outer Wilds • RD2, Minecraft • Elden Ring\n💿 Musique\n• Rap • Techno • Piano\n🥋 Sport\n• Musculation • Judo \n"
+    "card2": "📍 Hobby",
+    "card2Desc": "🎮 Gaming\n• Outer Wilds - Esplorazione spaziale & puzzle\n• Red Dead Redemption 2 - Azione/Avventura\n• Minecraft - Creatività & costruzione\n• Elden Ring - Azione/RPG\n\n🎵 Musica\n• Rap Francese & US\n• Techno/Hard Techno\n \n🥋 Sport\n• Bodybuilding - 2 anni di pratica regolare\n• Judo - Cintura Blu - 8 anni di pratica\n\n📚 Altre passioni\n• Tecnologia & Innovazione\n• Montagna & Escursionismo\n",
+
+    "card3": "💡 Competenze tecniche",
+    "card3Desc": "Appassionato di sviluppo fullstack, mi piace particolarmente costruire applicazioni dalla A alla Z. 🎨 Sul lato frontend, mi esprimo nell'ecosistema React, dove TypeScript mi permette di programmare con sicurezza e precisione.\n\n⚡️ Il backend non è da meno: mi piace creare API robuste con Express.ts, tenendo sempre a mente la manutenibilità e la scalabilità.\n\nSono convinto che la qualità del codice sia importante quanto il risultato finale. Per questo apprezzo particolarmente TypeScript, che mi permette di produrre un codice più sicuro e meglio strutturato. 🎯"
   },
 
   "projects": {
-    "title": "Mes Projets",
-    "description": "Découvrez mes projets",
-    "learnMore": "En savoir plus",
-    "next": "Suivant",
-    "previous": "Précédent",
-    "about": "À propos",
-    "techStack": "Stack technique",
-    "keyFeatures": "Fonctionnalités clés", 
-    "home": "Accueil",
-    "viewWebsite": "Voir le site",
-    "viewGithub": "Voir le GitHub",
+    "title": "I miei Progetti",
+    "description": "Scopri i miei progetti",
+    "learnMore": "Scopri di più",
+    "next": "Successivo",
+    "previous": "Precedente",
+    "about": "Chi sono",
+    "techStack": "Stack tecnico",
+    "keyFeatures": "Funzionalità chiave",
+    "home": "Home",
+    "viewWebsite": "Vedi il sito",
+    "viewGithub": "Vedi GitHub",
 
     "lightzino": {
       "title": "Lightzino",
-      "subtitle": "Design et Développement",
-      "description": "Casino en cryptomonnaie en ligne.",
-      "longDescription": "Une plateforme de casino en ligne innovante utilisant les cryptomonnaies comme moyen de paiement. Le projet intègre des jeux de hasard modernes avec une interface utilisateur intuitive et des transactions sécurisées.",
-      "type": "Personnel",
+      "subtitle": "Design e Sviluppo",
+      "description": "Casinò online in criptovaluta",
+      "longDescription": "Una piattaforma innovativa di casinò online che utilizza le criptovalute come mezzo di pagamento. Il progetto integra giochi d'azzardo moderni con un'interfaccia utente intuitiva e transazioni sicure.",
+      "type": "Personale",
       "features": {
-        "1": "Système de paiement en cryptomonnaie",
-        "2": "Jeux de casino en temps réel",
-        "3": "Interface utilisateur moderne et responsive",
-        "4": "Système de récompenses et de fidélité",
-        "5": "Sécurité renforcée des transactions"
+        "1": "Sistema di pagamento in criptovaluta",
+        "2": "Giochi da casinò in tempo reale",
+        "3": "Interfaccia utente moderna e responsive",
+        "4": "Sistema di premi e fedeltà",
+        "5": "Sicurezza avanzata delle transazioni"
       }
     },
     "ilc": {
       "title": "ILC",
-      "subtitle": "Design et Développement",
-      "description": "Application web de gestion des déplacements internationaux.",
-      "longDescription": "Application web permettant la gestion complète des déplacements internationaux pour les étudiants de l'IUT d'Annecy. Le site permet la visualisation (avec filtres) des destinations. Les étudiants peuvent gérer leurs voeux et les administrateurs peuvent faire l'arbitrage pour valider les choix de destinations.",
+      "subtitle": "Design e Sviluppo",
+      "description": "Applicazione web per la gestione degli spostamenti internazionali",
+      "longDescription": "Applicazione web per la gestione completa degli spostamenti internazionali per gli studenti dell'IUT di Annecy. Il sito permette la visualizzazione (con filtri) delle destinazioni. Gli studenti possono gestire le loro preferenze e gli amministratori possono fare l'arbitraggio per validare le scelte delle destinazioni.",
       "type": "Stage",
       "features": {
-        "1": "Affichage des destinations",
-        "2": "Gestion des voeux et des documents",
-        "3": "Arbitrage des déplacements",
-        "4": "Gestion des éléments du site (articles, événements, destinations, utilisateurs)",
-        "5": "Interface multilingue"
+        "1": "Visualizzazione delle destinazioni",
+        "2": "Gestione delle preferenze e dei documenti",
+        "3": "Arbitraggio degli spostamenti",
+        "4": "Gestione degli elementi del sito (articoli, eventi, destinazioni, utenti)",
+        "5": "Interfaccia multilingue"
       }
     },
     "fifa": {
       "title": "Fifa",
-      "subtitle": "Design et Développement", 
-      "description": "Boutique non officielle d'articles de football.",
-      "longDescription": "Une boutique en ligne spécialisée dans les produits de football, offrant une large gamme d'équipements et d'accessoires pour les passionnés du ballon rond.",
-      "type": "Scolaire",
+      "subtitle": "Design e Sviluppo",
+      "description": "Negozio non ufficiale di articoli calcistici",
+      "longDescription": "Un negozio online specializzato in prodotti calcistici, che offre una vasta gamma di attrezzature e accessori per gli appassionati del pallone.",
+      "type": "Scolastico",
       "features": {
-        "1": "Catalogue produits détaillé",
-        "2": "Système de panier d'achat",
-        "3": "Paiement sécurisé",
-        "4": "Gestion des commandes",
-        "5": "Système de recherche avancé"
+        "1": "Catalogo prodotti dettagliato",
+        "2": "Sistema carrello acquisti",
+        "3": "Pagamento sicuro",
+        "4": "Gestione ordini",
+        "5": "Sistema di ricerca avanzato"
       }
     }
   },
 
-  "experience": {
-    "title": "Mes Experiences",
-    "description": "Découvrez mon parcours professionnel",
+  "parcours": {
+    "title": "Il mio percorso",
+    "description": "Scopri il mio percorso professionale",
 
-    "fullstack": {
-      "title": "DEVELOPPEUR FULLSTACK",
-      "company": "IUT ANNECY",
-      "location": "Annecy-Le-Vieux",
-      "date": "Avril 2024 - Maintenant",
-      "description": "Développement d'une application complète pour la gestion des semestres à l'étranger des étudiants, avec une section publique accessible à tous et une section privée permettant aux étudiants de gérer leurs préférences de voyage, documents et informations personnelles.",
-      "type": "Stage"
+    "experiences": {
+      "title": "Esperienze",
+      "fullstack": {
+        "title": "SVILUPPATORE FULLSTACK",
+        "company": "IUT ANNECY",
+        "location": "Annecy-Le-Vieux",
+        "date": "Aprile 2024 - Attuale",
+        "description": "Sviluppo di un'applicazione completa per la gestione dei semestri all'estero degli studenti, con una sezione pubblica accessibile a tutti e una sezione privata che permette agli studenti di gestire le loro preferenze di viaggio, documenti e informazioni personali.",
+        "type": "Stage"
+      },
+      "polyvalent": {
+        "title": "IMPIEGATO POLIVALENTE",
+        "company": "INTERMARCHÉ PARMELAN",
+        "location": "Annecy",
+        "date": "Luglio 2023 - Attuale",
+        "description": "Gestione e manutenzione del corretto funzionamento delle casse self-service. In parallelo, supporto al personale dei prodotti freschi, con assistenza al rifornimento degli scaffali, alla presentazione dei prodotti e alla gestione delle date di scadenza.",
+        "type": "Contratto a tempo determinato"
+      },
+      "helpHub": {
+        "title": "PROGETTO SVILUPPO WEB",
+        "company": "HelpHub (fittizio) - Sito per azioni di volontariato",
+        "location": "Annecy",
+        "date": "Novembre 2023 - Febbraio 2024",
+        "description": "Nell'ambito dell'IUT, creazione di un sito che cataloga pubblicazioni di azioni postate da associazioni. È possibile accedere e modificare gli elementi del sito in base al ruolo dell'utente (amministratore, associazione, ecc.).",
+        "type": "Scolastico"
+      },
+      "webmecanik": {
+        "title": "STAGE SVILUPPATORE WEB",
+        "company": "Webmecanik, CRM Marketing Software and Tools",
+        "location": "Annecy",
+        "date": "Marzo 2018 - Aprile 2018",
+        "description": "Apprendimento delle basi dello sviluppo web (HTML, CSS e JavaScript) sulla piattaforma OpenClassrooms, sotto la supervisione di professionisti dell'azienda. Assistenza alla correzione del codice e al deployment degli aggiornamenti delle applicazioni.",
+        "type": "Stage"
+      }
     },
-    "polyvalent": {
-      "title": "EMPLOYÉ POLYVALENT",
-      "company": "INTERMARCHÉ PARMELAN",
-      "location": "Annecy",
-      "date": "Juillet 2023 - Maintenant",
-      "description": "Gestion et maintenance du bon fonctionnement des caisses en libre-service. En parallèle, soutien au personnel des produits frais, avec assistance au réapprovisionnement des rayons, à la mise en avant des produits et à la gestion des dates de péremption.",
-      "type": "CDD"
-    },
-    "helpHub": {
-      "title": "PROJET DEVELOPPEMENT WEB",
-      "company": "HelpHub (fictif) - Site pour actions bénévoles",
-      "location": "Annecy",
-      "date": "Novembre 2023 - Fevrier 2024",
-      "description": "Dans le cadre de l'IUT, création d'un site qui répertorie des publications d'actions postées par des associations. Il est possible de se connecter et de modifier les éléments du site en fonction du rôle de l'utilisateur (administrateur, association, etc.).",
-      "type": "Scolaire"
-    },
-    "webmecanik": {
-      "title": "STAGE DEVELOPPEUR WEB",
-      "company": "Webmecanik, CRM Marketing Software and Tools",
-      "location": "Annecy",
-      "date": "Mars 2018 - Avril 2018",
-      "description": "Apprentissage des bases du développement web (HTML, CSS et JavaScript) sur la plateforme OpenClassrooms, sous la supervision de professionnels de l'entreprise. Assistance à la correction de code et au déploiement des mises à jour d'applications.",
-      "type": "Stage"
+    "study": {
+      "title": "Formazione",
+      "but": {
+        "title": "BUT INFORMATICA (Bachelor Universitario di Tecnologia)",
+        "place": "USMB / IUT ANNECY - Annecy-Le-Vieux, Francia",
+        "date": "Settembre 2022 - Attuale"
+      },
+      "lycee": {
+        "title": "Diploma Tecnologico STI2D con lode (SIN)",
+        "place": "Liceo dell'Albanais - Rumilly, Francia",
+        "date": "Settembre 2019 - Luglio 2022"
+      }
+    }
+  },
+  "competences": {
+    "sections": {
+      "techStack": {
+        "title": "💻 Stack Tecnico"
+      },
+      "frameworks": {
+        "title": "🛠️ Framework"
+      },
+      "libraries": {
+        "title": "📖 Librerie"
+      },
+      "tools": {
+        "title": "🛠️ Software & Strumenti"
+      },
+      "os": {
+        "title": "🎛️ Sistemi operativi"
+      }
     }
   }
 }
