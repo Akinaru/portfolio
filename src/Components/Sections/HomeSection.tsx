@@ -58,19 +58,20 @@ const ScrollIndicator = () => {
       initial={{ opacity: 0, y: 20 }}
     >
       <motion.div
-        className="absolute w-8 h-14 top-28 rounded-full border-2 border-white/20 flex justify-center p-1.5 cursor-pointer"
-        whileHover={{
-          scale: 1.1,
-          backgroundColor: "rgba(255, 255, 255, 0.2)",
-        }}
-        initial={{
-          scale: 1,
-          backgroundColor: "rgba(255, 255, 255, 0.1)",
-        }}
-        onClick={() => window.scrollTo({
-          top: window.innerHeight,
-          behavior: 'smooth'
-        })}
+          data-hover
+          className="absolute w-8 h-14 top-28 rounded-full border-2 border-white/20 flex justify-center p-1.5"
+          whileHover={{
+            scale: 1.1,
+            backgroundColor: "rgba(255, 255, 255, 0.2)",
+          }}
+          initial={{
+            scale: 1,
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+          }}
+          onClick={() => window.scrollTo({
+            top: window.innerHeight,
+            behavior: 'smooth'
+          })}
       >
         <motion.div
           className="w-1 rounded-full bg-white/50"

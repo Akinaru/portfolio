@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 
 const experienceKeys = ['fullstack', 'polyvalent', 'helpHub', 'webmecanik'];
 
+
+
 export const ExperienceSection = () => {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
@@ -48,23 +50,31 @@ export const ExperienceSection = () => {
                 transition={{ duration: 0.8 }}
               >
                 <div className="relative pl-4">
-                  {experienceKeys.map((key, index) => (
-                    <motion.div
-                      key={key}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                      transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
-                      className="relative pl-8 pb-12 md:pb-16"
-                    >
-                      {/* Timeline dot */}
-                      <div className="absolute left-0 w-3 h-3 bg-white rounded-full transform -translate-x-1/2" />
+                {experienceKeys.map((key, index) => (
+                  <motion.div
+                    key={key}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
+                    className="relative pl-8 pb-12 md:pb-16"
+                  >
+                    {/* Timeline dot */}
+                    <div className="absolute left-0 w-3 h-3 bg-white rounded-full transform -translate-x-1/2" />
+                    
+                    {/* Timeline line */}
+                    {index !== experienceKeys.length - 1 && (
+                      <div className="absolute left-0 top-3 bottom-0 w-px bg-white/20 transform -translate-x-1/2" />
+                    )}
+                    
+                    <div className="relative backdrop-blur-sm rounded-xl p-6 md:p-8 hover:bg-black/20 transition-all duration-700 ease-in-out border border-white/10 shadow-lg overflow-hidden group">
+                      {/* Grid background that appears on hover with zoom */}
+                      <div className="absolute inset-0 opacity-0 scale-[0.98] group-hover:scale-[1.5] group-hover:opacity-[0.55] transition-all duration-700 ease-in-out bg-grid-white/[0.2]" />
                       
-                      {/* Timeline line */}
-                      {index !== experienceKeys.length - 1 && (
-                        <div className="absolute left-0 top-3 bottom-0 w-px bg-white/20 transform -translate-x-1/2" />
-                      )}
+                      {/* Radial gradient overlay */}
+                      <div className="absolute pointer-events-none inset-0 opacity-0 group-hover:opacity-[0.15] transition-all duration-700 ease-in-out [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
                       
-                      <div className=" backdrop-blur-sm rounded-xl p-6 md:p-8 hover:bg-white/5 transition-colors border border-white/10 shadow-lg">
+                      {/* Content with dezoom effect */}
+                      <div className="relative z-10 scale-100 group-hover:scale-[0.98] transition-all duration-700 ease-in-out">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-4">
                           <h3 className="text-xl md:text-2xl font-bold text-white">
                             {t(`experience.${key}.title`)}
@@ -87,8 +97,9 @@ export const ExperienceSection = () => {
                           {t(`experience.${key}.description`)}
                         </p>
                       </div>
-                    </motion.div>
-                  ))}
+                    </div>
+                  </motion.div>
+                ))}
                 </div>
               </motion.div>
             </div>
