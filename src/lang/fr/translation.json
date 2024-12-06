@@ -23,8 +23,12 @@
     "card1Desc": "Localisation: Annecy 74000, France\nLangues :\n• FR : Langue maternelle • EN : B2 intermédiaire • IT : B2 intermédiaire",
 
     "card2": "📍 Loisirs",
-    "card2Desc": "🎮 Jeux vidéos\n• Outer Wilds • RD2, Minecraft • Elden Ring\n💿 Musique\n• Rap • Techno • Piano\n🥋 Sport\n• Musculation • Judo \n"
-  },
+    "card2Desc": "🎮 Gaming\n• Outer Wilds - Exploration spatiale & puzzle\n• Red Dead Redemption 2 - Action/Aventure\n• Minecraft - Créativité & construction\n• Elden Ring - Action/RPG\n\n🎵 Musique\n• Rap Français & US\n• Techno/Hard Techno\n \n🥋 Sport\n• Musculation - 2 ans de pratique régulière\n• Judo - Ceinture Bleue - 8 années de pratique\n\n📚 Autres passions\n• Technologie & Innovation\n• Montagne & Randonnée\n",
+  
+    "card3": "💡 Compétences techniques",
+    "card3Desc": "Passionné par le développement fullstack, j'apprécie particulièrement construire des applications de A à Z. 🎨 Côté frontend, je m'épanouis dans l'écosystème React, où TypeScript me permet de coder avec confiance et précision.\n\n⚡️ Le backend n'est pas en reste : j'aime créer des API robustes avec Express.ts, gardant toujours à l'esprit la maintenabilité et la scalabilité.\n\nJe suis convaincu que la qualité du code est aussi importante que son résultat final. C'est pourquoi j'apprécie particulièrement TypeScript, qui me permet de produire un code plus sûr et mieux structuré. 🎯"
+
+    },
 
   "projects": {
     "title": "Mes Projets",

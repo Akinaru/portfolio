@@ -37,7 +37,7 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
         ? { opacity: 1, y: 0, scale: 1 }
         : { opacity: 0, y: 50, scale: 0.9 }}
       transition={{ duration: 0.5 }}
-      className={`rounded-lg bg-white/90 flex flex-col ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] h-[300px] md:h-[400px]`}
+  className={`rounded-lg bg-white/90 flex flex-col ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] h-full`}
       whileHover={{ scale: 1.02 }}
     >
       <div
@@ -189,8 +189,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
         }}
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.5 }}
-        className="bg-white/90 rounded-lg flex flex-col md:flex-row col-span-2 h-auto md:h-[350px] shadow-[12px_12px_10px_rgba(0,0,0,0.2)] w-full overflow-hidden"
-      >
+        className="bg-white/90 rounded-lg flex flex-col md:flex-row col-span-2 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] w-full h-full overflow-hidden">
         <div 
           className="select-none pointer-events-none w-full md:w-1/2 h-48 md:h-auto rounded-t-lg md:rounded-l-lg md:rounded-tr-none flex items-center md:items-end justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${banner})` }}
@@ -198,7 +197,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
           <motion.div 
             animate={shouldAnimate ? { scale: 1 } : { scale: 0 }}
             transition={{ delay: 0.2, type: "spring" }}
-            className="scale-75 md:scale-100 mb-0 md:mb-8"
+            className="scale-75 md:scale-100 m-3"
           >
             {children}
           </motion.div>
@@ -243,48 +242,78 @@ const AboutSection = () => {
       title: t('about.card2'),
       description: t('about.card2Desc'),
     },
+    {
+      title: t('about.card3'),
+      description: t('about.card3Desc'),
+    },
   ];
 
   return (
-    <section className="min-h-screen relative ">
-
+    <section className="min-h-screen relative">
       <WaveTransition direction="down" color="#0099ff" />
       <div id="about" className="bg-gradient-to-b from-[#0099ff] via-sky-500 to-sky-400">
-        <div className="max-w-7xl mx-auto relative z-10 py-16 md:py-32 px-4 md:px-8 ">
+        <div className="max-w-7xl mx-auto relative z-10 py-16 md:py-32 px-4 md:px-8">
           <div ref={titleRef} className="text-center mb-8 md:mb-16">
             <div className="flex flex-col justify-start *:w-fit">
-            <p className="text-2xl md:text-4xl font-bold text-white drop-shadow-[5px_5px_5px_rgba(0,0,0,0.4)]">
+              <p className="text-2xl md:text-4xl font-bold text-white drop-shadow-[5px_5px_5px_rgba(0,0,0,0.4)]">
                 {t('about.title')}  
-            </p>
-              
+              </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 relative min-h-[800px]">
+
+            {/* Carte longue en bas */}
             <div className="col-span-1 md:col-span-2">
               <LongFeatureCard 
                 title={features[0].title} 
                 description={features[0].description}
+                className="h-full"
               >
                 {features[0].visual}
               </LongFeatureCard>
             </div>
 
-            {features.slice(1).map((feature, index) => (
-              <div key={index}>
+            {/* Colonne de gauche */}
+            <div className="flex flex-col gap-4 md:gap-6 h-full">
+              {/* Carte en haut à gauche */}
+              <div className="flex-1">
                 <FeatureCard 
-                  title={feature.title} 
-                  description={feature.description}
+                  title={features[1].title} 
+                  description={features[1].description}
+                  className="h-full"
                 >
-                  {feature.visual}
+                  {features[1].visual}
                 </FeatureCard>
               </div>
-            ))}
+              {/* Nouvelle petite carte en bas à gauche */}
+              <div className="flex-1">
+                <FeatureCard 
+                  title={features[3].title} 
+                  description={features[3].description}
+                  className="h-full"
+                >
+                  {features[3].visual}
+                </FeatureCard>
+              </div>
+            </div>
+
+            {/* Colonne de droite */}
+            <div className="h-full">
+              <FeatureCard 
+                title={features[2].title} 
+                description={features[2].description}
+                className="h-full"
+              >
+                {features[2].visual}
+              </FeatureCard>
+            </div>
+
+
           </div>
         </div>
       </div>
       <WaveTransition direction="up" color="#38bdf8" />
-
     </section>
   );
 };

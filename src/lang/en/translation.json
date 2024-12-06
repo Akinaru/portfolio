@@ -14,17 +14,20 @@
   },
 
   "about": {
-      "title": "🎴 About",
-
-      "longCard": "🎓 Introduction",
-      "longCardDesc": "I am a third-year student in Computer Science at the IUT of Annecy ⛰️, specializing in application development.\n\nI've been having fun developing various projects for over 9 years now 🤯! This has made me a skilled computer user. These years of practice have allowed me to acquire great technical agility and excellent problem-solving abilities. 🔩",
-
-      "card1": "🌐 Information",
-      "card1Desc": "Location: Annecy 74000, France\nLanguages:\n• FR: Native language • EN: B2 intermediate • IT: B2 intermediate",
-
-      "card2": "📍 Hobbies",
-      "card2Desc": "🎮 Video games\n• Outer Wilds • RD2, Minecraft • Elden Ring\n💿 Music\n• Rap • Techno • Piano\n🥋 Sports\n• Gym • Judo \n"
-  },
+    "title": "🎴 About",
+     
+    "longCard": "🎓 Introduction",
+    "longCardDesc": "I'm a third-year student in Computer Science at Annecy's University Institute of Technology ⛰️, specializing in application development.\n\nI've been having fun developing various projects for over 9 years now 🤯! This makes me a seasoned computer user. These years of practice have allowed me to develop great technical agility and excellent problem-solving abilities. 🔩",
+   
+    "card1": "🌐 Information",
+    "card1Desc": "Location: Annecy 74000, France\nLanguages:\n• FR: Native • EN: B2 intermediate • IT: B2 intermediate",
+   
+    "card2": "📍 Hobbies",
+    "card2Desc": "🎮 Gaming\n• Outer Wilds - Space exploration & puzzle\n• Red Dead Redemption 2 - Action/Adventure\n• Minecraft - Creativity & building\n• Elden Ring - Action/RPG\n\n🎵 Music\n• French & US Rap\n• Techno/Hard Techno\n\n🥋 Sports\n• Weightlifting - 2 years of regular practice\n• Judo - Blue Belt - 8 years of practice\n\n📚 Other passions\n• Technology & Innovation\n• Mountains & Hiking\n",
+   
+    "card3": "💡 Technical Skills",
+    "card3Desc": "Passionate about fullstack development, I particularly enjoy building applications from A to Z. 🎨 On the frontend side, I thrive in the React ecosystem, where TypeScript allows me to code with confidence and precision.\n\n⚡️ The backend doesn't fall behind: I love creating robust APIs with Express.ts, always keeping maintainability and scalability in mind.\n\nI firmly believe that code quality is just as important as the end result. That's why I particularly appreciate TypeScript, which allows me to produce safer and better-structured code. 🎯"
+   },
 
   "projects": {
     "title": "My Projects",
