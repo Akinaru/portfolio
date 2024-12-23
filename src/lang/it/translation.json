@@ -1,0 +1,160 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "Chi sono",
+    "projects": "Progetti",
+    "experience": "Esperienza",
+    "competence": "Competenze"
+  },
+
+  "home": {
+    "title": "Studente di Informatica",
+    "profileAlt": "Foto profilo"
+  },
+
+  "about": {
+    "title": "🎴 Chi sono",
+
+    "longCard": "🎓 Presentazione",
+    "longCardDesc": "Sono uno studente del terzo anno di BUT Informatica presso l'IUT di Annecy ⛰️, specializzato nello sviluppo di applicazioni.\n\nMi diverto a sviluppare vari progetti da più di 9 anni 🤯! Questo mi ha reso un utente esperto del computer. Questi anni di pratica mi hanno permesso di acquisire una grande agilità tecnica e un'eccellente capacità di risolvere problemi. 🔩",
+
+    "card1": "🌐 Informazioni",
+    "card1Desc": "Località: Annecy 74000, Francia\nLingue:\n• FR: Madrelingua • EN: B2 intermedio • IT: B2 intermedio",
+
+    "card2": "📍 Hobby",
+    "card2Desc": "🎮 Gaming\n• Outer Wilds - Esplorazione spaziale & puzzle\n• Red Dead Redemption 2 - Azione/Avventura\n• Minecraft - Creatività & costruzione\n• Elden Ring - Azione/RPG\n\n🎵 Musica\n• Rap Francese & US\n• Techno/Hard Techno\n \n🥋 Sport\n• Bodybuilding - 2 anni di pratica regolare\n• Judo - Cintura Blu - 8 anni di pratica\n\n📚 Altre passioni\n• Tecnologia & Innovazione\n• Montagna & Escursionismo\n",
+
+    "card3": "💡 Competenze tecniche",
+    "card3Desc": "Appassionato di sviluppo fullstack, mi piace particolarmente costruire applicazioni dalla A alla Z. 🎨 Sul lato frontend, mi esprimo nell'ecosistema React, dove TypeScript mi permette di programmare con sicurezza e precisione.\n\n⚡️ Il backend non è da meno: mi piace creare API robuste con Express.ts, tenendo sempre a mente la manutenibilità e la scalabilità.\n\nSono convinto che la qualità del codice sia importante quanto il risultato finale. Per questo apprezzo particolarmente TypeScript, che mi permette di produrre un codice più sicuro e meglio strutturato. 🎯"
+  },
+
+  "projects": {
+    "title": "I miei Progetti",
+    "description": "Scopri i miei progetti",
+    "learnMore": "Scopri di più",
+    "next": "Successivo",
+    "previous": "Precedente",
+    "about": "Chi sono",
+    "techStack": "Stack tecnico",
+    "keyFeatures": "Funzionalità chiave",
+    "home": "Home",
+    "viewWebsite": "Vedi il sito",
+    "viewGithub": "Vedi GitHub",
+
+    "lightzino": {
+      "title": "Lightzino",
+      "subtitle": "Design e Sviluppo",
+      "description": "Casinò online in criptovaluta",
+      "longDescription": "Una piattaforma innovativa di casinò online che utilizza le criptovalute come mezzo di pagamento. Il progetto integra giochi d'azzardo moderni con un'interfaccia utente intuitiva e transazioni sicure.",
+      "type": "Personale",
+      "features": {
+        "1": "Sistema di pagamento in criptovaluta",
+        "2": "Giochi da casinò in tempo reale",
+        "3": "Interfaccia utente moderna e responsive",
+        "4": "Sistema di premi e fedeltà",
+        "5": "Sicurezza avanzata delle transazioni"
+      }
+    },
+    "ilc": {
+      "title": "ILC",
+      "subtitle": "Design e Sviluppo",
+      "description": "Applicazione web per la gestione degli spostamenti internazionali",
+      "longDescription": "Applicazione web per la gestione completa degli spostamenti internazionali per gli studenti dell'IUT di Annecy. Il sito permette la visualizzazione (con filtri) delle destinazioni. Gli studenti possono gestire le loro preferenze e gli amministratori possono fare l'arbitraggio per validare le scelte delle destinazioni.",
+      "type": "Stage",
+      "features": {
+        "1": "Visualizzazione delle destinazioni",
+        "2": "Gestione delle preferenze e dei documenti",
+        "3": "Arbitraggio degli spostamenti",
+        "4": "Gestione degli elementi del sito (articoli, eventi, destinazioni, utenti)",
+        "5": "Interfaccia multilingue"
+      }
+    },
+    "fifa": {
+      "title": "Fifa",
+      "subtitle": "Design e Sviluppo",
+      "description": "Negozio non ufficiale di articoli calcistici",
+      "longDescription": "Un negozio online specializzato in prodotti calcistici, che offre una vasta gamma di attrezzature e accessori per gli appassionati del pallone.",
+      "type": "Scolastico",
+      "features": {
+        "1": "Catalogo prodotti dettagliato",
+        "2": "Sistema carrello acquisti",
+        "3": "Pagamento sicuro",
+        "4": "Gestione ordini",
+        "5": "Sistema di ricerca avanzato"
+      }
+    }
+  },
+
+  "parcours": {
+    "title": "Il mio percorso",
+    "description": "Scopri il mio percorso professionale",
+
+    "experiences": {
+      "title": "Esperienze",
+      "fullstack": {
+        "title": "SVILUPPATORE FULLSTACK",
+        "company": "IUT ANNECY",
+        "location": "Annecy-Le-Vieux",
+        "date": "Aprile 2024 - Attuale",
+        "description": "Sviluppo di un'applicazione completa per la gestione dei semestri all'estero degli studenti, con una sezione pubblica accessibile a tutti e una sezione privata che permette agli studenti di gestire le loro preferenze di viaggio, documenti e informazioni personali.",
+        "type": "Stage"
+      },
+      "polyvalent": {
+        "title": "IMPIEGATO POLIVALENTE",
+        "company": "INTERMARCHÉ PARMELAN",
+        "location": "Annecy",
+        "date": "Luglio 2023 - Attuale",
+        "description": "Gestione e manutenzione del corretto funzionamento delle casse self-service. In parallelo, supporto al personale dei prodotti freschi, con assistenza al rifornimento degli scaffali, alla presentazione dei prodotti e alla gestione delle date di scadenza.",
+        "type": "Contratto a tempo determinato"
+      },
+      "helpHub": {
+        "title": "PROGETTO SVILUPPO WEB",
+        "company": "HelpHub (fittizio) - Sito per azioni di volontariato",
+        "location": "Annecy",
+        "date": "Novembre 2023 - Febbraio 2024",
+        "description": "Nell'ambito dell'IUT, creazione di un sito che cataloga pubblicazioni di azioni postate da associazioni. È possibile accedere e modificare gli elementi del sito in base al ruolo dell'utente (amministratore, associazione, ecc.).",
+        "type": "Scolastico"
+      },
+      "webmecanik": {
+        "title": "STAGE SVILUPPATORE WEB",
+        "company": "Webmecanik, CRM Marketing Software and Tools",
+        "location": "Annecy",
+        "date": "Marzo 2018 - Aprile 2018",
+        "description": "Apprendimento delle basi dello sviluppo web (HTML, CSS e JavaScript) sulla piattaforma OpenClassrooms, sotto la supervisione di professionisti dell'azienda. Assistenza alla correzione del codice e al deployment degli aggiornamenti delle applicazioni.",
+        "type": "Stage"
+      }
+    },
+    "study": {
+      "title": "Formazione",
+      "but": {
+        "title": "BUT INFORMATICA (Bachelor Universitario di Tecnologia)",
+        "place": "USMB / IUT ANNECY - Annecy-Le-Vieux, Francia",
+        "date": "Settembre 2022 - Attuale"
+      },
+      "lycee": {
+        "title": "Diploma Tecnologico STI2D con lode (SIN)",
+        "place": "Liceo dell'Albanais - Rumilly, Francia",
+        "date": "Settembre 2019 - Luglio 2022"
+      }
+    }
+  },
+  "competences": {
+    "sections": {
+      "techStack": {
+        "title": "💻 Stack Tecnico"
+      },
+      "frameworks": {
+        "title": "🛠️ Framework"
+      },
+      "libraries": {
+        "title": "📖 Librerie"
+      },
+      "tools": {
+        "title": "🛠️ Software & Strumenti"
+      },
+      "os": {
+        "title": "🎛️ Sistemi operativi"
+      }
+    }
+  }
+}

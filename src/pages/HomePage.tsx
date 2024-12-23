@@ -13,15 +13,16 @@ import CompetenceSection from '../Components/Sections/CompetenceSection';
 const NavBar = () => {
   const { t } = useTranslation();
   const [activeSection, setActiveSection] = useState('home');
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    setIsMobileMenuOpen(false);
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'experience'];
+      const sections = ['home', 'about', 'projects', 'experience', 'competences'];
       const current = sections.find(section => {
         const rect = document.getElementById(section)?.getBoundingClientRect();
         return rect ? rect.top >= -100 && rect.top <= 150 : false;
@@ -43,53 +44,29 @@ const NavBar = () => {
 
   return (
     <motion.nav 
-      className="fixed left-0 right-0 mx-auto top-6 z-50"
+      className="fixed left-0 right-0 w-fit mx-auto top-6 z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
     >
-      <motion.div 
-        className="relative mx-auto bg-white/10 backdrop-blur-xl border border-white/20 rounded-full overflow-hidden shadow-lg cursor-pointer"
-        style={{
-          background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 0.5px rgba(255, 255, 255, 0.2)'
-        }}
-        animate={{
-          width: isExpanded ? "fit-content" : "80px",
-          height: isExpanded ? "auto" : "40px",
-        }}
-        transition={{ 
-          duration: 0.4,
-          ease: [0.4, 0, 0.2, 1]
-        }}
-      >
-        <motion.div 
-          className="flex gap-1 px-2 py-1"
-          animate={{
-            opacity: isExpanded ? 1 : 0,
-          }}
-          transition={{ 
-            duration: isExpanded ? 0.2 : 0.1,
-            delay: isExpanded ? 0.15 : 0 
-          }}
-        >
+      {/* Desktop Navigation */}
+      <div className="hidden md:block relative mx-auto bg-black/60 backdrop-blur-xl rounded-full overflow-hidden shadow-2xl px-4 py-2 border border-white/10">
+        <div className="h-full flex justify-center items-center whitespace-nowrap">
           {navItems.map(({ id, label }) => (
             <motion.button
               key={id}
               onClick={() => scrollToSection(id)}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all ${
+              className={`relative px-4 py-1 text-sm font-medium rounded-full transition-all ${
                 activeSection === id 
                   ? 'text-white' 
-                  : 'text-white/70 hover:text-white'
+                  : 'text-white/60 hover:text-white'
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               {activeSection === id && (
                 <motion.div
-                  className="absolute inset-0 bg-white/15 rounded-full"
+                  className="absolute inset-0 bg-white/10 rounded-full"
                   layoutId="activeSection"
                   transition={{ 
                     type: "spring", 
@@ -97,18 +74,81 @@ const NavBar = () => {
                     damping: 30 
                   }}
                   style={{
-                    boxShadow: 'inset 0 0 0 0.5px rgba(255, 255, 255, 0.25)'
+                    boxShadow: 'inset 0 0 0 0.5px rgba(255, 255, 255, 0.2)'
                   }}
                 />
               )}
               <span className="relative z-10">{label}</span>
             </motion.button>
           ))}
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div className="md:hidden">
+        <motion.button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="relative mx-auto bg-black/60 backdrop-blur-xl rounded-full overflow-hidden shadow-2xl px-4 py-2 border border-white/10 text-white"
+          whileTap={{ scale: 0.95 }}
+        >
+          <div className="flex items-center space-x-2">
+            <span className="text-sm font-medium">{navItems.find(item => item.id === activeSection)?.label}</span>
+            <motion.svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="16" 
+              height="16" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <path d="m6 9 6 6 6-6"/>
+            </motion.svg>
+          </div>
+        </motion.button>
+
+        <motion.div
+          initial={false}
+          animate={{ 
+            opacity: isMobileMenuOpen ? 1 : 0,
+            y: isMobileMenuOpen ? 0 : -20,
+            scale: isMobileMenuOpen ? 1 : 0.95,
+            transformOrigin: "top"
+          }}
+          transition={{
+            duration: 0.2,
+            ease: "easeInOut"
+          }}
+          style={{
+            pointerEvents: isMobileMenuOpen ? "auto" : "none"
+          }}
+          className="absolute left-0 right-0 mt-2 bg-black/60 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/10 w-48 mx-auto"
+        >
+          {navItems.map(({ id, label }) => (
+            <motion.button
+              key={id}
+              onClick={() => scrollToSection(id)}
+              className={`w-full px-4 py-2 text-left text-sm font-medium transition-all ${
+                activeSection === id 
+                  ? 'text-white bg-white/10' 
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
+              }`}
+              whileTap={{ scale: 0.98 }}
+            >
+              {label}
+            </motion.button>
+          ))}
         </motion.div>
-      </motion.div>
+      </div>
     </motion.nav>
   );
 };
+
+
 
 const HomePage = () => {
   const location = useLocation();
@@ -151,7 +191,7 @@ const HomePage = () => {
         <NavBar/>
         {/* Animated Background */}
         <div className="fixed inset-0 w-full h-full bg-black">
-          <div className="w-full h-full absolute inset-0">
+          <div className="w-full h-full absolute inset-0 opacity-50">
             <SparklesCore
               id="tsparticlesfullpage"
               background="transparent"
@@ -166,11 +206,11 @@ const HomePage = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          <HomeSection />
-          <AboutSection />
-          <ProjectsSection />
-          <ExperienceSection />
-          <CompetenceSection />
+            <HomeSection />
+            <AboutSection />
+            <ProjectsSection />
+            <ExperienceSection />
+            <CompetenceSection />
         </div>
       </div>
     </>

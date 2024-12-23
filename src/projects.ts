@@ -18,6 +18,7 @@ export interface Project {
     technologies: string[];
     date: string;
     translationKey: string;
+    waveColors: string[];
     links?: {
       github?: string;
       website?: string;
@@ -33,6 +34,13 @@ export const projectsData: Project[] = [
     technologies: ["React", "TypeScript", "Express", "Socket.io"],
     date: "2023",
     translationKey: "lightzino",
+    waveColors: [
+      "#FF1493",  // Rose vif
+      "#FF00FF",  // Magenta
+      "#9400D3",  // Violet foncé
+      "#8B008B",  // Magenta foncé
+      "#4B0082"   // Indigo
+    ],
     links: {
       website: "https://lightzino.com"
     }
@@ -44,7 +52,14 @@ export const projectsData: Project[] = [
     logo: logo_ilc,
     technologies: ["Vue.js", "TailwindCSS", "MySQL", "Laravel", "Javascript", "DaisyUI"],
     date: "2022",
-    translationKey: "ilc"
+    translationKey: "ilc",
+    waveColors: [
+      "#FF4500",  // Rouge-orangé
+      "#FF1E1E",  // Rouge vif
+      "#FF0066",  // Rose fuchsia
+      "#D60071",  // Rose foncé
+      "#800080"   // Violet
+    ]
   },
   {
     id: 3,
@@ -54,6 +69,13 @@ export const projectsData: Project[] = [
     technologies: ["React", "Express", "MySQL", "Stripe", "AWS"],
     date: "2023",
     translationKey: "fifa",
+    waveColors: [
+      "#FFFFFF",  // Blanc
+      "#E0E0E0",  // Gris très clair
+      "#BDBDBD",  // Gris clair
+      "#757575",  // Gris moyen
+      "#424242"   // Gris foncé
+    ],
     links: {
       github: "https://github.com/user/fifa-shop"
     }
