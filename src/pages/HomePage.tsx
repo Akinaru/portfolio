@@ -51,7 +51,7 @@ const NavBar = () => {
       onMouseLeave={() => setIsExpanded(false)}
     >
       <motion.div 
-        className="relative mx-auto bg-white/10 backdrop-blur-xl border border-white/20 rounded-full overflow-hidden shadow-lg"
+        className="relative mx-auto bg-white/10 backdrop-blur-xl border border-white/20 rounded-full overflow-hidden shadow-lg cursor-pointer"
         style={{
           background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05))',
           boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 0.5px rgba(255, 255, 255, 0.2)'
