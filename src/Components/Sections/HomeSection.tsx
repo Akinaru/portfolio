@@ -157,12 +157,20 @@ const HomeSection = () => {
           />
         </motion.div>
                 
-        <motion.h1 
-          variants={itemVariants} 
-          className="select-none text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-8 md:mb-12 lg:mb-16 shimmer"
-        >
-          Maxime Gallotta
-        </motion.h1>
+        <div className="mb-24">
+      <motion.h1 
+        variants={itemVariants}
+        className="select-none text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-bold mb-4 shimmer"
+      >
+        Maxime
+      </motion.h1>
+      <motion.h1
+        variants={itemVariants} 
+        className="select-none text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold shimmer"
+      >
+        GALLOTTA-FLAMENT
+      </motion.h1>
+    </div>
 
         <motion.p variants={itemVariants} className="select-none text-base md:text-lg lg:text-xl xl:text-2xl mb-8">
           <span>🖥️</span>

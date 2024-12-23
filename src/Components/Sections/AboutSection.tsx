@@ -4,73 +4,9 @@ import logo from '../../assets/logo_computer.svg';
 import banner from '../../assets/banner.png';
 import { useTranslation } from 'react-i18next';
 
-interface FeatureCardProps {
-  title: string;
-  description: string;
-  children: React.ReactNode;
-  className?: string;
-}
 
-const FeatureCard = ({ title, description, children, className = "" }: FeatureCardProps) => {
-  const cardRef = useRef(null);
-  const [hasBeenVisible, setHasBeenVisible] = useState(false);
-  const [shouldAnimate, setShouldAnimate] = useState(false);
-  const isInView = useInView(cardRef, { amount: 0.3 });
 
-  useEffect(() => {
-    if (isInView && !hasBeenVisible) {
-      setHasBeenVisible(true);
-      setShouldAnimate(true);
-    } else if (!isInView && hasBeenVisible) {
-      const timeout = setTimeout(() => {
-        setShouldAnimate(false);
-        setHasBeenVisible(false);
-      }, 500); // Durée de l'animation de sortie
-      return () => clearTimeout(timeout);
-    }
-  }, [isInView, hasBeenVisible]);
 
-  return (
-    <motion.div
-      ref={cardRef}
-      animate={shouldAnimate
-        ? { opacity: 1, y: 0, scale: 1 }
-        : { opacity: 0, y: 50, scale: 0.9 }}
-      transition={{ duration: 0.5 }}
-  className={`rounded-lg bg-white/90 flex flex-col ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] h-full`}
-      whileHover={{ scale: 1.02 }}
-    >
-      <div
-        className="select-none pointer-events-none w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center shrink-0"
-        style={{ backgroundImage: `url(${banner})` }}
-      >
-        <motion.div
-          animate={shouldAnimate ? { scale: 1 } : { scale: 0 }}
-          transition={{ delay: 0.2, type: "spring" }}
-          className="scale-75 md:scale-100"
-        >
-          {children}
-        </motion.div>
-      </div>
-      <div className="p-4 md:p-8 flex flex-col h-full">
-        <motion.h3
-          animate={shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-          transition={{ delay: 0.3 }}
-          className="text-lg md:text-xl font-bold text-black mb-1"
-        >
-          {title}
-        </motion.h3>
-        <motion.p
-          animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ delay: 0.4 }}
-          className="ml-5 text-neutral-500 leading-relaxed text-sm md:text-base overflow-y-auto whitespace-pre-line"
-        >
-          {description}
-        </motion.p>
-      </div>
-    </motion.div>
-  );
-};
 
 interface WaveTransitionProps {
   direction?: 'up' | 'down';
@@ -154,23 +90,101 @@ const WaveTransition = ({
   );
 };
 
-const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => {
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const FeatureCard = ({ title, description, children, className = "" }: FeatureCardProps) => {
   const cardRef = useRef(null);
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
-  const isInView = useInView(cardRef, { amount: 0.3 });
+  const isInView = useInView(cardRef, { amount: 0.3, margin: "-10% 0px" });
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     if (isInView && !hasBeenVisible) {
       setHasBeenVisible(true);
       setShouldAnimate(true);
     } else if (!isInView && hasBeenVisible) {
-      const timeout = setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setShouldAnimate(false);
         setHasBeenVisible(false);
-      }, 500);
-      return () => clearTimeout(timeout);
+      }, 1000);
     }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [isInView, hasBeenVisible]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      animate={shouldAnimate
+        ? { opacity: 1, y: 0, scale: 1 }
+        : { opacity: 0, y: 50, scale: 0.9 }}
+      transition={{ duration: 0.5 }}
+      className={`rounded-lg bg-white/90 flex flex-col ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] h-full`}
+      whileHover={{ scale: 1.02 }}
+    >
+      <div
+        className="select-none pointer-events-none w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center shrink-0"
+        style={{ backgroundImage: `url(${banner})` }}
+      >
+        <motion.div
+          animate={shouldAnimate ? { scale: 1 } : { scale: 0 }}
+          transition={{ delay: 0.2, type: "spring" }}
+          className="scale-75 md:scale-100"
+        >
+          {children}
+        </motion.div>
+      </div>
+      <div className="p-4 md:p-8 flex flex-col h-full">
+        <motion.h3
+          animate={shouldAnimate ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+          transition={{ delay: 0.3 }}
+          className="text-lg md:text-xl font-bold text-black mb-1"
+        >
+          {title}
+        </motion.h3>
+        <motion.p
+          animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ delay: 0.4 }}
+          className="ml-5 text-neutral-500 leading-relaxed text-sm md:text-base overflow-y-auto whitespace-pre-line"
+        >
+          {description}
+        </motion.p>
+      </div>
+    </motion.div>
+  );
+};
+
+const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => {
+  const cardRef = useRef(null);
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const isInView = useInView(cardRef, { amount: 0.3, margin: "-10% 0px" });
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    if (isInView && !hasBeenVisible) {
+      setHasBeenVisible(true);
+      setShouldAnimate(true);
+    } else if (!isInView && hasBeenVisible) {
+      timeoutId = setTimeout(() => {
+        setShouldAnimate(false);
+        setHasBeenVisible(false);
+      }, 1000);
+    }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [isInView, hasBeenVisible]);
 
   return (
@@ -217,6 +231,41 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
           >
             {description}
           </motion.p>
+          <div className='w-full flex justify-center items-center mt-10'>
+            <motion.a
+              href="/cv"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileTap={{ scale: 0.95 }}
+              className="
+                inline-flex items-center 
+                gap-2 px-4 py-2 
+                rounded-full text-sm
+                text-neutral-500 hover:bg-neutral-200
+                transition-colors
+                w-fit
+              "
+            >
+              <span>Voir mon CV</span>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="w-5 h-5" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+                <polyline points="10 9 9 9 8 9" />
+              </svg>
+            </motion.a>
+          </div>
+
         </div>
       </motion.div>
     </div>
@@ -250,8 +299,8 @@ const AboutSection = () => {
 
   return (
     <section className="min-h-screen relative">
-      <WaveTransition direction="down" color="#0099ff" />
-      <div id="about" className="bg-gradient-to-b from-[#0099ff] via-sky-500 to-sky-400">
+      <WaveTransition direction="down" color="#1E3A8A" />
+      <div id="about" className="bg-gradient-to-b from-[#1E3A8A] via-[#172554] to-[#020617]">
         <div className="max-w-7xl mx-auto relative z-10 py-16 md:py-32 px-4 md:px-8">
           <div ref={titleRef} className="text-center mb-8 md:mb-16">
             <div className="flex flex-col justify-start *:w-fit">
@@ -313,7 +362,7 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-      <WaveTransition direction="up" color="#38bdf8" />
+      <WaveTransition direction="up" color="#020617" />
     </section>
   );
 };
