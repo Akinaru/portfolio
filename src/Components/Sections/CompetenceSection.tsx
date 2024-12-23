@@ -27,7 +27,7 @@ const WaveTransition = ({
         {/* Première vague avec un fond glassmorphic */}
         <path
           d="M0,0 C400,40 800,80 1200,40 L1200,120 L0,120 Z"
-          className="fill-white/10 backdrop-blur-xl"
+          className="fill-white/10"
         >
           <animate
             attributeName="d"
@@ -43,7 +43,7 @@ const WaveTransition = ({
         {/* Deuxième vague avec opacité réduite */}
         <path
           d="M0,0 C300,60 600,30 1200,60 L1200,120 L0,120 Z"
-          className="fill-white/5 backdrop-blur-xl"
+          className="fill-white/5"
         >
           <animate
             attributeName="d"
@@ -59,7 +59,7 @@ const WaveTransition = ({
         {/* Troisième vague avec opacité encore plus réduite */}
         <path
           d="M0,0 C200,50 400,20 1200,50 L1200,120 L0,120 Z"
-          className="fill-white/2 backdrop-blur-xl"
+          className="fill-white/2 "
         >
           <animate
             attributeName="d"
@@ -176,8 +176,7 @@ const AnimatedGradientBackground: React.FC<AnimatedGradientBackgroundProps> = ({
     <div 
       ref={containerRef} 
       className={cn(
-        "gradients-container h-full w-full blur-lg absolute top-0 left-0 transition-opacity duration-1000",
-        isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]",
+        "gradients-container h-full w-full absolute top-0 left-0 transition-opacity duration-1000",
         isVisible ? "opacity-100" : "opacity-0"
       )}
     >
@@ -339,7 +338,7 @@ const CompetenceSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50" />
                 
                 {/* Zone de défilement */}
-                <div className="relative overflow-hidden rounded-2xl bg-black/20 backdrop-blur-xl">
+                <div className="relative overflow-hidden rounded-2xl bg-black/20">
                   {/* Masques de dégradé */}
                   <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 z-10"
                       style={{
@@ -372,7 +371,7 @@ const CompetenceSection = () => {
                           {section.items.map((item, index) => (
                             <div
                               key={`${item}-${i}-${index}`}
-                              className="backdrop-blur-xl bg-white/5
+                              className=" bg-white/5
                                       border border-white/10
                                       px-4 md:px-6 py-2 md:py-3 rounded-xl
                                       hover:bg-white/10
