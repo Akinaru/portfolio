@@ -3,7 +3,7 @@ import AboutSection from '../Components/Sections/AboutSection';
 import ProjectsSection from '../Components/Sections/ProjectSection';
 import ExperienceSection from '../Components/Sections/ExperienceSection';
 import { SparklesCore } from "../libs/sparkles";
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -88,61 +88,71 @@ const NavBar = () => {
       <div className="md:hidden">
         <motion.button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="relative mx-auto bg-black/60 backdrop-blur-xl rounded-full overflow-hidden shadow-2xl px-4 py-2 border border-white/10 text-white"
+          className="relative mx-auto bg-black/60 backdrop-blur-xl rounded-full overflow-hidden shadow-2xl px-4 py-2 border border-white/10 text-white w-40"
           whileTap={{ scale: 0.95 }}
         >
-          <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium">{navItems.find(item => item.id === activeSection)?.label}</span>
-            <motion.svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="16" 
-              height="16" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <path d="m6 9 6 6 6-6"/>
-            </motion.svg>
-          </div>
+          <AnimatePresence mode="wait" >
+            <div className="flex items-center justify-between">
+
+            <motion.div
+              key={activeSection}
+              
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2 }}
+              >
+              <span className="text-sm font-medium">
+                {navItems.find(item => item.id === activeSection)?.label}
+              </span>
+            </motion.div>
+
+              <motion.svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="16" 
+                height="16" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+                >
+                <path d="m6 9 6 6 6-6"/>
+              </motion.svg>
+              </div>
+          </AnimatePresence>
         </motion.button>
 
-        <motion.div
-          initial={false}
-          animate={{ 
-            opacity: isMobileMenuOpen ? 1 : 0,
-            y: isMobileMenuOpen ? 0 : -20,
-            scale: isMobileMenuOpen ? 1 : 0.95,
-            transformOrigin: "top"
-          }}
-          transition={{
-            duration: 0.2,
-            ease: "easeInOut"
-          }}
-          style={{
-            pointerEvents: isMobileMenuOpen ? "auto" : "none"
-          }}
-          className="absolute left-0 right-0 mt-2 bg-black/60 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/10 w-48 mx-auto"
-        >
-          {navItems.map(({ id, label }) => (
-            <motion.button
-              key={id}
-              onClick={() => scrollToSection(id)}
-              className={`w-full px-4 py-2 text-left text-sm font-medium transition-all ${
-                activeSection === id 
-                  ? 'text-white bg-white/10' 
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
-              }`}
-              whileTap={{ scale: 0.98 }}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="absolute left-0 right-0 mt-2 bg-black/60 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/10 w-40 mx-auto"
             >
-              {label}
-            </motion.button>
-          ))}
-        </motion.div>
+              {navItems.map(({ id, label }) => (
+                <motion.button
+                  key={id}
+                  onClick={() => scrollToSection(id)}
+                  className={`w-full px-4 py-2 text-left text-sm font-medium transition-all ${
+                    activeSection === id 
+                      ? 'text-white bg-white/10' 
+                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                  }`}
+                  whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {label}
+                </motion.button>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );
