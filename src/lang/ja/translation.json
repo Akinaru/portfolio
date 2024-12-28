@@ -4,7 +4,8 @@
     "about": "概要",
     "projects": "プロジェクト",
     "experience": "経歴",
-    "competence": "スキル"
+    "competence": "スキル",
+    "contact": "連絡"
   },
 
   "home": {
@@ -14,6 +15,7 @@
 
   "about": {
     "title": "🎴 概要",
+    "cv": "履歴書を見る",
 
     "longCard": "🎓 自己紹介",
     "longCardDesc": "アヌシーIUT⛰️で情報工学の3年生として学んでおり、アプリケーション開発を専攻しています。\n\n9年以上にわたり様々なプロジェクトの開発を楽しんでいます🤯！そのため、パソコンの熟練ユーザーとなりました。この経験により、高い技術的敏捷性と優れた問題解決能力を身につけることができました。🔩",
@@ -155,6 +157,24 @@
       "os": {
         "title": "🎛️ オペレーティングシステム"
       }
+    }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "description": "お気軽にお問い合わせください。できるだけ早くご返信させていただきます。",
+    "form": {
+        "name": "お名前",
+        "namePlaceholder": "お名前を入力してください",
+        "email": "メールアドレス",
+        "emailPlaceholder": "example@email.com",
+        "subject": "件名",
+        "subjectPlaceholder": "お問い合わせ内容をご記入ください",
+        "message": "メッセージ",
+        "messagePlaceholder": "メッセージをご記入ください",
+        "submit": "送信する",
+        "sending": "送信中...",
+        "sent": "送信完了！",
+        "error": "エラー - もう一度お試しください"
     }
   }
 }

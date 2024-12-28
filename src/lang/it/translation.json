@@ -4,7 +4,8 @@
     "about": "Chi sono",
     "projects": "Progetti",
     "experience": "Esperienza",
-    "competence": "Competenze"
+    "competence": "Competenze",
+    "contact": "Contatto"
   },
 
   "home": {
@@ -14,6 +15,7 @@
 
   "about": {
     "title": "🎴 Chi sono",
+    "cv": "Visualizza il mio CV",
 
     "longCard": "🎓 Presentazione",
     "longCardDesc": "Sono uno studente del terzo anno di BUT Informatica presso l'IUT di Annecy ⛰️, specializzato nello sviluppo di applicazioni.\n\nMi diverto a sviluppare vari progetti da più di 9 anni 🤯! Questo mi ha reso un utente esperto del computer. Questi anni di pratica mi hanno permesso di acquisire una grande agilità tecnica e un'eccellente capacità di risolvere problemi. 🔩",
@@ -155,6 +157,24 @@
       "os": {
         "title": "🎛️ Sistemi operativi"
       }
+    }
+  },
+  "contact": {
+    "title": "Contatto",
+    "description": "Mettiamoci in contatto! Compila il modulo sottostante e ti risponderò il prima possibile.",
+    "form": {
+        "name": "Nome",
+        "namePlaceholder": "Il tuo nome",
+        "email": "Email",
+        "emailPlaceholder": "tua@email.com",
+        "subject": "Oggetto",
+        "subjectPlaceholder": "Di cosa vuoi parlare?",
+        "message": "Messaggio",
+        "messagePlaceholder": "Il tuo messaggio qui...",
+        "submit": "Invia messaggio",
+        "sending": "Invio in corso...",
+        "sent": "Messaggio inviato!",
+        "error": "Errore - Riprova"
     }
   }
 }

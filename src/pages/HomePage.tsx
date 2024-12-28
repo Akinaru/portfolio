@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import CompetenceSection from '../Components/Sections/CompetenceSection';
+import ContactSection from '../Components/Sections/ContactSection';
 
 
 const NavBar = () => {
@@ -22,7 +23,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'experience', 'competences'];
+      const sections = ['home', 'about', 'projects', 'experience', 'competences', 'contact'];
       const current = sections.find(section => {
         const rect = document.getElementById(section)?.getBoundingClientRect();
         return rect ? rect.top >= -100 && rect.top <= 150 : false;
@@ -40,6 +41,7 @@ const NavBar = () => {
     { id: 'projects', label: t('nav.projects') },
     { id: 'experience', label: t('nav.experience') },
     { id: 'competences', label: t('nav.competence') },
+    { id: 'contact', label: t('nav.contact') },
   ];
 
   return (
@@ -221,6 +223,7 @@ const HomePage = () => {
             <ProjectsSection />
             <ExperienceSection />
             <CompetenceSection />
+            <ContactSection />
         </div>
       </div>
     </>

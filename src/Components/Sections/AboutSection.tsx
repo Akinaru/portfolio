@@ -168,6 +168,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const isInView = useInView(cardRef, { amount: 0.3, margin: "-10% 0px" });
+  const { t } = useTranslation();
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
@@ -231,7 +232,10 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
           >
             {description}
           </motion.p>
-          <div className='w-full flex justify-center items-center mt-10'>
+          <motion.div 
+                      animate={shouldAnimate ? { opacity: 1 } : { opacity: 0 }}
+                      transition={{ delay: 0.4 }}
+          className='w-full flex justify-center items-center mt-10'>
             <motion.a
               href="/cv"
               target="_blank"
@@ -246,7 +250,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
                 w-fit
               "
             >
-              <span>Voir mon CV</span>
+              <span>{t('about.cv')}</span>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 className="w-5 h-5" 
@@ -264,7 +268,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
                 <polyline points="10 9 9 9 8 9" />
               </svg>
             </motion.a>
-          </div>
+          </motion.div>
 
         </div>
       </motion.div>

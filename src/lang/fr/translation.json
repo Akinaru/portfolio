@@ -5,7 +5,8 @@
     "about": "À propos",
     "projects": "Projets",
     "experience": "Parcours",
-    "competence": "Compétences"
+    "competence": "Compétences",
+    "contact": "Contact"
   },
 
   "home": {
@@ -15,6 +16,7 @@
 
   "about": {
     "title": "🎴 À propos",
+    "cv": "Voir mon CV",
 
     "longCard": "🎓 Présentation",
     "longCardDesc": "Je suis étudiant en 3ème année de BUT Informatique à l'IUT d'Annecy ⛰️, spécialisé en développement d'applications.\n\nJe m'amuse à développer divers projets depuis maintenant plus de 9 ans 🤯! Cela fait de moi un utilisateur aguérri de l'ordinateur. Ces années de pratique m'ont permis d'acquérir une grande agilité technique et une excellente capacité à résoudre des problèmes. 🔩",
@@ -158,6 +160,24 @@
       "os": {
         "title": "🎛️ Systèmes d'exploitation"
       }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Entrons en contact ! Remplissez le formulaire ci-dessous et je vous répondrai dès que possible.",
+    "form": {
+      "name": "Nom",
+      "namePlaceholder": "Votre nom",
+      "email": "Email",
+      "emailPlaceholder": "votre@email.com",
+      "subject": "Sujet",
+      "subjectPlaceholder": "De quoi souhaitez-vous parler ?",
+      "message": "Message",
+      "messagePlaceholder": "Votre message ici...",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "sent": "Message envoyé !",
+      "error": "Erreur - Réessayez"
     }
   }
 }
