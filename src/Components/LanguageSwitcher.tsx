@@ -68,7 +68,7 @@ const LanguageSwitcher = () => {
   const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 text-white">
+    <div className="fixed bottom-6 right-6 z-[1000] text-white">
       <div className="relative">
         <AnimatePresence>
           {isOpen && (

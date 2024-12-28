@@ -38,7 +38,10 @@ export const ExperienceSection = () => {
 
   return (
     <>
-      <section id="experience" ref={sectionRef} className="bg-black relative text-white">
+      <section id="experience" ref={sectionRef} className="relative text-white">
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-indigo-950/40 to-black" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-900/40 to-black" />
+        
         <div className="relative">
           <div className="min-h-screen py-16 md:py-28">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
