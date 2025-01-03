@@ -10,7 +10,7 @@ export const ContactSection = () => {
   const isFormInView = useInView(formRef, { once: false, amount: 0.2 });
   const [formStatus, setFormStatus] = useState('idle'); // idle, sending, success, error
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormStatus('sending');
     
@@ -21,12 +21,13 @@ export const ContactSection = () => {
     // Reset form after success
     setTimeout(() => {
       setFormStatus('idle');
-      e.target.reset();
+      (e.target as HTMLFormElement).reset();
     }, 3000);
   };
 
-  const inputClasses = "w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20 transition-all duration-200 text-white placeholder-white/50";
-
+  const inputClasses = "w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/20 transition-[background,border,box-shadow] duration-200 text-white placeholder-white/50";
+  
+  
   return (
     <section id="contact" ref={sectionRef} className="bg-black relative text-white">
       <div className="relative">
@@ -109,7 +110,7 @@ export const ContactSection = () => {
                       <textarea
                         required
                         rows={4}
-                        className={inputClasses}
+                        className={`${inputClasses} min-h-[100px] max-h-[700px]`}
                         placeholder={t('contact.form.messagePlaceholder', 'Your message here...')}
                       />
                     </div>

@@ -135,7 +135,7 @@ interface AnimatedGradientBackgroundProps {
   isSafari: boolean;
 }
 
-const AnimatedGradientBackground: React.FC<AnimatedGradientBackgroundProps> = ({ isSafari }) => {
+const AnimatedGradientBackground: React.FC<AnimatedGradientBackgroundProps> = ({ }) => {
   const [isVisible, setIsVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const interactiveRef = useRef<HTMLDivElement>(null);
@@ -393,6 +393,8 @@ const CompetenceSection = () => {
           </AnimatedSection>
         </div>
       </div>
+
+      <WaveTransition direction="down" />
 
       <style>{`
         @keyframes scrollRight {

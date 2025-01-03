@@ -104,21 +104,10 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
   const isInView = useInView(cardRef, { amount: 0.3, margin: "-10% 0px" });
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
     if (isInView && !hasBeenVisible) {
       setHasBeenVisible(true);
       setShouldAnimate(true);
-    } else if (!isInView && hasBeenVisible) {
-      timeoutId = setTimeout(() => {
-        setShouldAnimate(false);
-        setHasBeenVisible(false);
-      }, 1000);
     }
-
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
   }, [isInView, hasBeenVisible]);
 
   return (
@@ -132,7 +121,7 @@ const FeatureCard = ({ title, description, children, className = "" }: FeatureCa
       whileHover={{ scale: 1.02 }}
     >
       <div
-        className="select-none pointer-events-none w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center shrink-0"
+        className="select-none pointer-events-none w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center shrink-0 border-[0.5px] border-white"
         style={{ backgroundImage: `url(${banner})` }}
       >
         <motion.div
@@ -171,21 +160,10 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
   const { t } = useTranslation();
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
     if (isInView && !hasBeenVisible) {
       setHasBeenVisible(true);
       setShouldAnimate(true);
-    } else if (!isInView && hasBeenVisible) {
-      timeoutId = setTimeout(() => {
-        setShouldAnimate(false);
-        setHasBeenVisible(false);
-      }, 1000);
     }
-
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
   }, [isInView, hasBeenVisible]);
 
   return (
@@ -206,7 +184,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
         transition={{ duration: 0.5 }}
         className="bg-white/90 rounded-lg flex flex-col md:flex-row col-span-2 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] w-full h-full overflow-hidden">
         <div 
-          className="select-none pointer-events-none w-full md:w-1/2 h-48 md:h-auto rounded-t-lg md:rounded-l-lg md:rounded-tr-none flex items-center md:items-end justify-center bg-cover bg-center"
+          className="select-none pointer-events-none w-full md:w-1/2 h-48 md:h-auto rounded-t-lg md:rounded-l-lg md:rounded-tr-none flex items-center md:items-end justify-center bg-cover bg-center border-[0.5px] border-white"
           style={{ backgroundImage: `url(${banner})` }}
         >
           <motion.div 
