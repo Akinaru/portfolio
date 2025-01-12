@@ -92,8 +92,7 @@ interface FeatureCardProps {
 const FeatureCard = ({ title, description, children, className = "" }: FeatureCardProps) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
-      className={`rounded-lg bg-white/90 flex flex-col ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] h-full`}
+    className={`rounded-lg bg-white/90 flex flex-col ${className} rounded-t-xl shadow-[12px_12px_10px_rgba(0,0,0,0.2)] hover:shadow-[12px_12px_15px_rgba(0,0,0,0.5)] transition-shadow duration-300 h-full`}
     >
       <div
         className="select-none pointer-events-none w-full h-24 md:h-32 rounded-t-xl flex items-center justify-center bg-cover bg-center shrink-0 border-[0.5px] border-white"
@@ -121,8 +120,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
   return (
     <div className="transform-gpu">
       <motion.div 
-        whileHover={{ scale: 1.02 }}
-        className="bg-white/90 rounded-lg flex flex-col md:flex-row col-span-2 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] w-full h-full overflow-hidden"
+        className="bg-white/90 rounded-lg flex flex-col md:flex-row col-span-2 shadow-[12px_12px_10px_rgba(0,0,0,0.2)] hover:shadow-[12px_12px_15px_rgba(0,0,0,0.5)] transition-shadow duration-300 w-full h-full overflow-hidden"
       >
         <div 
           className="select-none pointer-events-none w-full md:w-1/2 h-48 md:h-auto rounded-t-lg md:rounded-l-lg md:rounded-tr-none flex items-center md:items-end justify-center bg-cover bg-center border-[0.5px] border-white"
@@ -141,7 +139,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
           </p>
           <div className='w-full flex justify-center items-center mt-10'>
             <motion.a
-              href="/cv"
+              href="https://gallotta.fr/cv/"
               target="_blank"
               rel="noopener noreferrer"
               whileTap={{ scale: 0.95 }}
@@ -149,7 +147,7 @@ const LongFeatureCard = ({ title, description, children }: FeatureCardProps) => 
                 inline-flex items-center 
                 gap-2 px-4 py-2 
                 rounded-full text-sm
-                text-neutral-500 hover:bg-neutral-200
+                text-neutral-500 border-2 hover:border-neutral-400 
                 transition-colors
                 w-fit
               "

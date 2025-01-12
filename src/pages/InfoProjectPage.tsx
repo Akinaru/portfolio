@@ -26,6 +26,39 @@ const ChevronLeft = () => (
   </svg>
 );
 
+const ViewToggleButton = ({ isFullView, onToggle }: { isFullView: boolean; onToggle: () => void }) => (
+  <button
+    onClick={onToggle}
+    className="fixed top-4 right-4 z-[70] px-4 py-2 bg-neutral-800/80 hover:bg-neutral-700/80 rounded-xl transition-all duration-500 text-white w-40 h-10"
+  >
+    <div className="relative w-full h-full overflow-hidden">
+      <div 
+        className="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 transform"
+        style={{
+          transform: `translateY(${isFullView ? '0' : '-100%'})`,
+        }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M18 3H6C4.89543 3 4 3.89543 4 5V19C4 20.1046 4.89543 21 6 21H18C19.1046 21 20 20.1046 20 19V5C20 3.89543 19.1046 3 18 3Z"/>
+          <path d="M9 3V21"/>
+        </svg>
+        <span className="whitespace-nowrap">Voir détails</span>
+      </div>
+      <div 
+        className="absolute inset-0 flex items-center justify-center gap-2 transition-all duration-500 transform"
+        style={{
+          transform: `translateY(${isFullView ? '100%' : '0'})`,
+        }}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 3h18v18H3z"/>
+        </svg>
+        <span className="whitespace-nowrap">Vue complète</span>
+      </div>
+    </div>
+  </button>
+);
+
 const ProjectContentCards: React.FC<ProjectContentProps> = ({ projectId, isLeaving }) => {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useTranslation();
@@ -149,6 +182,7 @@ const ProjectLayout: React.FC<{
 }> = ({ children, backgroundImage, backgroundImageMobile, isLoading, isLeaving, className, onNavigate }) => {
   const { t } = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
+  const [isFullView, setIsFullView] = useState(false);
   const { lang } = useParams<{ lang: string }>();
 
   useEffect(() => {
@@ -166,14 +200,31 @@ const ProjectLayout: React.FC<{
     onNavigate(`/${lang}#projects`);
   };
 
+  const toggleView = () => {
+    setIsFullView(!isFullView);
+  };
+
   return (
     <>
+      <ViewToggleButton isFullView={isFullView} onToggle={toggleView} />
+      
       {/* Overlay de transition noir */}
       <div 
         className={`fixed inset-0 bg-black z-[60] transition-opacity duration-500 pointer-events-none ${
           isLeaving ? 'opacity-100' : 'opacity-0'
         }`} 
       />
+
+      {/* Nouveau bouton d'accueil pour la vue dégagée */}
+      {isFullView && (
+        <button
+          onClick={handleNavigate}
+          className="fixed top-4 left-4 z-[70] flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+        >
+          <ChevronLeft />
+          <p>{t('projects.home')}</p>
+        </button>
+      )}
 
       <div className="min-h-screen bg-neutral-900 text-white">
         <div className="fixed inset-0 z-40">
@@ -184,32 +235,38 @@ const ProjectLayout: React.FC<{
               isLoading ? 'opacity-0 scale-105' : 'opacity-70 scale-100'
             }`}
           />
-          <div className="absolute inset-0 bg-black/50" />
-          <div 
-            className="absolute inset-0"
-            style={{
-              background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0) 100%)',
-              pointerEvents: 'none'
-            }}
-          />
+          {!isFullView && (
+            <>
+              <div className="absolute inset-0 bg-black/50 transition-opacity duration-500" />
+              <div 
+                className="absolute inset-0 transition-opacity duration-500"
+                style={{
+                  background: 'radial-gradient(circle at center, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0) 100%)',
+                  pointerEvents: 'none'
+                }}
+              />
+            </>
+          )}
         </div>
 
-        <div className={`relative z-50 p-8 transition-all duration-700 ease-in-out ${
-          isLoading ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-        }`}>
-          <div className={`max-w-7xl mx-auto ${className}`}>
-            <div className="mb-8">
-              <button
-                onClick={handleNavigate}
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit"
-              >
-                <ChevronLeft />
-                <p>{t('projects.home')}</p>
-              </button>
+        {!isFullView && (
+          <div className={`relative z-50 p-8 transition-all duration-700 ease-in-out ${
+            isLoading ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+          }`}>
+            <div className={`max-w-7xl mx-auto ${className}`}>
+              <div className="mb-8">
+                <button
+                  onClick={handleNavigate}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full text-white hover:bg-white/10 transition-all duration-300 transform hover:scale-105 w-fit"
+                >
+                  <ChevronLeft />
+                  <p>{t('projects.home')}</p>
+                </button>
+              </div>
+              {children}
             </div>
-            {children}
           </div>
-        </div>
+        )}
       </div>
     </>
   );

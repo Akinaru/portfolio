@@ -59,7 +59,7 @@ const ScrollIndicator = () => {
     >
       <motion.div
           data-hover
-          className="absolute w-8 h-14 top-28 rounded-full border-2 border-white/20 flex justify-center p-1.5"
+          className="absolute w-8 h-14 top-20 rounded-full border-2 border-white/20 flex justify-center p-1.5"
           whileHover={{
             scale: 1.1,
             backgroundColor: "rgba(255, 255, 255, 0.2)",
