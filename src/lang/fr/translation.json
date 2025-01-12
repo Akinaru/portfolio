@@ -1,3 +1,5 @@
+
+
 {
 
   "nav": {
@@ -100,9 +102,16 @@
         "title": "DEVELOPPEUR FULLSTACK",
         "company": "IUT ANNECY",
         "location": "Annecy-Le-Vieux",
-        "date": "Avril 2024 - Maintenant",
+        "date": "Avril 2024 - Janvier 2025",
         "description": "Développement d'une application complète pour la gestion des semestres à l'étranger des étudiants, avec une section publique accessible à tous et une section privée permettant aux étudiants de gérer leurs préférences de voyage, documents et informations personnelles.",
-        "type": "Stage"
+        "type": "Stage",
+        "competences": [
+          { "name": "Vue.js", "icon": "SiVuedotjs" },
+          { "name": "Laravel", "icon": "SiLaravel" },
+          { "name": "JavaScript", "icon": "SiJavascript" },
+          { "name": "PHP", "icon": "SiPhp" },
+          { "name": "MySQL", "icon": "SiMysql" }
+        ]
       },
       "polyvalent": {
         "title": "EMPLOYÉ POLYVALENT",
@@ -118,7 +127,14 @@
         "location": "Annecy",
         "date": "Novembre 2023 - Fevrier 2024",
         "description": "Dans le cadre de l'IUT, création d'un site qui répertorie des publications d'actions postées par des associations. Il est possible de se connecter et de modifier les éléments du site en fonction du rôle de l'utilisateur (administrateur, association, etc.).",
-        "type": "Scolaire"
+        "type": "Scolaire",
+        "competences": [
+          { "name": "Vue.js", "icon": "SiVuedotjs" },
+          { "name": "C#", "icon": "SiDotnet" },
+          { "name": "JavaScript", "icon": "SiJavascript" },
+          { "name": "PostgreSQL", "icon": "SiPostgresql" },
+          { "name": "DaisyUI", "icon": "SiTailwindcss" }
+        ]
       },
       "webmecanik": {
         "title": "STAGE DEVELOPPEUR WEB",
@@ -126,7 +142,12 @@
         "location": "Annecy",
         "date": "Mars 2018 - Avril 2018",
         "description": "Apprentissage des bases du développement web (HTML, CSS et JavaScript) sur la plateforme OpenClassrooms, sous la supervision de professionnels de l'entreprise. Assistance à la correction de code et au déploiement des mises à jour d'applications.",
-        "type": "Stage"
+        "type": "Stage",
+        "competences": [
+          { "name": "HTML5", "icon": "SiHtml5" },
+          { "name": "JavaScript", "icon": "SiJavascript" },
+          { "name": "CSS3", "icon": "SiCss3" }
+        ]
       }
     },
     "study": {

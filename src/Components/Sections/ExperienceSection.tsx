@@ -1,6 +1,18 @@
 import  { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { 
+  SiVuedotjs,
+  SiLaravel,
+  SiJavascript,
+  SiPhp,
+  SiMysql,
+  SiTailwindcss,
+  SiDotnet,
+  SiPostgresql,
+  SiHtml5,
+  SiCss3
+} from 'react-icons/si';
 
 interface Experience {
   title: string;
@@ -27,12 +39,60 @@ interface Studies {
   [key: string]: Study | string;
 }
 
+const iconMap = {
+  SiVuedotjs,
+  SiLaravel,
+  SiJavascript,
+  SiPhp,
+  SiMysql,
+  SiTailwindcss,
+  SiDotnet,
+  SiPostgresql,
+  SiHtml5,
+  SiCss3
+};
+
+interface SkillProps {
+  name: string;
+  icon: string;
+}
+
+const Skill: React.FC<SkillProps> = ({ name, icon }) => {
+  const IconComponent = iconMap[icon as keyof typeof iconMap];
+  
+  return (
+    <div className="flex items-center gap-2 group">
+      {IconComponent && (
+        <IconComponent 
+          className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 
+                    transition-colors duration-300
+                    group-hover:text-blue-400"
+        />
+      )}
+      <span className="text-sm md:text-base text-neutral-100">
+        {name}
+      </span>
+    </div>
+  );
+};
+
+
+
 export const ExperienceSection = () => {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const { t } = useTranslation();
-  const isInView = useInView(sectionRef, { once: false, amount: 0.2 });
-  const isContentInView = useInView(contentRef, { once: false, amount: 0.2 });
+  const isInView = useInView(sectionRef, { 
+    once: false,
+    amount: 0.05,
+    margin: "-5% 0px -5% 0px"
+  });
+  
+  const isContentInView = useInView(contentRef, {
+    once: false,
+    amount: 0.05,
+    margin: "-5% 0px -5% 0px"
+  });
   const experienceData = t('parcours.experiences', { returnObjects: true }) as Experiences;
   const studyData = t('parcours.study', { returnObjects: true }) as Studies;
 
@@ -111,8 +171,11 @@ export const ExperienceSection = () => {
                         
                         <div className="relative z-10 scale-100 group-hover:scale-[0.98] transition-all duration-700 ease-in-out">
                           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-4">
-                            <h4 className="text-xl md:text-2xl font-bold text-white">
-                              {t(`parcours.experiences.${key}.title`)}
+                            <h4 className="text-xl md:text-2xl font-bold text-white relative inline-block group">
+                              <span className="relative">
+                                {t(`parcours.experiences.${key}.title`)}
+                                <span className="absolute -bottom-1.5 left-0 w-full h-0.5 opacity-50 bg-white origin-left transform scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                              </span>
                             </h4>
                             <span className="text-sm text-neutral-200">
                               {t(`parcours.experiences.${key}.date`)}
@@ -123,7 +186,7 @@ export const ExperienceSection = () => {
                             <p className="text-lg text-white">
                               {t(`parcours.experiences.${key}.company`)} - {t(`parcours.experiences.${key}.location`)}
                             </p>
-                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs md:text-sm font-medium bg-white/20 text-white mt-2">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs md:text-sm font-medium bg-white/20 text-white mt-2 group-hover:text-blue-400">
                               {t(`parcours.experiences.${key}.type`)}
                             </span>
                           </div>
@@ -131,6 +194,17 @@ export const ExperienceSection = () => {
                           <p className="text-neutral-100">
                             {t(`parcours.experiences.${key}.description`)}
                           </p>
+
+                          {/* Affichage des compétences */}
+                          <div className="flex flex-wrap gap-4 mt-4">
+                            {Object.values(t(`parcours.experiences.${key}.competences`, { returnObjects: true })).map((skill: any, index: number) => (
+                              <Skill
+                                key={index}
+                                name={skill.name}
+                                icon={skill.icon}
+                              />
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </motion.div>
@@ -172,8 +246,11 @@ export const ExperienceSection = () => {
                         
                         <div className="relative z-10 scale-100 group-hover:scale-[0.98] transition-all duration-700 ease-in-out">
                           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-4">
-                            <h4 className="text-xl md:text-2xl font-bold text-white">
-                              {t(`parcours.study.${key}.title`)}
+                          <h4 className="text-xl md:text-2xl font-bold text-white relative inline-block group">
+                              <span className="relative">
+                                {t(`parcours.study.${key}.title`)}
+                                <span className="absolute -bottom-1.5 left-0 w-full h-0.5 opacity-50 bg-white origin-left transform scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                              </span>
                             </h4>
                             <span className="text-sm text-neutral-200">
                               {t(`parcours.study.${key}.date`)}
