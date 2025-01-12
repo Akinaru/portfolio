@@ -1,6 +1,20 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { DiVisualstudio } from "react-icons/di";
+import { 
+  DiJava, DiPython, DiEclipse, DiWindows } from "react-icons/di";
 import { cn } from "../../libs/utils";
 import { useTranslation } from 'react-i18next';
+import { 
+  SiJavascript, SiPhp, SiHtml5, SiTypescript, SiCss3,
+  SiPython, SiArduino, SiRaspberrypi, SiPostgresql,
+  SiMysql, SiMongodb, SiDocker, SiReact, SiVuedotjs, SiNodedotjs,
+  SiExpress, SiLaravel, SiFlutter, SiSymfony, SiSpring, SiFlask,
+  SiTailwindcss, SiSocketdotio, SiBootstrap, SiThreedotjs,
+  SiTensorflow, SiPytorch, SiKeras, SiPandas,
+  SiNumpy, SiScikitlearn,
+  SiVim, SiIntellijidea, SiDebian, SiUbuntu, SiIos,
+  SiKalilinux, SiLinux, SiMacos, SiDotnet
+} from 'react-icons/si';
 
 
 const WaveTransition = ({ 
@@ -76,60 +90,7 @@ const WaveTransition = ({
   );
 };
 
-interface AnimatedSectionProps {
-  children: React.ReactNode;
-  delay?: number;
-}
 
-const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, delay = 0 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const elementRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            setHasAnimated(true);
-          } else if (hasAnimated) {
-            setIsVisible(false);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '50px'
-      }
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
-      }
-    };
-  }, [hasAnimated]);
-
-  return (
-    <div
-      ref={elementRef}
-      className={cn(
-        "transition-all duration-1000 ease-out",
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-20"
-      )}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  );
-};
 
 interface AnimatedGradientBackgroundProps {
   isSafari: boolean;
@@ -231,9 +192,14 @@ const AnimatedGradientBackground: React.FC<AnimatedGradientBackgroundProps> = ({
           "transition-opacity duration-1000 delay-600"
         )}
       ></div>
+
+      {/* Couche d'assombrissement */}
+      <div className="absolute inset-0 bg-black/70 pointer-events-none"></div>
     </div>
   );
 };
+
+
 
 const CompetenceSection = () => {
   const { t } = useTranslation();
@@ -244,32 +210,9 @@ const CompetenceSection = () => {
   const [tgY] = useState(0);
   const [isSafari, setIsSafari] = useState(false);
 
-  const sections = {
-    techStack: {
-      titleKey: "competences.sections.techStack.title",
-      items: ["JavaScript", "PHP", "Java", "HTML5", "TypeScript", "CSS3", "Python", "C#", "Arduino", "Raspberry Pi", "PostgreSQL", "MySQL", "MongoDB", "Docker"]
-    },
-    frameworks: {
-      titleKey: "competences.sections.frameworks.title",
-      items: ["React", "Vue.js", "Node.js", "Express.js", "Laravel", "Flutter", "Symfony", "Monogame", "Blazor", "Spring Boot", "Flask"]
-    },
-    libraries: {
-      titleKey: "competences.sections.libraries.title",
-      items: ["TailwindCSS", "Socket.io", "DaisyUI", "Bootstrap", "ThreeJS", "TensorFlow", "PyTorch", "Keras", "Pandas", "Matplotlib", "NumPy", "Scikit-learn"]
-    },
-    tools: {
-      titleKey: "competences.sections.tools.title",
-      items: ["Visual Studio Code", "Visual Studio", "Vim", "IntelliJ IDEA", "Eclipse"]
-    },
-    os: {
-      titleKey: "competences.sections.os.title",
-      items: ["Debian", "Ubuntu", "iOS", "Kali", "Linux", "macOS", "Windows"]
-    }
-  };
-
-  const getDuration = (itemCount: number): string => {
-    return `${itemCount * 10}s`;
-  };
+  useEffect(() => {
+    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+  }, []);
 
   useEffect(() => {
     document.body.style.setProperty("--gradient-background-start", "rgb(0, 0, 0)");
@@ -285,10 +228,6 @@ const CompetenceSection = () => {
   }, []);
 
   useEffect(() => {
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
-  }, []);
-
-  useEffect(() => {
     function move() {
       if (!interactiveRef.current) return;
       setCurX(curX + (tgX - curX) / 20);
@@ -298,122 +237,137 @@ const CompetenceSection = () => {
     move();
   }, [tgX, tgY, curX, curY]);
 
+  const sections = {
+    techStack: {
+      titleKey: "competences.sections.techStack.title",
+      items: [
+        { name: "JavaScript", icon: SiJavascript },
+        { name: "PHP", icon: SiPhp },
+        { name: "Java", icon: DiJava },
+        { name: "HTML5", icon: SiHtml5 },
+        { name: "TypeScript", icon: SiTypescript },
+        { name: "CSS3", icon: SiCss3 },
+        { name: "Python", icon: SiPython },
+        { name: "C#", icon: SiDotnet },
+        { name: "Arduino", icon: SiArduino },
+        { name: "Raspberry Pi", icon: SiRaspberrypi },
+        { name: "PostgreSQL", icon: SiPostgresql },
+        { name: "MySQL", icon: SiMysql },
+        { name: "MongoDB", icon: SiMongodb },
+        { name: "Docker", icon: SiDocker }
+      ]
+    },
+    frameworks: {
+      titleKey: "competences.sections.frameworks.title",
+      items: [
+        { name: "React", icon: SiReact },
+        { name: "Vue.js", icon: SiVuedotjs },
+        { name: "Node.js", icon: SiNodedotjs },
+        { name: "Express.js", icon: SiExpress },
+        { name: "Laravel", icon: SiLaravel },
+        { name: "Flutter", icon: SiFlutter },
+        { name: "Symfony", icon: SiSymfony },
+        { name: "Monogame", icon: SiDotnet },
+        { name: "Blazor", icon: SiDotnet },
+        { name: "Spring Boot", icon: SiSpring },
+        { name: "Flask", icon: SiFlask }
+      ]
+    },
+    libraries: {
+      titleKey: "competences.sections.libraries.title",
+      items: [
+        { name: "TailwindCSS", icon: SiTailwindcss },
+        { name: "Socket.io", icon: SiSocketdotio },
+        { name: "DaisyUI", icon: SiTailwindcss },
+        { name: "Bootstrap", icon: SiBootstrap },
+        { name: "ThreeJS", icon: SiThreedotjs },
+        { name: "TensorFlow", icon: SiTensorflow },
+        { name: "PyTorch", icon: SiPytorch },
+        { name: "Keras", icon: SiKeras },
+        { name: "Pandas", icon: SiPandas },
+        { name: "Matplotlib", icon: DiPython },
+        { name: "NumPy", icon: SiNumpy },
+        { name: "Scikit-learn", icon: SiScikitlearn }
+      ]
+    },
+    tools: {
+      titleKey: "competences.sections.tools.title",
+      items: [
+        { name: "VSCode", icon: DiVisualstudio },
+        { name: "Visual Studio", icon: DiVisualstudio },
+        { name: "Vim", icon: SiVim },
+        { name: "IntelliJ IDEA", icon: SiIntellijidea },
+        { name: "Eclipse", icon: DiEclipse }
+      ]
+    },
+    os: {
+      titleKey: "competences.sections.os.title",
+      items: [
+        { name: "Debian", icon: SiDebian },
+        { name: "Ubuntu", icon: SiUbuntu },
+        { name: "iOS", icon: SiIos },
+        { name: "Kali", icon: SiKalilinux },
+        { name: "Linux", icon: SiLinux },
+        { name: "macOS", icon: SiMacos },
+        { name: "Windows", icon: DiWindows }
+      ]
+    }
+  };
+
   return (
     <section id="competences" className="min-h-screen w-screen relative overflow-hidden">
       <WaveTransition direction="up" />
       <div className="absolute inset-0 bg-black/90 z-0" />
+      <AnimatedGradientBackground isSafari={isSafari}/>
 
-      {/* SVG Filters */}
-      <svg className="hidden">
-        <defs>
-          <filter id="blurMe">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-              result="goo"
-            />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter> 
-        </defs>
-      </svg>
-
-      {/* Animated Background */}
-      <AnimatedGradientBackground isSafari={isSafari} />
-
-      {/* Content */}
       <div className="relative w-full bg-transparent text-white p-4 md:p-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection>
-          {Object.entries(sections).map(([key, section], sectionIndex) => (
-            <div key={key} className="mb-8 md:mb-16">
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 md:mb-8 text-center">
-                {t(section.titleKey)}
-              </h2>
-              
-              {/* Container avec effet glass */}
-              <div className="relative rounded-3xl p-1 backdrop-blur-2xl bg-white/5 border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.1)] overflow-hidden">
-                {/* Effet de brillance */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50" />
+            {Object.entries(sections).map(([key, section]) => (
+              <div key={key} className="mb-8 md:mb-16">
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-4 md:mb-8 text-center">
+                  {t(section.titleKey)}
+                </h2>
                 
-                {/* Zone de défilement */}
-                <div className="relative overflow-hidden rounded-2xl bg-black/20">
-                  {/* Masques de dégradé */}
-                  <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 z-10"
-                      style={{
-                        maskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
-                        WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0))',
-                        backgroundColor: 'rgba(255,255,255,0.1)'
-                      }}
-                  />
-                  <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 z-10"
-                      style={{
-                        maskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
-                        WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0))',
-                        backgroundColor: 'rgba(255,255,255,0.1)'
-                      }}
-                  />
-
-                  {/* Contenu défilant */}
-                  <div className="whitespace-nowrap py-2 md:py-4">
-                    <div 
-                      className="inline-flex" 
-                      style={{
-                        animation: `${sectionIndex % 2 === 0 ? 'scrollRight' : 'scrollLeft'} ${getDuration(section.items.length)} linear infinite`,
-                        willChange: 'transform',
-                        backfaceVisibility: 'hidden',
-                        transform: 'translate3d(0,0,0)'
-                      }}
-                    >
-                      {[...Array(6)].map((_, i) => (
-                        <div key={i} className="inline-flex gap-2 md:gap-4 px-2">
-                          {section.items.map((item, index) => (
-                            <div
-                              key={`${item}-${i}-${index}`}
-                              className=" bg-white/5
-                                      border border-white/10
-                                      px-4 md:px-6 py-2 md:py-3 rounded-xl
-                                      hover:bg-white/10
-                                      transition-all duration-300 
-                                      shadow-lg hover:shadow-xl
-                                      transform hover:-translate-y-1"
-                            >
-                              <span className="text-base md:text-lg whitespace-nowrap select-none">{item}</span>
-                            </div>
-                          ))}
+                <div className="relative rounded-3xl p-4 backdrop-blur-2xl bg-white/5 border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.1)]">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50" />
+                  
+                  <div className="relative bg-black/20 rounded-2xl p-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                      {section.items.map((item, index) => (
+                        <div
+                          key={`${item.name}-${index}`}
+                          className="relative isolate overflow-hidden
+                                   bg-gradient-to-br from-white/5 to-white/0
+                                   border border-white/10
+                                   px-4 py-3 rounded-xl
+                                   group
+                                   transition-all duration-300 
+                                   shadow-lg 
+                                   transform hover:-translate-y-1
+                                   flex items-center gap-2"
+                        >
+                          {/* Overlay de hover isolé */}
+                          <div className="absolute inset-0 -z-10 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
+                          
+                          {item.icon && (
+                            <item.icon className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0 
+                                               transition-colors duration-300
+                                               group-hover:text-blue-400" />
+                          )}
+                          <span className="text-sm md:text-base whitespace-nowrap select-none">
+                            {item.name}
+                          </span>
                         </div>
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-          </AnimatedSection>
+            ))}
         </div>
       </div>
 
       <WaveTransition direction="down" />
-
-      <style>{`
-        @keyframes scrollRight {
-          0% {
-            transform: translate3d(0, 0, 0);
-          }
-          100% {
-            transform: translate3d(-16.666%, 0, 0);
-          }
-        }
-        @keyframes scrollLeft {
-          0% {
-            transform: translate3d(-16.666%, 0, 0);
-          }
-          100% {
-            transform: translate3d(0, 0, 0);
-          }
-        }
-      `}</style>
     </section>
   );
 };

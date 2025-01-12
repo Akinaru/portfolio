@@ -24,8 +24,8 @@
     "card1Desc": "Località: Annecy 74000, Francia\nLingue:\n• FR: Madrelingua • EN: B2 intermedio • IT: B2 intermedio",
 
     "card2": "📍 Hobby",
-    "card2Desc": "🎮 Gaming\n• Outer Wilds - Esplorazione spaziale & puzzle\n• Red Dead Redemption 2 - Azione/Avventura\n• Minecraft - Creatività & costruzione\n• Elden Ring - Azione/RPG\n\n🎵 Musica\n• Rap Francese & US\n• Techno/Hard Techno\n \n🥋 Sport\n• Bodybuilding - 2 anni di pratica regolare\n• Judo - Cintura Blu - 8 anni di pratica\n\n📚 Altre passioni\n• Tecnologia & Innovazione\n• Montagna & Escursionismo\n",
-
+    "card2Desc": "🎮 Videogiochi\n• Outer Wilds - Esplorazione spaziale & puzzle\n• Red Dead Redemption 2 - Azione/Avventura\n• Minecraft - Creatività, costruzione & sviluppo\n• Elden Ring - Action/RPG Mondo Aperto\n\n🎵 Musica\n• Rap Francese & Americano\n• Techno/Hard Techno/Tekno\n• Acid/AcidCore\n\n🥋 Sport\n• Bodybuilding - 2 anni di pratica regolare\n• Judo - Cintura Blu - 8 anni di pratica\n\n📚 Altre passioni\n• Tecnologia & Innovazione (IA)\n• Montagna & Escursionismo\n",
+    
     "card3": "💡 Competenze tecniche",
     "card3Desc": "Appassionato di sviluppo fullstack, mi piace particolarmente costruire applicazioni dalla A alla Z. 🎨 Sul lato frontend, mi esprimo nell'ecosistema React, dove TypeScript mi permette di programmare con sicurezza e precisione.\n\n⚡️ Il backend non è da meno: mi piace creare API robuste con Express.ts, tenendo sempre a mente la manutenibilità e la scalabilità.\n\nSono convinto che la qualità del codice sia importante quanto il risultato finale. Per questo apprezzo particolarmente TypeScript, che mi permette di produrre un codice più sicuro e meglio strutturato. 🎯"
   },
@@ -107,7 +107,7 @@
         "location": "Annecy",
         "date": "Luglio 2023 - Attuale",
         "description": "Gestione e manutenzione del corretto funzionamento delle casse self-service. In parallelo, supporto al personale dei prodotti freschi, con assistenza al rifornimento degli scaffali, alla presentazione dei prodotti e alla gestione delle date di scadenza.",
-        "type": "Contratto a tempo determinato"
+        "type": "Contratto a tempo indeterminato"
       },
       "helpHub": {
         "title": "PROGETTO SVILUPPO WEB",

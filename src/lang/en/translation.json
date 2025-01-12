@@ -25,8 +25,8 @@
     "card1Desc": "Location: Annecy 74000, France\nLanguages:\n• FR: Native • EN: B2 intermediate • IT: B2 intermediate",
    
     "card2": "📍 Hobbies",
-    "card2Desc": "🎮 Gaming\n• Outer Wilds - Space exploration & puzzle\n• Red Dead Redemption 2 - Action/Adventure\n• Minecraft - Creativity & building\n• Elden Ring - Action/RPG\n\n🎵 Music\n• French & US Rap\n• Techno/Hard Techno\n\n🥋 Sports\n• Weightlifting - 2 years of regular practice\n• Judo - Blue Belt - 8 years of practice\n\n📚 Other passions\n• Technology & Innovation\n• Mountains & Hiking\n",
-   
+    "card2Desc": "🎮 Gaming\n• Outer Wilds - Space exploration & puzzle\n• Red Dead Redemption 2 - Action/Adventure\n• Minecraft - Creativity, building & development\n• Elden Ring - Action/RPG Open World\n\n🎵 Music\n• French & US Rap\n• Techno/Hard Techno/Tekno\n• Acid/AcidCore\n\n🥋 Sports\n• Bodybuilding - 2 years of regular practice\n• Judo - Blue Belt - 8 years of practice\n\n📚 Other passions\n• Technology & Innovation (AI)\n• Mountains & Hiking\n",
+    
     "card3": "💡 Technical Skills",
     "card3Desc": "Passionate about fullstack development, I particularly enjoy building applications from A to Z. 🎨 On the frontend side, I thrive in the React ecosystem, where TypeScript allows me to code with confidence and precision.\n\n⚡️ The backend doesn't fall behind: I love creating robust APIs with Express.ts, always keeping maintainability and scalability in mind.\n\nI firmly believe that code quality is just as important as the end result. That's why I particularly appreciate TypeScript, which allows me to produce safer and better-structured code. 🎯"
    },
@@ -107,7 +107,7 @@
           "location": "Annecy",
           "date": "July 2023 - Now",
           "description": "Management and maintenance of self-service checkout systems. Additionally, support to fresh produce staff, assisting with shelf restocking, product presentation, and expiration date management.",
-          "type": "Fixed-term Contract"
+          "type": "Permanent Contract"
         },
         "helpHub": {
           "title": "WEB DEVELOPMENT PROJECT",

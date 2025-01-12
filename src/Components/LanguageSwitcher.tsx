@@ -47,8 +47,8 @@ interface Language {
 }
 
 const languages: Language[] = [
-  { code: 'en', name: 'English' },
   { code: 'fr', name: 'Français' },
+  { code: 'en', name: 'English' },
   { code: 'it', name: 'Italiano' },
   { code: 'ja', name: '日本語' }
 ];
