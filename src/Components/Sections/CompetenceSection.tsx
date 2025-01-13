@@ -241,75 +241,75 @@ const CompetenceSection = () => {
     techStack: {
       titleKey: "competences.sections.techStack.title",
       items: [
-        { name: "JavaScript", icon: SiJavascript },
-        { name: "PHP", icon: SiPhp },
-        { name: "Java", icon: DiJava },
-        { name: "HTML5", icon: SiHtml5 },
-        { name: "TypeScript", icon: SiTypescript },
-        { name: "CSS3", icon: SiCss3 },
-        { name: "Python", icon: SiPython },
-        { name: "C#", icon: SiDotnet },
-        { name: "Arduino", icon: SiArduino },
-        { name: "Raspberry Pi", icon: SiRaspberrypi },
-        { name: "PostgreSQL", icon: SiPostgresql },
-        { name: "MySQL", icon: SiMysql },
-        { name: "MongoDB", icon: SiMongodb },
-        { name: "Docker", icon: SiDocker }
+        { name: "JavaScript", icon: SiJavascript, url: "https://fr.wikipedia.org/wiki/JavaScript" },
+        { name: "PHP", icon: SiPhp, url: "https://www.php.net/" },
+        { name: "Java", icon: DiJava, url: "https://www.java.com/fr/" },
+        { name: "HTML5", icon: SiHtml5, url: "https://fr.wikipedia.org/wiki/HTML5" },
+        { name: "TypeScript", icon: SiTypescript, url:"https://www.typescriptlang.org/" },
+        { name: "CSS3", icon: SiCss3, url:"https://fr.wikipedia.org/wiki/Feuilles_de_style_en_cascade" },
+        { name: "Python", icon: SiPython, url:"https://www.python.org/" },
+        { name: "C#", icon: SiDotnet, url:"https://dotnet.microsoft.com/fr-fr/" },
+        { name: "Arduino", icon: SiArduino, url:"https://www.arduino.cc/" },
+        { name: "Raspberry Pi", icon: SiRaspberrypi, url:"https://www.raspberrypi.com/" },
+        { name: "PostgreSQL", icon: SiPostgresql,url:"https://www.postgresql.org/" },
+        { name: "MySQL", icon: SiMysql,url:"https://www.mysql.com/fr/" },
+        { name: "MongoDB", icon: SiMongodb, url:"https://www.mongodb.com/fr-fr" },
+        { name: "Docker", icon: SiDocker,url:"https://www.docker.com/" }
       ]
     },
     frameworks: {
       titleKey: "competences.sections.frameworks.title",
       items: [
-        { name: "React", icon: SiReact },
-        { name: "Vue.js", icon: SiVuedotjs },
-        { name: "Node.js", icon: SiNodedotjs },
-        { name: "Express.js", icon: SiExpress },
-        { name: "Laravel", icon: SiLaravel },
-        { name: "Flutter", icon: SiFlutter },
-        { name: "Symfony", icon: SiSymfony },
-        { name: "Monogame", icon: SiDotnet },
-        { name: "Blazor", icon: SiDotnet },
-        { name: "Spring Boot", icon: SiSpring },
-        { name: "Flask", icon: SiFlask }
+        { name: "React", icon: SiReact,url:"https://fr.legacy.reactjs.org/" },
+        { name: "Vue.js", icon: SiVuedotjs,url:"https://fr.vuejs.org/" },
+        { name: "Node.js", icon: SiNodedotjs,url:"https://nodejs.org/fr" },
+        { name: "Express.js", icon: SiExpress,url:"https://expressjs.com/" },
+        { name: "Laravel", icon: SiLaravel,url:"https://laravel.com/" },
+        { name: "Flutter", icon: SiFlutter,url:"https://flutter.dev/" },
+        { name: "Symfony", icon: SiSymfony,url:"https://symfony.com/" },
+        { name: "Monogame", icon: SiDotnet,url:"https://monogame.net/" },
+        { name: "Blazor", icon: SiDotnet,url:"https://dotnet.microsoft.com/fr-fr/apps/aspnet/web-apps/blazor" },
+        { name: "Spring Boot", icon: SiSpring,url:"https://spring.io/projects/spring-boot" },
+        { name: "Flask", icon: SiFlask,url:"https://flask.palletsprojects.com/en/stable/" }
       ]
     },
     libraries: {
       titleKey: "competences.sections.libraries.title",
       items: [
-        { name: "TailwindCSS", icon: SiTailwindcss },
-        { name: "Socket.io", icon: SiSocketdotio },
-        { name: "DaisyUI", icon: SiTailwindcss },
-        { name: "Bootstrap", icon: SiBootstrap },
-        { name: "ThreeJS", icon: SiThreedotjs },
-        { name: "TensorFlow", icon: SiTensorflow },
-        { name: "PyTorch", icon: SiPytorch },
-        { name: "Keras", icon: SiKeras },
-        { name: "Pandas", icon: SiPandas },
-        { name: "Matplotlib", icon: DiPython },
-        { name: "NumPy", icon: SiNumpy },
-        { name: "Scikit-learn", icon: SiScikitlearn }
+        { name: "TailwindCSS", icon: SiTailwindcss,url:"https://tailwindcss.com/" },
+        { name: "Socket.io", icon: SiSocketdotio,url:"https://socket.io/" },
+        { name: "DaisyUI", icon: SiTailwindcss,url:"https://daisyui.com/" },
+        { name: "Bootstrap", icon: SiBootstrap,url:"https://getbootstrap.com/" },
+        { name: "ThreeJS", icon: SiThreedotjs,url:"https://threejs.org/" },
+        { name: "TensorFlow", icon: SiTensorflow,url:"https://www.tensorflow.org/?hl=fr" },
+        { name: "PyTorch", icon: SiPytorch,url:"https://pytorch.org/" },
+        { name: "Keras", icon: SiKeras,url:"https://keras.io/" },
+        { name: "Pandas", icon: SiPandas,url:"https://pypi.org/project/pandas/" },
+        { name: "Matplotlib", icon: DiPython,url:"https://matplotlib.org/" },
+        { name: "NumPy", icon: SiNumpy,url:"https://numpy.org/" },
+        { name: "Scikit-learn", icon: SiScikitlearn,url:"https://scikit-learn.org/stable/index.html" }
       ]
     },
     tools: {
       titleKey: "competences.sections.tools.title",
       items: [
-        { name: "VSCode", icon: DiVisualstudio },
-        { name: "Visual Studio", icon: DiVisualstudio },
-        { name: "Vim", icon: SiVim },
-        { name: "IntelliJ IDEA", icon: SiIntellijidea },
-        { name: "Eclipse", icon: DiEclipse }
+        { name: "VSCode", icon: DiVisualstudio, url:'https://code.visualstudio.com/download' },
+        { name: "Visual Studio", icon: DiVisualstudio,url:'https://visualstudio.microsoft.com/fr/' },
+        { name: "Vim", icon: SiVim, url:'https://doc.ubuntu-fr.org/vim' },
+        { name: "IntelliJ IDEA", icon: SiIntellijidea, url:'https://www.jetbrains.com/idea/' },
+        { name: "Eclipse", icon: DiEclipse,url:'https://www.eclipse.org/downloads/' }
       ]
     },
     os: {
       titleKey: "competences.sections.os.title",
       items: [
-        { name: "Debian", icon: SiDebian },
-        { name: "Ubuntu", icon: SiUbuntu },
-        { name: "iOS", icon: SiIos },
-        { name: "Kali", icon: SiKalilinux },
-        { name: "Linux", icon: SiLinux },
-        { name: "macOS", icon: SiMacos },
-        { name: "Windows", icon: DiWindows }
+        { name: "Debian", icon: SiDebian,url:'https://www.debian.org/index.fr.html' },
+        { name: "Ubuntu", icon: SiUbuntu,url:'https://www.ubuntu-fr.org/' },
+        { name: "iOS", icon: SiIos,url:'https://www.apple.com/fr/ios/' },
+        { name: "Kali", icon: SiKalilinux,url:'https://www.kali.org/' },
+        { name: "Linux", icon: SiLinux,url:'https://www.linux.org/pages/download/' },
+        { name: "macOS", icon: SiMacos,url:'https://fr.wikipedia.org/wiki/MacOS' },
+        { name: "Windows", icon: DiWindows,url:'https://fr.wikipedia.org/wiki/Microsoft_Windows' }
       ]
     }
   };
@@ -319,7 +319,7 @@ const CompetenceSection = () => {
       <WaveTransition direction="up" />
       <div className="absolute inset-0 bg-black/90 z-0" />
       <AnimatedGradientBackground isSafari={isSafari}/>
-
+  
       <div className="relative w-full bg-transparent text-white p-4 md:p-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {Object.entries(sections).map(([key, section]) => (
@@ -334,8 +334,11 @@ const CompetenceSection = () => {
                   <div className="relative bg-black/20 rounded-2xl p-4">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
                       {section.items.map((item, index) => (
-                        <div
+                        <a
                           key={`${item.name}-${index}`}
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="relative isolate overflow-hidden
                                    bg-gradient-to-br from-white/5 to-white/0
                                    border border-white/10
@@ -344,7 +347,11 @@ const CompetenceSection = () => {
                                    transition-all duration-300 
                                    shadow-lg 
                                    transform hover:-translate-y-1
-                                   flex items-center gap-2"
+                                   flex items-center gap-2
+                                   cursor-pointer
+                                   no-underline
+                                   text-white
+                                   hover:text-white"
                         >
                           {/* Overlay de hover isolé */}
                           <div className="absolute inset-0 -z-10 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
@@ -357,7 +364,7 @@ const CompetenceSection = () => {
                           <span className="text-sm md:text-base whitespace-nowrap select-none">
                             {item.name}
                           </span>
-                        </div>
+                        </a>
                       ))}
                     </div>
                   </div>
@@ -366,7 +373,7 @@ const CompetenceSection = () => {
             ))}
         </div>
       </div>
-
+  
       <WaveTransition direction="down" />
     </section>
   );
